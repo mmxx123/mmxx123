@@ -1,0 +1,1470 @@
+U-Boot SPL 2019.04.sdk-v00.05.07 (Jul 09 2021 - 14:55:17 +0800)
+already initialized, Trying to boot from RAM
+SMCI SPL ver:01.00.11
+SPL live check-in : 40
+- SPL secure boot
+- SMCI RoT Procedure
+- Probe: SPI devices
+ - BMC Flash:mx66l51235l,Size:0x4000000
+- Verify CPLD
+ - CPLD boot from warm boot
+- Skip to verify cpld,because of warm boot
+- Skip cpld init,because of warm boot
+- Check ROTCMD:0x81
+oooooooooooooooooooooo - check SPL
+ - >...o...............................o.......................o........................o........................o........................o........................o........................o........................o........................o........................o........................o.............................................................................................................................................................o.........................................................o.......................................o.........................o........................o........................o........................o........................o........................o..................................................*****************************************************************************************o*****************************************@@ NorFlash is dynamic
+********************************************************- Skip to verify BIOS,because of warm boot
+smci_post_pch_tee result=0
+ prepare - jumping to U-Boot at 10000 ...
+U-Boot 2019.04 (Aug 11 2021 - 15:21:29 +0800)
+SOC: AST2600-A1
+PCI RST: #1 #2
+RST: External
+Security Boot
+2nd Boot: Enable, Single SPI : Primary, bspi_size : 64 MB
+LPC Mode: SIO:Enable : SuperIO-4e
+Eth: MAC0: RGMII, MAC1: RMII/NCSI, MAC2: RMII/NCSI, MAC3: RMII/NCSI
+Model: Aspeed BMC
+DRAM:  already initialized, 448 MiB
+COM: Enable port1 and port2, disable port3 and port4
+MMC:
+Loading Environment from SPI Flash... SF: Detected mx66l51235l with page size 256 Bytes, erase size 64 KiB, total 64 MiB
+OK
+In:    serial@1e784000
+Out:   serial@1e784000
+Err:   serial@1e784000
+Model: Aspeed BMC
+Net:   eth0: ftgmac@1e660000Invalid PHY interface '<NULL>'
+, eth-1: ftgmac@1e670000
+PWM1: Enable fan0 and fan1
+Hit any key to stop autoboot:  0
+## Loading kernel from FIT Image at 21c00000 ...
+   Using 'conf@aspeed-ast2600a1-evb.dtb' configuration
+   Trying 'optee@1' kernel subimage
+     Description:  OP-TEE kernel
+     Type:         Kernel Image
+     Compression:  uncompressed
+     Data Start:   0x21f8d358
+     Data Size:    444052 Bytes = 433.6 KiB
+     Architecture: ARM
+     OS:           Linux
+     Load Address: 0x9dffffe4
+     Entry Point:  0x9e000000
+     Hash algo:    sha256
+     Hash value:   5282e01659a13f136c64e5b185fb2533a458606ceb07e193d3d84ef00cd35d16
+   Verifying Hash Integrity ... sha256+ OK
+## Loading fdt from FIT Image at 21c00000 ...
+   Using 'conf@aspeed-ast2600a1-evb.dtb' configuration
+   Trying 'fdt@aspeed-ast2600a1-evb.dtb' fdt subimage
+     Description:  Flattened Device Tree blob
+     Type:         Flat Device Tree
+     Compression:  uncompressed
+     Data Start:   0x21f205c8
+     Data Size:    52216 Bytes = 51 KiB
+     Architecture: ARM
+     Hash algo:    sha256
+     Hash value:   335b987b74a863613b83bddb75b296cc2d317044c633c55122acbc4c3487b29d
+   Verifying Hash Integrity ... sha256+ OK
+   Booting using the fdt blob at 0x21f205c8
+## Loading loadables from FIT Image at 21c00000 ...
+   Trying 'kernel@1' loadables subimage
+     Description:  Linux kernel
+     Type:         Kernel Image
+     Compression:  uncompressed
+     Data Start:   0x21c000d0
+     Data Size:    3277792 Bytes = 3.1 MiB
+     Architecture: ARM
+     OS:           Linux
+     Load Address: 0x80001000
+     Entry Point:  0x80001000
+     Hash algo:    sha256
+     Hash value:   458481d2b3fe8c5fa3dafbf4fafc0580fdc88aca664786353f5a26d5b99cffce
+   Verifying Hash Integrity ... sha256+ OK
+   Loading loadables from 0x21c000d0 to 0x80001000
+## Loading loadables from FIT Image at 21c00000 ...
+   Trying 'sigtable@1' loadables subimage
+     Description:  signature table
+     Type:         Firmware
+     Compression:  uncompressed
+     Data Start:   0x21f2d284
+     Data Size:    393216 Bytes = 384 KiB
+     Architecture: ARM
+     OS:           Unknown OS
+     Load Address: 0x9d000000
+     Hash algo:    sha256
+     Hash value:   fda756ad0b3dc8fbb6797b714c1106c5c711c7ef7045a61c7ba5535e557f02fb
+   Verifying Hash Integrity ... sha256+ OK
+   Loading loadables from 0x21f2d284 to 0x9d000000
+   Loading Kernel Image ... OK
+   Loading Device Tree to 8fff0000, end 8ffffbf7 ... OK
+Starting kernel ...
+    I/OPTEE:
+    I/OPTEE: SMCI OPTEE  ver:0001.0427.07d Aug  3 2021   05:56:13
+    I/OPTEE: teecore Initialized
+    I/OPTEE: Primary CPU switching to normal world boot
+    D/OPTEE:CPU 0 thread 0 SMCI_Log:73 [19700101000611][0][0x00][0x00]: TEE FW Start (0001.0427.07d)
+    I/OPTEE: checkSPL BIOS Result
+    I/OPTEE: BIOS event table: checksum=0
+    I/OPTEE: check SPL BIOS event...
+    I/OPTEE: Tee don't need release PCH
+    I/OPTEE:  --------------- OTP Hook Start ---------------
+    D/OPTEE:CPU 0 thread 0 otp_utility_smci:2034  *** [210803A] OTP Utility Support ... ***
+    D/OPTEE:CPU 0 thread 0 otp_utility_smci:2035  *** 1. Synchronize with ASPEED OTP Utility ***
+    D/OPTEE:CPU 0 thread 0 otp_utility_smci:2036  *** 2. Add SOC A3 and Big Endian Key Support ***
+    D/OPTEE:CPU 0 thread 0 intial_otp_memory_pool:1968 intial_otp_memory_pool
+    D/OPTEE:CPU 0 thread 0 do_ast_otp:1957 info_cb structure .version=1
+    D/OPTEE:CPU 0 thread 0 otp_utility_smci:2043  --- ASPEED-A1 SOC enumerated !!
+    D/OPTEE:CPU 0 thread 0 otp_utility_smci:2054  --- Export OTP DATA/CONF/STRAP
+    D/OPTEE:CPU 0 thread 0 otp_save_print_data:1877  --- offset(0), dw_count(2048)
+    I/OPTEE: i=  0, __otp_data[  0]=0x011e0040, __otp_data[  1]=0x 11e0441
+    I/OPTEE: i=  2, __otp_data[  2]=0x011e0842, __otp_data[  3]=0xffffffff
+    I/OPTEE: i=  4, __otp_data[  4]=0x00000000, __otp_data[  5]=0xffffffff
+    I/OPTEE: i=  6, __otp_data[  6]=0x00000000, __otp_data[  7]=0xffffffff
+    I/OPTEE: i=  8, __otp_data[  8]=0x00000000, __otp_data[  9]=0xffffffff
+    I/OPTEE: i= 10, __otp_data[ 10]=0x00000000, __otp_data[ 11]=0xffffffff
+    I/OPTEE: i= 12, __otp_data[ 12]=0x00000000, __otp_data[ 13]=0xffffffff
+    I/OPTEE: i= 14, __otp_data[ 14]=0x00000000, __otp_data[ 15]=0xffffffff
+    I/OPTEE: i= 16, __otp_data[ 16]=0x60de813b, __otp_data[ 17]=0xc097969b
+    I/OPTEE: i= 18, __otp_data[ 18]=0x66f7a70d, __otp_data[ 19]=0x2639c349
+    I/OPTEE: i=272, __otp_data[272]=0x0b4aa8c5, __otp_data[273]=0x77c2dc04
+    I/OPTEE: i=274, __otp_data[274]=0xb45106a2, __otp_data[275]=0xb03f0ebe
+    I/OPTEE: i=528, __otp_data[528]=0xd1da697d, __otp_data[529]=0x86155192
+    I/OPTEE: i=530, __otp_data[530]=0xb1571708, __otp_data[531]=0xe09e572d
+    I/OPTEE:  --- OTP is not blank !!
+    I/OPTEE:  --- pSHM_OTP (DATA) [0]/[16]/[272]=0x011e0040-0x60de813b-0x0b4aa8c5
+    I/OPTEE:  --- pSHM_OTP (DATA) [528]/[1760]=0xd1da697d-0x29408000
+    I/OPTEE: 04007C80-00000000-00000000-00000000
+    I/OPTEE: 00000000-00000000-00000000-00000000
+    I/OPTEE: 00000000-00000000-00000000-00000000
+    I/OPTEE: 00000000-00000000-0000FEE0-00000000
+    I/OPTEE: 00000001-0000D800-00000000-00000000
+    I/OPTEE: 00000000-00000000-00000000-00000000
+    I/OPTEE: 00000000-00000000-00000000-00000000
+    I/OPTEE: 00000000-00000000-00000000-00000000
+    I/OPTEE:  --- pSHM_OTP (CONF) [2048]/[2062]/[2064]=0x04007c80-0x0000fee0-0x00000001
+    I/OPTEE:  --- pSHM_OTP (STRAP) [2080]/[2121]/[2122]=0x00010005-0x00000006-0x00000006
+    D/OPTEE:CPU 0 thread 0 Enable_ABR_Function:2166 Start checking: ABR
+    D/OPTEE:CPU 0 thread 0 do_ast_otp:1957 info_cb structure .version=1
+    D/OPTEE:CPU 0 thread 0 Enable_ABR_Function:2209 [ABR]Enable boot SPI ABR
+    D/OPTEE:CPU 0 thread 0 Enable_ABR_Function:2219 [ABR]single SPI flash
+    D/OPTEE:CPU 0 thread 0 Enable_ABR_Function:2229 [ABR]Boot SPI flash size (0x2d):0x0
+    D/OPTEE:CPU 0 thread 0 Enable_ABR_Function:2239 [ABR]Boot SPI flash size (0x2e):0x1
+    D/OPTEE:CPU 0 thread 0 Enable_ABR_Function:2249 [ABR]Boot SPI flash size (0x2f):0x1
+    I/OPTEE:  --------------- OTP Hook End (0x0) ---------------
+    I/OPTEE:  init Event log Table
+    I/OPTEE: [TEE] signtable BuildDate: 20210811152826
+    I/OPTEE: SPL event table: checksum=0
+    I/OPTEE: Add SPL event...
+    D/OPTEE:CPU 0 thread 0 SMCI_Log:73 [19700101000611][1][0xb1][0x00]: IPMI FW is updated (ROT command 81)
+    I/OPTEE: tz_protect_mem start
+    I/OPTEE: tz protect mem successd
+    I/OPTEE: Tee jump to to Linux entry 0x80001000
+    I/OPTEE: Secondary CPU Switching to normal world boot
+    I/OPTEE: Boot RstLog=0001ff33 ...... 00000000
+[    0.000000] Booting Linux on physical CPU 0xf00
+[    0.000000] Linux version 5.1.3-2965b36-dirty-17921c0 (root@ubuntu) (gcc version 9.2.0 (GCC)) #10 SMP Wed Aug 11 15:21:09 CST 2021
+[    0.000000] CPU: ARMv7 Processor [410fc075] revision 5 (ARMv7), cr=10c5387d
+[    0.000000] CPU: div instructions available: patching division code
+[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+[    0.000000] OF: fdt: Machine model: AST2600 A1 EVB
+[    0.000000] Memory policy: Data cache writealloc
+[    0.000000] Reserved memory: created DMA memory pool at 0x9be00000, size 2 MiB
+[    0.000000] OF: reserved mem: initialized node ssp_memory, compatible id shared-dma-pool
+[    0.000000] Reserved memory: created DMA memory pool at 0x97000000, size 64 MiB
+[    0.000000] OF: reserved mem: initialized node video, compatible id shared-dma-pool
+[    0.000000] Reserved memory: created CMA memory pool at 0x96000000, size 16 MiB
+[    0.000000] OF: reserved mem: initialized node framebuffer, compatible id shared-dma-pool
+[    0.000000] cma: Reserved 16 MiB at 0x95000000
+[    0.000000] random: get_random_bytes called from start_kernel+0x8c/0x4e4 with crng_init=0
+[    0.000000] percpu: Embedded 16 pages/cpu s34700 r8192 d22644 u65536
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 96900
+[    0.000000] Kernel command line: console=ttyS4,115200n8 root=/dev/mtdblock1 rootfstype=squashfs rw
+[    0.000000] Dentry cache hash table entries: 65536 (order: 6, 262144 bytes)
+[    0.000000] Inode-cache hash table entries: 32768 (order: 5, 131072 bytes)
+[    0.000000] Memory: 343564K/391168K available (7168K kernel code, 476K rwdata, 1796K rodata, 1024K init, 222K bss, 14836K reserved, 32768K cma-reserved, 0K highmem)
+[    0.000000] ftrace: allocating 24403 entries in 48 pages
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000] rcu:     RCU event tracing is enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 10 jiffies.
+[    0.000000] NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16
+[    0.000000] scu-irq controller registered, irq 17
+[    0.000000] scu-irq controller registered, irq 18
+[    0.000000] arch_timer: cp15 timer(s) running at 1200.00MHz (phys).
+[    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x114c1bbbeec, max_idle_ns: 440795229572 ns
+[    0.000006] sched_clock: 56 bits at 1200MHz, resolution 0ns, wraps every 2199023255551ns
+[    0.000015] Switching to timer-based delay loop, resolution 0ns
+[    0.001389] Calibrating delay loop (skipped), value calculated using timer frequency.. 2400.00 BogoMIPS (lpj=12000000)
+[    0.001404] pid_max: default: 32768 minimum: 301
+[    0.001600] Mount-cache hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.001610] Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.002225] CPU: Testing write buffer coherency: ok
+[    0.003267] Setting up static identity map for 0x80100000 - 0x80100078
+[    0.003377] rcu: Hierarchical SRCU implementation.
+[    0.005227] smp: Bringing up secondary CPUs ...
+[    0.016883] smp: Brought up 1 node, 2 CPUs
+[    0.016897] SMP: Total of 2 processors activated (4800.00 BogoMIPS).
+[    0.016902] CPU: All CPU(s) started in SVC mode.
+[    0.017738] devtmpfs: initialized
+[    0.027742] VFP support v0.3: implementor 41 architecture 2 part 30 variant 7 rev 5
+[    0.027978] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.028001] futex hash table entries: 512 (order: 3, 32768 bytes)
+[    0.029230] pinctrl core: initialized pinctrl subsystem
+[    0.029835] NET: Registered protocol family 16
+[    0.030990] DMA: preallocated 256 KiB pool for atomic coherent allocations
+[    0.032366] hw-breakpoint: found 5 (+1 reserved) breakpoint and 4 watchpoint registers.
+[    0.032381] hw-breakpoint: maximum watchpoint size is 8 bytes.
+[    0.044822] parent_clk_frequency 100000000
+[    0.044835] base_clk 100000000
+[    0.044840] target clk : 1000000
+[    0.044849] base clk [0] : 1000000
+[    0.044896] target clk : 4000000
+[    0.044902] base clk [1] : 4000000
+[    0.044916] target clk : 10000000
+[    0.044922] base clk [2] : 10000000
+[    0.044943] target clk : 35000000
+[    0.044948] base clk [3] : 33333333
+[    0.044967] i2c global registered
+[    0.058808] usbcore: registered new interface driver usbfs
+[    0.058888] usbcore: registered new interface driver hub
+[    0.058972] usbcore: registered new device driver usb
+[    0.059063] EDAC MC: Ver: 3.0.0
+[    0.059932] tee_init:  static register major number
+[    0.061896] clocksource: Switched to clocksource arch_sys_counter
+[    0.102841] NET: Registered protocol family 2
+[    0.103335] tcp_listen_portaddr_hash hash table entries: 512 (order: 0, 6144 bytes)
+[    0.103359] TCP established hash table entries: 4096 (order: 2, 16384 bytes)
+[    0.103394] TCP bind hash table entries: 4096 (order: 3, 32768 bytes)
+[    0.103446] TCP: Hash tables configured (established 4096 bind 4096)
+[    0.103536] UDP hash table entries: 256 (order: 1, 8192 bytes)
+[    0.103564] UDP-Lite hash table entries: 256 (order: 1, 8192 bytes)
+[    0.103742] NET: Registered protocol family 1
+[    0.104261] RPC: Registered named UNIX socket transport module.
+[    0.104274] RPC: Registered udp transport module.
+[    0.104279] RPC: Registered tcp transport module.
+[    0.104283] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    0.106255] Initialise system trusted keyrings
+[    0.106600] workingset: timestamp_bits=30 max_order=17 bucket_order=0
+[    0.106918] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.107531] jffs2: version 2.2. (NAND) © 2001-2006 Red Hat, Inc.
+[    0.107681] romfs: ROMFS MTD (C) 2007 Red Hat, Inc.
+[    0.107701] fuse init (API version 7.29)
+[    0.118740] NET: Registered protocol family 38
+[    0.119219] Key type asymmetric registered
+[    0.119230] Asymmetric key parser 'x509' registered
+[    0.119316] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 247)
+[    0.121080] aspeed-kcs-bmc: channel=1 addr=0xca4 idr=0x24 odr=0x30 str=0x3c
+[    0.121484] aspeed-kcs-bmc: channel=3 addr=0xca2 idr=0x2c odr=0x38 str=0x44
+[    0.123281] aspeed_hid: driver successfully loaded.
+[    0.124166] Serial: 8250/16550 driver, 6 ports, IRQ sharing enabled
+[    0.126610] printk: console [ttyS4] disabled
+[    0.126676] 1e784000.serial: ttyS4 at MMIO 0x1e784000 (irq = 56, base_baud = 115384) is a 16550A
+[    0.768285] printk: console [ttyS4] enabled
+[    0.773980] 1e78e000.serial: ttyS2 at MMIO 0x1e78e000 (irq = 62, base_baud = 115384) is a 16550A
+[    0.784635] 1e78f000.serial: ttyS3 at MMIO 0x1e78f000 (irq = 63, base_baud = 115384) is a 16550A
+[    0.812021] timeriomem_rng 1e6e2524.hwrng: 32bits from 0x(ptrval) @ 1us
+[    0.820509] brd: module loaded
+[    0.830408] loop: module loaded
+[    0.851166] aspeed-smc 1e620000.spi: [dual mode] - Using 25 MHz SPI frequency
+[    0.859232] aspeed-smc 1e620000.spi: mx66l51235f (65536 Kbytes)
+[    0.865874] aspeed-smc 1e620000.spi: CE0 window [ 0x20000000 - 0x24000000 ] 64MB
+[    0.874141] aspeed-smc 1e620000.spi: CE1 window [ 0x24000000 - 0x2c000000 ] 128MB
+[    0.882502] aspeed-smc 1e620000.spi: read control register: [00130400]
+[    0.901260] aspeed-smc 1e620000.spi: No good frequency, using dumb slow
+[    0.908939] 8 fixed-partitions partitions found on MTD device bmc
+[    0.915774] Creating 8 MTD partitions on "bmc":
+[    0.920834] 0x000000000000-0x000000100000 : "u-boot"
+[    0.927811] 0x000000140000-0x000001c00000 : "rofs"
+[    0.934484] 0x000001c00000-0x000002000000 : "kernel"
+[    0.941262] 0x000002100000-0x000002e00000 : "webpage"
+[    0.948239] 0x000002ec0000-0x000004000000 : "rwfs"
+[    0.954912] 0x000000000000-0x000003fc0000 : "all_part"
+[    0.961977] 0x000002e00000-0x000002e20000 : "u-boot-env"
+[    0.969236] 0x000002e20000-0x000002ec0000 : "cdata"
+[    0.976688] libphy: mdio-aspeed: probed
+[    0.994061] libphy: Fixed MDIO Bus: probed
+[    0.999773] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    1.007126] ehci-platform: EHCI generic platform driver
+[    1.013697] i2c /dev entries driver
+[    1.018252] divisor [1024], timing [fff305]
+[    1.023050] set AC timeing 1ffff305
+[    1.027645] I2C: i2c-bus [0]: adapter [100 khz]
+[    1.033277] divisor [1024], timing [fff305]
+[    1.038045] set AC timeing 1ffff305
+[    1.042558] I2C: i2c-bus [2]: adapter [100 khz]
+[    1.048163] divisor [1024], timing [fff305]
+[    1.052977] set AC timeing 1ffff305
+[    1.057476] I2C: i2c-bus [3]: adapter [100 khz]
+[    1.063195] divisor [1024], timing [fff305]
+[    1.067964] set AC timeing 1ffff305
+[    1.072515] I2C: i2c-bus [5]: adapter [100 khz]
+[    1.078108] divisor [1024], timing [fff305]
+[    1.082919] set AC timeing 1ffff305
+[    1.087426] I2C: i2c-bus [6]: adapter [100 khz]
+[    1.093047] divisor [1024], timing [fff305]
+[    1.097815] set AC timeing 1ffff305
+[    1.102377] I2C: i2c-bus [7]: adapter [100 khz]
+[    1.107972] divisor [1024], timing [fff305]
+[    1.111970] random: fast init done
+[    1.112819] set AC timeing 1ffff305
+[    1.121006] I2C: i2c-bus [8]: adapter [100 khz]
+[    1.126639] divisor [1024], timing [fff305]
+[    1.131407] set AC timeing 1ffff305
+[    1.135992] I2C: i2c-bus [9]: adapter [100 khz]
+[    1.141342] Driver for 1-wire Dallas network protocol.
+[    1.150563] dt: /memory node resources: first page r.start=0x80000000, resource_size=0x1c000000, PAGE_SHIFT macro=0xc
+[    1.162599] EDAC MC0: Giving out device to module aspeed-edac controller MIC: DEV 1e6e0000.sdram (INTERRUPT)
+[    1.174501] usbcore: registered new interface driver usbhid
+[    1.180726] usbhid: USB HID core driver
+[    1.192918] aspeed_adc: cv 493
+[    1.202929] aspeed_adc: cv 512
+[    1.207433] optee: probing for conduit method from DT.
+    D/OPTEE:CPU 0   tee_entry_exchange_capabilities:179 Dynamic shared memory is disabled
+[    1.213233] optee: revision 3.8 (5805141e)
+[    1.223530] optee: initialized driver
+[    1.232994] peci-aspeed 1e78b000.peci-bus: peci bus 0 registered, irq 61
+[    1.240875] ipip: IPv4 and MPLS over IPv4 tunneling driver
+[    1.247966] NET: Registered protocol family 10
+[    1.253868] Segment Routing with IPv6
+[    1.258322] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[    1.265675] NET: Registered protocol family 17
+[    1.271024] 8021q: 802.1Q VLAN Support v1.8
+[    1.275852] Registering SWP/SWPB emulation handler
+[    1.281851] Loading compiled-in X.509 certificates
+[    1.292454] printk: console [netcon0] enabled
+[    1.297321] netconsole: network logging started
+[    1.302637] hctosys: unable to open rtc device (rtc0)
+[    1.314174] VFS: Mounted root (squashfs filesystem) readonly on device 31:1.
+[    1.325051] Freeing unused kernel memory: 1024K
+[    1.366875] Checked W+X mappings: passed, no W+X pages found
+[    1.373234] Run /sbin/init as init process
+[    1.795693] random: crng init done
+Starting version 243+
+populate devices node .............
+[    6.820847] Ethernet Channel Bonding Driver: v3.7.1 (April 27, 2011)
+[    6.828012] MII link monitoring set to 100 ms
+[    6.920959] video_drv: loading out-of-tree module taints kernel.
+[    6.930082] video_drv 1e700000.video: assigned reserved memory node video
+[    6.971099] Reset Video Engine OK
+[    6.985413] Memory Clock = 96
+[    6.988726] Memory Bandwidth = 153
+[    7.502108] video Mode detect failed.
+[    8.692016] ast2600_spinand_init
+[    8.695655] recognize_flash_id
+[    8.699064] [recognize_flash_id] NAND Flash ID:0x21abef00
+[    8.705122] Security IDs is 0x21abef00
+[    8.712757] ast2600_spinand_probe
+[    8.716489] [spinand_ctrl] RefpLL=25  M=143  N=2  P=0  freq=1200
+[    8.723265] [spinand_ctrl] cpuclk: 200 MHz, RefCLK: 25 MHz, AXIDiv: 2, AHBDiv: 3
+[    8.731520] read clk 20 write clk 20 erase clk 20
+[    8.736792] erasesize = 0x00020000
+[    8.740594] spi1nand0 spi1nand0: W25M02GV (262144 Kbytes)
+[    8.752742] Creating 9 MTD partitions on "spi2.0":
+[    8.758111] 0x000000000000-0x000002000000 : "nand_bios1"
+[    8.772954] 0x000002000000-0x000004000000 : "nand_bioses"
+[    8.787703] 0x000004000000-0x000004e00000 : "nand_nv"
+[    8.799249] 0x000005000000-0x000007ec0000 : "nand_bmc1"
+[    8.817714] 0x000008000000-0x00000a000000 : "nand_bios2"
+[    8.832447] 0x00000a000000-0x00000cec0000 : "nand_bmces"
+[    8.844361] 0x00000d000000-0x00000fec0000 : "nand_bmc2"
+[    8.855154] 0x000004e20000-0x000004ec0000 : "nand_cdata"
+[    8.877777] 0x000000000000-0x000010000000 : "all_part_nand"
+[DRIVER] Insert the driver module insmod /bin/module/spinand_ctrl.ko
+[CHE_DBG_I2C] Create file.
+[CHE_DBG_I2C] Failed to create file.
+=============== Platform Setting ====================
+HWConfig= 0, Board ID= 1c1f
+Perpherial Lists:
+Support non-PLX NVMe eject
+======================================================
+vcdata(1)
+can't open file /cdata/aes_cri/aes_encri_data
+Copying cdata from NAND
+[VerifyCriticalData] Retry with cdata in NAND, ret=0
+can't open file /cdata/aes_cri/aes_encri_data
+No AES_FILE
+CalActiveSha256() ReadFile(/nv/platform.conf) offset=0x00000000 size=26
+CalActiveSha256() ReadFile(/nv/PSBlock) offset=0x00000014 size=1060
+CalActiveSha256() ReadFile(/nv/PSBlock) offset=0x00000000 size=1
+CalActiveSha256() ReadFile(/nv/PSBlock) offset=0x00004338 size=980
+CalActiveSha256() ReadFile(/nv/PSBlock) offset=0x0000000d size=1
+CalActiveSha256() ReadFile(/nv/PSBlock) offset=0x00000478 size=14372
+CalActiveSha256() ReadFile(/nv/PSBlock) offset=0x00000002 size=1
+CalActiveSha256() ReadFile(/nv/PSBlock) offset=0x00003ecc size=44
+CalActiveSha256() ReadFile(/nv/PSBlock) offset=0x00000007 size=1
+CalActiveSha256() ReadFile(/nv/FRUBlock) offset=0x00000000 size=4096
+CalActiveSha256() /nv/license_file/1 not exist
+CalActiveSha256() /nv/license_file/2 not exist
+CalActiveSha256() /nv/license_file/3 not exist
+CalActiveSha256() /nv/license_file/4 not exist
+CalActiveSha256() /nv[   15.990755] checkBBM flash->bufR[] = 83 ff 03 ff 00 00 00 00
+/default/.admin not exist
+CalActiveSha256() /nv/default/shadow not exist
+CalActiveSha256() /nv/bios/bios_bootcfg not exist
+can't open file /cdata/aes_cri/aes_cridata_key
+aes_encrypt_len = 48, output_len = 275
+CopyCriticalFileToBackup() /nv/platform.conf
+CopyCriticalFileToBackup() /nv/platform.conf
+CopyCriticalFileToBackup() /nv/PSBlock
+CopyCriticalFileToBackup() /nv/PSBlock
+CopyCriticalFileToBackup() /nv/PSBlock
+CopyCriticalFileToBackup() /nv/PSBlock
+CopyCriticalFileToBackup() /nv/PSBlock
+CopyCriticalFileToBackup() /nv/PSBlock
+CopyCriticalFileToBackup() /nv/PSBlock
+CopyCriticalFileToBackup() /nv/PSBlock
+CopyCriticalFileToBackup() /nv/FRUBlock
+CopyCriticalFileToBackup() /nv/FRUBlock
+CopyCriticalFileToBackup() /nv/license_file/1 not exist
+CopyCriticalFileToBackup() /nv/license_file/2 not exist
+CopyCriticalFileToBackup() /nv/license_file/3 not exist
+CopyCriticalFileToBackup() /nv/license_file/4 not exist
+CopyCriticalFileToBackup() /nv/default/.admin not exist
+CopyCriticalFileToBackup() /nv/default/shadow not exist
+CopyCriticalFileToBackup() /nv/bios/bios_bootcfg not exist
+Copying cdata to NAND
+[VerifyCriticalData] Pass to verify critical data
+UtilCPLDROT_start() ...
+[FC12][18.000000] data08=0
+PltSPICPLD_checkCOT() Within COT
+UtilCPLDROT_start() MB CPLD Id = 61 2b d0 43
+[FC99][UtilCPLDROT_start] data1A=0
+[FC99] BBM done
+PltSPICPLD_FillBmcBootIdTbl() curr bmcBootId = (0x0000, 0x0000, 0x0000, 0x0000)
+PltSPICPLD_FillBmcBootIdTbl() file bmcBootId = (0xffff, 0xfbfb, 0xfdfd, 0xfefe)
+locate_BootId bootId = 0xfefe at offset 0x00130000
+locate_BootId bootId = 0xfbfb at offset 0x00130000
+locate_BootId bootId = 0xfdfd at offset 0x00130000
+locate_BootId bootId = 0xfefe at offset 0x00130000
+PltSPICPLD_FillBmcBootIdTbl() flash bmcBootId = (0xfefe, 0xfbfb, 0xfdfd, 0xfefe)
+PltSPICPLD_FillBmcBootIdTbl() Update file content
+PltSPICPLD_FillBiosBootIdTbl() curr biosBootId = (0x0000, 0x0000, 0x0000, 0x0000)
+PltSPICPLD_FillBiosBootIdTbl() file biosBootId = (0x0000, 0x0000, 0x0000, 0x0000)
+locate_BootId bootId = 0xfefe at offset 0x0155dc00
+locate_BootId bootId = 0xa2ef at offset 0x0155dc00
+locate_BootId Invalid bootId found
+locate_BootId bootId = 0xfdfd at offset 0x0155dc00
+PltSPICPLD_FillBiosBootIdTbl() flash biosBootId = (0xfefe, 0xefa2, 0xfdfd, 0x0000)
+PltSPICPLD_FillBiosBootIdTbl() Update file content
+PltSPICPLD_checkCOT() Within COT
+PltSPICPLD_GetBoardId() boardId = 0x00000000
+[FC99] latched boardID=0
+PltSPICPLD_checkCOT() Within COT
+PltSPICPLD_checkCOT() Within COT
+[FC99] latched UFM_antiRBID_bios=0
+PltSPICPLD_checkCOT() Within COT
+PltSPICPLD_checkCOT() Within COT
+[FC99] latched UFM_antiRBID_bmc=1
+nand_read_area(3, 0x01fff3e0, 400)=400
+PltSPICPLD_checkCOT() Within COT
+PltSPICPLD_checkCOT() Within COT
+PltSPICPLD_WriteCpldKey() Old key code area is not empty
+PltSPICPLD_WriteCpldKey() old key code is the same as the new one
+PltSPICPLD_WriteCpldKey() Old key area is not empty
+PltSPICPLD_WriteCpldKey() Old key is different from the new one
+PltSPICPLD_WriteCpldKey() Key change is not supported
+==========================
+Writing I2C protection map
+==========================
+PltSPICPLD_checkCOT() Within COT
+PltSPICPLD_GetBoardId() boardId = 0x00000000
+[FC99] PltSPICPLD_CheckProvisioning() boardId=0x00000000
+UtilCPLDROT_i2cmap fails to initial
+PltSPICPLD_checkCOT() Within COT
+UtilCPLDROT_task_getFirst() fopen(/nv/rotqueue) failed
+[FC99] CotMaintenance +
+PltSPICPLD_checkCOT() Within COT
+PltSPICPLD_GetBoardId() boardId = 0x00000000
+[FC99] PltSPICPLD_CheckProvisioning() boardId=0x00000000
+[FC99] at_b_CPLDROT_bios0_antiRBID=0, provisioned=0
+PltSPICPLD_checkCOT() Within COT
+PltSPICPLD_GetBoardId() boardId = 0x00000000
+[FC99] PltSPICPLD_CheckProvisioning() boardId=0x00000000
+PltSPICPLD_checkCOT() Within COT
+PltSPICPLD_GetBoardId() boardId = 0x00000000
+[FC99] PltSPICPLD_CheckProvisioning() boardId=0x00000000
+[UtilCPLDROT_EndCot] This board probably is not provisioned
+[   27.448505] ftgmac100 1e670000.ftgmac eth0: irq 40, mapped at 2e455962
+[   27.456238] ftgmac100 1e660000.ftgmac: Read MAC address 3c:ec:ef:76:ad:dd from chip
+[   27.571895] RTL8211F Gigabit Ethernet 1e650000.mdio-1:00: attached PHY driver [RTL8211F Gigabit Ethernet] (mii_bus:phy_addr=1e650000.mdio-1:00, irq=POLL)
+[   27.598126] ftgmac100 1e660000.ftgmac eth1: irq 41, mapped at 0134b634
+[DRIVER] Insert the driver module insmod /bin/module/ftgmac.ko BoardID=0x1c1f
+[UtilGetHostFWUserInfo] decrpt len 19
+vcdata(0)
+CalActiveSha256() ReadFile(/nv/platform.conf) offset=0x00000000 size=26
+CalActiveSha256() ReadFile(/nv/PSBlock) offset=0x00000014 size=1060
+CalActiveSha256([   27.781496] i2c-ipmb-slave-mqueue 5-0010: i2c_slave_register: client slave flag not set. You might see address collisions
+) ReadFile(/nv/P[   27.795499] i2c i2c-5: new_device: Instantiated device ipmb-slave-mqueue at 0x10
+SBlock) offset=0x00000000 size=1
+CalActiveSha256() ReadFile(/nv/PSBlock) offset=0x00004338 size=980
+CalActiveSha256() ReadFile(/nv/PSBlock) offset=0x0000000d size=1
+CalActiveSha256() ReadFile(/nv/PSBlock) offset=0x00000478 size=14372
+CalActiveSha256() ReadFile(/nv/PSBlock) offset=0x00000002 size=1
+CalActiveSha256() ReadFile(/nv/PSBlock) offset=0x00003ecc size=44
+CalActiveSha256() ReadFile(/nv/PSBlock) offset=0x00000007 size=1
+CalActiveSha256() ReadFile(/nv/FRUBlock) offset=0x00000000 size=4096
+CalActiveSha256() /nv/license_file/1 not exist
+CalActiveSha256() /nv/license_file/2 not exist
+CalActiveSha256() /nv/license_file/3 not exist
+CalActiveSha256() /nv/license_file/4 not exist
+CalActiveSha256() /nv/default/.admin not exist
+CalActiveSha256() /nv/default/shadow not exist
+CalActiveSha256() /nv/bios/bios_bootcfg not exist
+CalBackupSha256() /cdata/backup_cri/platform.conf
+CalBackupSha256() ReadFile /cdata/backup_cri/platform.conf
+CalBackupSha256() ReadFile /cdata/backup_cri/PSUserModule
+CalBackupSha256() ReadFile /cdata/backup_cri/PSUserModule_cs
+CalBackupSha256() ReadFile /cdata/backup_cri/PSUserExInfo
+CalBackupSha256() ReadFile /cdata/backup_cri/PSUserExInfo_cs
+CalBackupSha256() ReadFile /cdata/backup_cri/PSLanInfo
+CalBackupSha256() ReadFile /cdata/backup_cri/PSLanInfo_cs
+CalBackupSha256() ReadFile /cdata/backup_cri/PSExtLanInfo
+CalBackupSha256() ReadFile /cdata/backup_cri/PSExtLanInfo_cs
+CalBackupSha256() /cdata/backup_cri/FRUBlock
+CalBackupSha256() ReadFile /cdata/backup_cri/FRUBlock
+CalBackupSha256() /cdata/backup_cri/lic_oob not exist
+CalBackupSha256() /cdata/backup_cri/lic_dcms not exist
+CalBackupSha256() /cdata/backup_cri/lic_spm not exist
+CalBackupSha256() /cdata/backup_cri/lic_dcms_svc not exist
+CalBackupSha256() /cdata/backup_cri/def_admin not exist
+can't open file /cdata/backup_cri/def_lockunique
+CalBackupSha256() ReadFile /cdata/backup_cri/def_lockunique not exist
+can't open file /cdata/backup_cri/def_useunique
+CalBackupSha256() ReadFile /cdata/backup_cri/def_useunique not exist
+CalBackupSha256() /cdata/backup_cri/def_shadow not exist
+CalBackupSha256() /cdata/backup_cri/bios_bootcfg not exist
+[VerifyCriticalData] Active file pass, Backup file pass
+[VerifyCriticalData] Pass to verify critical data
+IPMBInit Channel Num 0 init as I2C-4
+[MQUEUE] Register MQueue at i2c-4 with slave addr 0x20
+sh: can't create /sys/bus/i2c/devices/i2c-4/new_device: nonexistent directory
+IPMBInit Channel Num 1 init as I2C-5
+[MQUEUE] Register MQueue at i2c-5 with slave addr 0x20
+[GPIOTypeSetup] 0x03A00000
+Configure GPIOE2 E3 as input pin
+[FC12][27.930000] data08=0
+UtilUsbHidGetMouseMode1: No such device or address
+[UtilUsbHidSetMouseMode] Can not get current mouse mode
+UtilUsbHidInit fails to initial
+[UtilSDRCmdsInit] SDR records: 32
+[UtilSDRCmdsInit] Sensor number: 30
+[GPIOTypeSetup] 0x03200000
+[GPIOTypeSetup] 0x03300000
+[OOB][oob_init]:[OOB] Unknown file type (6)
+[OOB][oob_init]:[OOB] Unknown file type (11)
+[OOB][oob_init]:[OOB] Unknown file type (13)
+[OOB][oob_init]:[OOB] Unknown file type (14)
+[OOB][oob_init]:[OOB] Unknown file type (15)
+[loadConfig] unrecognized key HOSTINTERFACE_SERVICE
+[loadConfig] unrecognized key HOSTINTERFACE_IPADDR
+[loadConfig] unrecognized key 254.3.254
+DCMI_module initialize ....
+Create debug files - /tmp/message
+cp: can't stat '/etc/defaults/login_rules.conf': No such file or directory
+create thread for gpiochip0
+add epollfd (6) for GPIO151(7)
+add epollfd (6) for GPIO149(8)
+add epollfd (6) for GPIO148(9)
+add epollfd (6) for GPIO171(11)
+gpiochip0, epollfd=6, num_events=4
+[   29.569149] aspeed_vhub 1e6a0000.usb-vhub: Initialized virtual hub in USB2 mode
+[   29.828592] g_hid gadget: SMCI HID KM, version: 2018/04/24
+[   29.834792] g_hid gadget: g_hid ready
+[   30.008247] aspeed_mctp: driver successfully loaded.
+[   30.276752] bonding: bond0 is being created...
+[   30.281780] bonding: bond0 already exists
+sh: write error: File exists
+[   30.293220] 8021q: adding VLAN 0 to HW filter on device bond0
+ifenslave: bond0: can't set hw address
+ifenslave: can't enslave eth0 to bond0: Cannot assign requested address
+[   30.322524] bond0: Enslaving eth1 as a backup interface with a down link
+[debug] cmd = ip link set bond0 down
+[   30.344030] bonding: bond0 is being deleted...
+[   30.350975] bond0 (unregistering): Releasing backup interface eth1
+[   30.403390] [is_link_up, 1537] no netif runing
+[   30.432138] bond0 (unregistering): Released all slaves
+[UtilSetMACAddr Debug] cmd = ip link set eth1 addr 3c:ec:ef:76:ad:dd
+[UtilSetMACAddr Debug] cmd = ip link set eth0 ad[   30.696087] bonding: bond0 is being created...
+dr 3c:ec:ef:76:ad:dd
+Stunnel certificate verified OK.
+[   30.719957] 8021q: adding VLAN 0 to HW filter on device bond0
+Starting STUNNEL .....
+[   31.242125] Retry: Command = 2, Response_Code = ffff
+[   31.471708] Retry: Command = 2, Response_Code = ffff
+[   31.702441] Retry: Command = 2, Response_Code = ffff
+[   31.936091] Retry: Command = 2, Response_Code = ffff
+[   32.171039] Retry: Command = 1, Response_Code = ffff
+[   32.398325] Retry: Command = 1, Response_Code = ffff
+[   32.627917] Retry: Command = 1, Response_Code = ffff
+[   32.854704] Retry: Command = 1, Response_Code = ffff
+[   32.860235] [ftgmac100_open] failed to do ncsi_init()
+[   33.090441] Retry: Command = 2, Response_Code = ffff
+[   33.314137] Retry: Command = 2, Response_Code = ffff
+[   33.541774] Retry: Command = 2, Response_Code = ffff
+[   33.771661] Retry: Command = 2, Response_Code = ffff
+[   34.009170] Retry: Command = 1, Response_Code = ffff
+PltUART_SetBaudRate [115200] = UART Set SerialMode = 3
+[PltUART_EnableHWSOLCOM2:418] 3fffff
+[PltUART_EnableHWSOLCOM2:424] 3f00ff
+UART no hardware flow control
+PltUART_SetFlowControl [0][   34.243503] Retry: Command = 1, Response_Code = ffff
+[   34.469273] Retry: Command = 1, Response_Code = ffff
+[   34.695938] Retry: Command = 1, Response_Code = ffff
+[   34.701479] [ftgmac100_open] failed to do ncsi_init()
+ifenslave: can't enslave eth0 to bond0: No such device
+[   34.722321] bond0: Enslaving eth1 as a backup interface with a down link
+udhcpc: started, v1.28.4
+killall: dhcp6c: no process killed
+[   34.762838] [is_link_up, 1537] no netif runing
+[0]3c - 3c
+[1]ec - ec
+[2]ef - ef
+[3]76 - 76
+[4]ad - ad
+[5]dd - dd
+[LanConfigApply Debug] arpping , cmd = arping -b -c 2 0.0.0.0 -I bond0 >>/dev/null
+arping: can't connect to remote host (0.0.0.0): Invalid argument
+udhcpc: sending discover
+enable IPv4 and IPv6 addressing...
+ip: RTNETLINK answers: No such process
+route: SIOCADDRT: Network is unreachable
+route: SIOCADDRT: Invalid argument
+Starting VM daemon .....
+open usb0
+open usb1
+open usb2
+get_vm_port(NoForStunnel:63631)
+get_vm_port(NoForStunnel:63631)
+[   35.881914] ftgmac100 1e660000.ftgmac eth1: Link is Up - 100Mbps/Full - flow control rx/tx
+[   35.891151] [is_link_up, 1537] no netif runing
+[   35.963472] bond0: link status definitely up for interface eth1, 100 Mbps full duplex
+[   35.973000] bond0: making interface eth1 the new active one
+[   35.979491] bond0: first active interface up!
+[   35.984499] IPv6: ADDRCONF(NETDEV_CHANGE): bond0: link becomes ready
+killall: upnp_dev: no process killed
+UPnP Service Restart...OK
+Initializing UPnP Sdk with
+        ipaddress = bond0 port = 1900
+Error with UpnpInit -- -121
+LAN Status has Changed
+Starting IKVM daemon .....
+Starting sfcb: done.
+/etc/init.d/rcS: /etc/init.d/88service.sh: line 5: /etc/init.d/openwsmand: not found
+get_ikvm_port(NoForStunnel:63630)
+[ikvm_srv] Start IKVM server daemon.
+get_ikvm_port(NoForStunnel:63630)
+udhcpc: started, v1.28.4
+[0]3c - 3c
+[1]ec - ec
+[2]ef - ef
+[3]76 - 76
+[4]ad - ad
+[5]dd - dd
+enable IPv4 and IPv6 addressing...
+ip: RTNETLINK answers: No such process
+route: SIOCADDRT: Network is unreachable
+udhcpc: sending discover
+route: SIOCADDRT: Invalid argument
+udhcpc: sending select for 192.168.1.38
+route: SIOCADDRT: File exists
+killall: upnp_dev: no process killed
+Initializing UPnP Sdk with
+        ipaddress = bond0 port = 1900
+UPnP Service Restart...OK
+Error with UpnpInit -- -121
+udhcpc: lease of 192.168.1.38 obtained, lease time 86400
+Valid IP 192.168.1.38 for this subnet mask 255.255.255.0
+deleting routers
+route: SIOCDELRT: No such process
+adding router.....  192.168.1.1
+After IPMIentry .........
+MsgBufOut.b_rsAddr=20
+MsgBufOut.b_netFnrsLun=c4
+MsgBufOut.b_cmd=70
+MsgBufOut.w_datalength=1
+MsgBufOut.b_data=0x0
+Verify the host key- /nv/ssh/sshd_host_key. Please wait.
+PING 192.168.1.1 (192.168.1.1): 56 data bytes
+64 bytes from 192.168.1.1: seq=0 ttl=64 time=1.260 ms
+--- 192.168.1.1 ping statistics ---
+1 packets transmitted, 1 packets received, 0% packet loss
+round-trip min/avg/max = 1.260/1.260/1.260 ms
+Stunnel certificate verified OK.
+setup route add GW fail
+Starting sshd daemon .....
+Starting STUNNEL .....
+[ ] Clients allowed=500
+[.] stunnel 5.54 on arm-openbmc-linux-gnu platform
+[.] Compiled/running with OpenSSL 1.0.1p 9 Jul 2015
+[.] Threading:PTHREAD Sockets:POLL,IPv6 TLS:ENGINE,FIPS,OCSP,PSK,SNI
+[ ] errno: (*__errno_location ())
+[.] Reading configuration from file /tmp/stunnel.conf
+[.] UTF-8 byte order mark not detected
+[.] FIPS mode disabled
+[ ] Compression disabled
+[ ] No PRNG seeding was required
+[ ] Initializing service [ikvm]
+[ ] Ciphers: HIGH:!3DES:!aNULL
+[ ] TLS options: 0x03004004 (+0x03004000, -0x00000000)
+[ ] Loading certificate from file: /nv/stunnel.crt
+[ ] Certificate loaded from file: /nv/stunnel.crt
+[ ] Loading private key from file: /nv/stunnel.key
+[:] Insecure file permissions on /nv/stunnel.key
+[ ] Private key loaded from file: /nv/stunnel.key
+[ ] Private key check succeeded
+[ ] DH initialization needed for DHE-DSS-AES256-GCM-SHA384
+[ ] DH initialization
+[ ] Using DH parameters from /nv/stunnel.crt
+[ ] 2048-bit DH parameters loaded
+[ ] ECDH initialization
+[ ] ECDH initialized with curves prime256v1
+[ ] Initializing service [vm]
+[ ] Ciphers: HIGH:!3DES:!aNULL
+[ ] TLS options: 0x03004004 (+0x03004000, -0x00000000)
+[ ] Loading certificate from file: /nv/stunnel.crt
+[ ] Certificate loaded from file: /nv/stunnel.crt
+[ ] Loading private key from file: /nv/stunnel.key
+[:] Insecure file permissions on /nv/stunnel.key
+[ ] Private key loaded from file: /nv/stunnel.key
+[ ] Private key check succeeded
+[ ] DH initialization needed for DHE-DSS-AES256-GCM-SHA384
+[ ] DH initialization
+[ ] Using DH parameters from /nv/stunnel.crt
+[ ] 2048-bit DH parameters loaded
+[ ] ECDH initialization
+[ ] ECDH initialized with curves prime256v1
+[.] Configuration successful
+[ ] Binding service [ikvm]
+[ ] Listening file descriptor created (FD=8)
+[ ] Setting accept socket options (FD=8)
+[ ] Option SO_REUSEADDR set on accept socket
+[.] Binding service [ikvm] to :::5900: Address already in use (98)
+[!] Binding service [ikvm] failed
+[ ] Deallocating section defaults
+[ ] Unbinding service [ikvm]
+[ ] Service [ikvm] closed
+[ ] Deallocating section [ikvm]
+[ ] Unbinding service [vm]
+[ ] Service [vm] closed
+[ ] Deallocating section [vm]
+Error! no Option Name Question ID: 495
+main, 911, /redfish_task_msg_queue3
+bin/index.fcgi
+route: SIOCADDRT: File exists
+killall: upnp_dev: no process killed
+UPnP service restart in DHCP!
+Initializing UPnP Sdk with
+        ipaddress = bond0 port = 1900
+UPnP Initialized
+        ipaddress = 192.168.1.38 mac_adress =  3c:ec:ef:76:ad:dd port = 49152 uuid:00000000-0000-0000-0000-3CECEF76ADDD
+Specifying the webserver root directory -- /tmp
+Registering the RootDevice
+         with desc_doc_url: http://192.168.1.38:49152/ipmi_device_desc.xml
+RootDevice Registered
+Initializing State Table
+ipmi_device/sample_util.c(227): Error finding URLBase in XML Node
+TvDeviceStateTableInit -- Error: Could not find Service: urn:schemas-upnp-org:service:tvcontrol:1
+State Table Initialized
+start Web server .............
+SSL certificate verified OK.
+PING 192.168.1.1 (192.168.1.1): 56 data bytes
+64 bytes from 192.168.1.1: seq=0 ttl=64 time=0.586 ms
+--- 192.168.1.1 ping statistics ---
+1 packets transmitted, 1 packets received, 0% packet loss
+round-trip min/avg/max = 0.586/0.586/0.586 ms
+[   47.008152] using random self ethernet address
+[   47.013197] using random host ethernet address
+[   47.018904] usb0: HOST MAC b0:3a:f2:b6:05:9f
+[   47.023859] usb0: MAC be:b5:71:8c:cc:4f
+[   47.028186] using random self ethernet address
+[   47.033163] using random host ethernet address
+[   47.038669] g_ether gadget: Ethernet Gadget, version: Memorial Day 2008
+[   47.046131] g_ether gadget: g_ether ready
+Configuring usb0 IP=169.254.3.254 ...
+Starting udhcpd ...
+HOSTINTERFACE_SERVICE is started.
+getPSFruData 0 failed
+getPSFruData 1 failed
+getPSFruData 2 failed
+getPSFruData 3 failed
+Set permissions on /dev/tee*: Start SnoopPOSTCode ...
+OK
+Create/set permissions on /tmp/tee: OK
+Starting tee-supplicant: tee-supplicant SMCI : ver:1.0.2 Oct 29 2020 14:01:47
+tee-client SMCI : ver:1.0.2 Oct 29 2020 14:01:47
+tee-cktee LIB SMCI  : ver:0.2.0 Oct 29 2020 14:01:47
+OK
+>>> process_commands,204 >>> start processing cmd, msgid: 327690
+[main] Generate event log
+    D/OPTEE:CPU 1 thread 0 SMCI_Log:73 [19700101000701][2][0x01][0x00]: SMCI_TEE_SERVICE (STS) Start
+    D/OPTEE:CPU 1 thread 0 SMCI_Log:73 [19700101000701][3][0x02][0x00]: Security Functions Start (TAS)
+    D/OPTEE:CPU 1 thread 0 SMCI_Log:73 [19700101000701][4][0x02][0x00]: Security Functions Start (TA0)
+    D/OPTEE:CPU 1 thread 0 SMCI_Log:73 [20210811072249][5][0x02][0x00]: Security Functions Start (TA3)
+[   48.837196] pooh module init.....
+    D/OPTEE:CPU 1   SMCI_Log:73 [20210811072250][6][0x02][0x00]: Security Functions Start (TA4)
+[   48.850494] +++pooh_init  ok
+    D/OPTEE:CPU 1   SMCI_Log:73 [20210811072251][7][0x02][0x00]: Security Functions Start (TA1)
+    D/OPTEE:CPU 1   SMCI_Log:73 [20210811072251][8][0x02][0x00]: Security Functions Start (TA2)
+    I/OPTEE: ta3_check_PCR(): PCR_status: 8, PCR_check_done: 1, time: 50
+Please press Enter to activate this console. EventNotifier receives: 1th event:
+    ReceivedLen = 560
+    EventType = ResourceAdded
+    TimeStamp = 2021/08/11 07:23:00
+    Severity = Info
+    Message = ID 0x%1 - %2
+    MessageID = Event.1.0.OpteeInfoEvent
+    MessageArguments = 00,TEE FW Start (0001.0427.07d)
+    OriginOfCondition =
+    EventDirAndType =
+    SensorType =
+    SensorName =
+EventNotifier receives: 2th event:
+    ReceivedLen = 560
+    EventType = ResourceAdded
+    TimeStamp = 2021/08/11 07:23:01
+    Severity = Info
+    Message = ID 0x%1 - %2
+    MessageID = Event.1.0.OpteeInfoEvent
+    MessageArguments = b1,IPMI FW is updated (ROT command 81)
+    OriginOfCondition =
+    EventDirAndType =
+    SensorType =
+    SensorName =
+EventNotifier receives: 3th event:
+    ReceivedLen = 560
+    EventType = ResourceAdded
+    TimeStamp = 2021/08/11 07:23:02
+    Severity = Info
+    Message = ID 0x%1 - %2
+    MessageID = Event.1.0.OpteeInfoEvent
+    MessageArguments = 01,SMCI_TEE_SERVICE (STS) Start
+    OriginOfCondition =
+    EventDirAndType =
+    SensorType =
+    SensorName =
+EventNotifier receives: 4th event:
+    ReceivedLen = 560
+    EventType = ResourceAdded
+    TimeStamp = 2021/08/11 07:23:03
+    Severity = Info
+    Message = ID 0x%1 - %2
+    MessageID = Event.1.0.OpteeInfoEvent
+    MessageArguments = 02,Security Functions Start (TAS)
+    OriginOfCondition =
+    EventDirAndType =
+    SensorType =
+    SensorName =
+vcdata(0)
+CalActiveSha256() ReadFile(/nv/platform.conf) offset=0x00000000 size=26
+CalActiveSha256() ReadFile(/nv/PSBlock) offset=0x00000014 size=1060
+CalActiveSha256() ReadFile(/nv/PSBlock) offset=0x00000000 size=1
+CalActiveSha256() ReadFile(/nv/PSBlock) offset=0x00004338 size=980
+CalActiveSha256() ReadFile(/nv/PSBlock) offset=0x0000000d size=1
+CalActiveSha256() ReadFile(/nv/PSBlock) offset=0x00000478 size=14372
+CalActiveSha256() ReadFile(/nv/PSBlock) offset=0x00000002 size=1
+CalActiveSha256() ReadFile(/nv/PSBlock) offset=0x00003ecc size=44
+CalActiveSha256() ReadFile(/nv/PSBlock) offset=0x00000007 size=1
+CalActiveSha256() ReadFile(/nv/FRUBlock) offset=0x00000000 size=4096
+CalActiveSha256() /nv/license_file/1 not exist
+CalActiveSha256() /nv/license_file/2 not exist
+CalActiveSha256() /nv/license_file/3 not exist
+CalActiveSha256() /nv/license_file/4 not exist
+CalActiveSha256() /nv/default/.admin not exist
+CalActiveSha256() /nv/default/shadow not exist
+CalActiveSha256() /nv/bios/bios_bootcfg not exist
+CalBackupSha256() /cdata/backup_cri/platform.conf
+CalBackupSha256() ReadFile /cdata/backup_cri/platform.conf
+CalBackupSha256() ReadFile /cdata/backup_cri/PSUserModule
+CalBackupSha256() ReadFile /cdata/backup_cri/PSUserModule_cs
+CalBackupSha256() ReadFile /cdata/backup_cri/PSUserExInfo
+CalBackupSha256() ReadFile /cdata/backup_cri/PSUserExInfo_cs
+CalBackupSha256() ReadFile /cdata/backup_cri/PSLanInfo
+CalBackupSha256() ReadFile /cdata/backup_cri/PSLanInfo_cs
+CalBackupSha256() ReadFile /cdata/backup_cri/PSExtLanInfo
+CalBackupSha256() ReadFile /cdata/backup_cri/PSExtLanInfo_cs
+CalBackupSha256() /cdata/backup_cri/FRUBlock
+CalBackupSha256() ReadFile /cdata/backup_cri/FRUBlock
+CalBackupSha256() /cdata/backup_cri/lic_oob not exist
+CalBackupSha256() /cdata/backup_cri/lic_dcms not exist
+CalBackupSha256() /cdata/backup_cri/lic_spm not exist
+CalBackupSha256() /cdata/backup_cri/lic_dcms_svc not exist
+CalBackupSha256() /cdata/backup_cri/def_admin not exist
+can't open file /cdata/backup_cri/def_lockunique
+CalBackupSha256() ReadFile /cdata/backup_cri/def_lockunique not exist
+can't open file /cdata/backup_cri/def_useunique
+CalBackupSha256() ReadFile /cdata/backup_cri/def_useunique not exist
+CalBackupSha256() /cdata/backup_cri/def_shadow not exist
+CalBackupSha256() /cdata/backup_cri/bios_bootcfg not exist
+[VerifyCriticalData] Active file pass, Backup file pass
+[VerifyCriticalData] Pass to verify critical data
+[PltClearACON]3030
+Clear AC On
+UtilCPLDROT_task_getFirst() fopen(/nv/rotqueue.sts) failed
+EventNotifier receives: 5th event:
+    ReceivedLen = 560
+    EventType = ResourceAdded
+    TimeStamp = 2021/08/11 07:23:04
+    Severity = Info
+    Message = ID 0x%1 - %2
+    MessageID = Event.1.0.OpteeInfoEvent
+    MessageArguments = 02,Security Functions Start (TA0)
+    OriginOfCondition =
+    EventDirAndType =
+    SensorType =
+    SensorName =
+EventNotifier receives: 6th event:
+    ReceivedLen = 560
+    EventType = ResourceAdded
+    TimeStamp = 2021/08/11 07:23:05
+    Severity = Info
+    Message = ID 0x%1 - %2
+    MessageID = Event.1.0.OpteeInfoEvent
+    MessageArguments = 02,Security Functions Start (TA3)
+    OriginOfCondition =
+    EventDirAndType =
+    SensorType =
+    SensorName =
+EventNotifier receives: 7th event:
+    ReceivedLen = 560
+    EventType = ResourceAdded
+    TimeStamp = 2021/08/11 07:23:06
+    Severity = Info
+    Message = ID 0x%1 - %2
+    MessageID = Event.1.0.OpteeInfoEvent
+    MessageArguments = 02,Security Functions Start (TA4)
+    OriginOfCondition =
+    EventDirAndType =
+    SensorType =
+    SensorName =
+EventNotifier receives: 8th event:
+    ReceivedLen = 560
+    EventType = ResourceAdded
+    TimeStamp = 2021/08/11 07:23:07
+    Severity = Info
+    Message = ID 0x%1 - %2
+    MessageID = Event.1.0.OpteeInfoEvent
+    MessageArguments = 02,Security Functions Start (TA1)
+    OriginOfCondition =
+    EventDirAndType =
+    SensorType =
+    SensorName =
+EventNotifier receives: 9th event:
+    ReceivedLen = 560
+    EventType = ResourceAdded
+    TimeStamp = 2021/08/11 07:23:08
+    Severity = Info
+    Message = ID 0x%1 - %2
+    MessageID = Event.1.0.OpteeInfoEvent
+    MessageArguments = 02,Security Functions Start (TA2)
+    OriginOfCondition =
+    EventDirAndType =
+    SensorType =
+    SensorName =
+proc_mgr: Adjust the oom score of pid 3333
+========================
+Send BMC_BOOT_OK to CPLD
+========================
+cpldRegs [18,1a,1b]=[02,00,00]
+[FC99] UtilCPLDROT_NVFileRead cmd_bmc=81, cmd_bios=0, biosBootID=0
+[FC30] [Warning] bootID alert, but nv_cmd_bmc:81, [1a,1b]=[0,0]
+[isValidBootID] bootID 0000
+proc_mgr: kmonitor is created (3336)
+proc_mgr: Adjust the oom score of pid 3336
+EventNotifier receives: 10th event:
+    ReceivedLen = 560
+    EventType = ResourceAdded
+    TimeStamp = 2021/08/11 07:24:48
+    Severity = Info
+    Message = Redfish session was created successfully.
+    MessageID = Event.1.0.RedfishSessionCreated
+    MessageArguments =
+    OriginOfCondition = /redfish/v1/SessionService/Sessions/
+    EventDirAndType =
+    SensorType =
+    SensorName =
+LdapEnable=0
+ADEnable=0
+input data       [29] = 1628666688IO1V2bPP3XxgIpD4132
+HMAC sha256 data [32] = EventNotifier receives: 11th event:
+    ReceivedLen = 560
+    EventType = Alert
+    TimeStamp = 2021/08/11 07:24:48
+    Severity = Info
+    Message = Web login was successful.
+    MessageID = Event.1.0.LoginWeb
+    MessageArguments =
+    OriginOfCondition =
+    EventDirAndType =
+    SensorType =
+    SensorName =
+[  170.125344] [video_drv] proc zero image blocks done. (ret: 0)
+UtilFlashFindBmcVersion() finding "SMCIs_FW" in webpage size 0x00d00000
+UtilFlashFindBmcVersion() Found version 63.00.25 at 0x00a5d000
+UtilFlashFindBmcVersion() finding "SMCIs_FW" in nand_bmc1 size 0x02ec0000
+UtilFlashFindBmcVersion() Found version 63.99.80 at 0x02b5c000
+UtilFlashFindBmcVersion() finding "SMCIs_FW" in nand_bmc2 size 0x02ec0000
+UtilFlashFindBmcVersion() Found version 63.99.80 at 0x02b5c000
+[DEBUG] Open file fail
+UtilFlashFindBmcVersion() finding "SMCIs_FW" in nand_bmces size 0x02ec0000
+UtilFlashFindBmcVersion() Found version 63.00.25 at 0x02b5d000
+Get RevDate. start offset: 0x1ef0000, end offset: 0x1af0000
+nand_read_area(4, 0x01ef0000, 10000)=10000
+nand_read_area(4, 0x01ee0000, 10000)=10000
+nand_read_area(4, 0x01ed0000, 10000)=10000
+nand_read_area(4, 0x01ec0000, 10000)=10000
+nand_read_area(4, 0x01eb0000, 10000)=10000
+nand_read_area(4, 0x01ea0000, 10000)=10000
+nand_read_area(4, 0x01e90000, 10000)=10000
+nand_read_area(4, 0x01e80000, 10000)=10000
+nand_read_area(4, 0x01e70000, 10000)=10000
+nand_read_area(4, 0x01e60000, 10000)=10000
+nand_read_area(4, 0x01e50000, 10000)=10000
+nand_read_area(4, 0x01e40000, 10000)=10000
+nand_read_area(4, 0x01e30000, 10000)=10000
+nand_read_area(4, 0x01e20000, 10000)=10000
+nand_read_area(4, 0x01e10000, 10000)=10000
+nand_read_area(4, 0x01e00000, 10000)=10000
+nand_read_area(4, 0x01df0000, 10000)=10000
+nand_read_area(4, 0x01de0000, 10000)=10000
+nand_read_area(4, 0x01dd0000, 10000)=10000
+nand_read_area(4, 0x01dc0000, 10000)=10000
+nand_read_area(4, 0x01db0000, 10000)=10000
+nand_read_area(4, 0x01da0000, 10000)=10000
+nand_read_area(4, 0x01d90000, 10000)=10000
+nand_read_area(4, 0x01d80000, 10000)=10000
+nand_read_area(4, 0x01d70000, 10000)=10000
+nand_read_area(4, 0x01d60000, 10000)=10000
+nand_read_area(4, 0x01d50000, 10000)=10000
+nand_read_area(4, 0x01d40000, 10000)=10000
+nand_read_area(4, 0x01d30000, 10000)=10000
+nand_read_area(4, 0x01d20000, 10000)=10000
+mtdGetBiosRevDate() found it
+[mtdGetBiosRevDate] BIOS Date: 06/10/2021 Ver 2.0
+Get RevDate. start offset: 0x1ef0000, end offset: 0x1af0000
+nand_read_area(4, 0x01ef0000, 10000)=10000
+nand_read_area(4, 0x01ee0000, 10000)=10000
+nand_read_area(4, 0x01ed0000, 10000)=10000
+nand_read_area(4, 0x01ec0000, 10000)=10000
+nand_read_area(4, 0x01eb0000, 10000)=10000
+nand_read_area(4, 0x01ea0000, 10000)=10000
+nand_read_area(4, 0x01e90000, 10000)=10000
+nand_read_area(4, 0x01e80000, 10000)=10000
+nand_read_area(4, 0x01e70000, 10000)=10000
+nand_read_area(4, 0x01e60000, 10000)=10000
+nand_read_area(4, 0x01e50000, 10000)=10000
+nand_read_area(4, 0x01e40000, 10000)=10000
+nand_read_area(4, 0x01e30000, 10000)=10000
+nand_read_area(4, 0x01e20000, 10000)=10000
+nand_read_area(4, 0x01e10000, 10000)=10000
+nand_read_area(4, 0x01e00000, 10000)=10000
+nand_read_area(4, 0x01df0000, 10000)=10000
+nand_read_area(4, 0x01de0000, 10000)=10000
+nand_read_area(4, 0x01dd0000, 10000)=10000
+nand_read_area(4, 0x01dc0000, 10000)=10000
+nand_read_area(4, 0x01db0000, 10000)=10000
+nand_read_area(4, 0x01da0000, 10000)=10000
+nand_read_area(4, 0x01d90000, 10000)=10000
+nand_read_area(4, 0x01d80000, 10000)=10000
+nand_read_area(4, 0x01d70000, 10000)=10000
+nand_read_area(4, 0x01d60000, 10000)=10000
+nand_read_area(4, 0x01d50000, 10000)=10000
+nand_read_area(4, 0x01d40000, 10000)=10000
+nand_read_area(4, 0x01d30000, 10000)=10000
+nand_read_area(4, 0x01d20000, 10000)=10000
+mtdGetBiosRevDate() found it
+[mtdGetBiosRevDate] BIOS Date: 06/10/2021 Ver 2.0
+Get RevDate. start offset: 0x1ef0000, end offset: 0x1af0000
+nand_read_area(4, 0x01ef0000, 10000)=10000
+nand_read_area(4, 0x01ee0000, 10000)=10000
+nand_read_area(4, 0x01ed0000, 10000)=10000
+nand_read_area(4, 0x01ec0000, 10000)=10000
+nand_read_area(4, 0x01eb0000, 10000)=10000
+nand_read_area(4, 0x01ea0000, 10000)=10000
+nand_read_area(4, 0x01e90000, 10000)=10000
+nand_read_area(4, 0x01e80000, 10000)=10000
+nand_read_area(4, 0x01e70000, 10000)=10000
+nand_read_area(4, 0x01e60000, 10000)=10000
+nand_read_area(4, 0x01e50000, 10000)=10000
+nand_read_area(4, 0x01e40000, 10000)=10000
+nand_read_area(4, 0x01e30000, 10000)=10000
+nand_read_area(4, 0x01e20000, 10000)=10000
+nand_read_area(4, 0x01e10000, 10000)=10000
+nand_read_area(4, 0x01e00000, 10000)=10000
+nand_read_area(4, 0x01df0000, 10000)=10000
+nand_read_area(4, 0x01de0000, 10000)=10000
+nand_read_area(4, 0x01dd0000, 10000)=10000
+nand_read_area(4, 0x01dc0000, 10000)=10000
+nand_read_area(4, 0x01db0000, 10000)=10000
+nand_read_area(4, 0x01da0000, 10000)=10000
+nand_read_area(4, 0x01d90000, 10000)=10000
+nand_read_area(4, 0x01d80000, 10000)=10000
+nand_read_area(4, 0x01d70000, 10000)=10000
+nand_read_area(4, 0x01d60000, 10000)=10000
+nand_read_area(4, 0x01d50000, 10000)=10000
+nand_read_area(4, 0x01d40000, 10000)=10000
+nand_read_area(4, 0x01d30000, 10000)=10000
+nand_read_area(4, 0x01d20000, 10000)=10000
+mtdGetBiosRevDate() found it
+[mtdGetBiosRevDate] BIOS Date: 06/10/2021 Ver 2.0
+PltSPICPLD_checkCOT() Within COT
+[GetDeviceFirmwareVersion] L526: Motherboard: ufm_header: 53 20 23 fb 00 18 e5 a6 00 00 00 04 20 00 00 00
+[enable_flash_access_bp] Enable Flash Access (0x06/0x64)
+[read_ufm_header] UFM_GUID_IN_FLASH: 00-00-00-00  00-00-00-00  00-00-00-00  00-00-00-00
+[disable_flash_access_bp] Disable Flash Access (0x06/0x64)
+PltSPICPLD_checkCOT() Within COT
+[GetDeviceFirmwareVersion] L526: Motherboard: ufm_header: 53 20 23 fb 00 18 e5 a6 00 00 00 04 20 00 00 00
+[enable_flash_access_bp] Enable Flash Access (0x06/0x64)
+[read_ufm_header] UFM_GUID_IN_FLASH: 00-00-00-00  00-00-00-00  00-00-00-00  00-00-00-00
+[disable_flash_access_bp] Disable Flash Access (0x06/0x64)
+PltSPICPLD_checkCOT() Within COT
+[GetDeviceFirmwareVersion] L526: Motherboard: ufm_header: 53 20 23 fb 00 18 e5 a6 00 00 00 04 20 00 00 00
+[enable_flash_access_bp] Enable Flash Access (0x06/0x64)
+[read_ufm_header] UFM_GUID_IN_FLASH: 00-00-00-00  00-00-00-00  00-00-00-00  00-00-00-00
+[disable_flash_access_bp] Disable Flash Access (0x06/0x64)
+EventNotifier receives: 12th event:
+    ReceivedLen = 560
+    EventType = Alert
+    TimeStamp = 2021/08/11 07:25:26
+    Severity = Info
+    Message = The system was %1 successfully.
+    MessageID = Event.1.0.SystemPowerAction
+    MessageArguments = powered on
+    OriginOfCondition = /redfish/v1/Systems/1/Actions/ComputerSystem.Reset
+    EventDirAndType =
+    SensorType =
+    SensorName =
+[GPIOTypeSetup] 0x03A00000
+[GPIOTypeSetup] 0x03A00000
+Configure GPIOE2 E3 as input pin
+GPIOS4 RISING edge triggered
+!!!------ [PowerOK_handler] read GPIO_PWROK_SENSE(0x09400000) = 0x01
+[HostPowerUp_AMD_SPEEDWAY]
+Set VT505 config
+[set_hotswap_reg] PltI2C_MasterWriteRead failed. (channel:3, slaveaddr:0x88, data:d0 a0 0)
+[FC12][209.550003] data08=0
+[SetAST2600HWMFanDuty] PWM: pwm_no: 0, duty: 50
+[SetAST2600HWMFanDuty] PWM: pwm_no: 1, duty: 50
+[SetAST2600HWMFanDuty] PWM: pwm_no: 2, duty: 50
+[SetAST2600HWMFanDuty] PWM: pwm_no: 3, duty: 50
+[FC12][CPLDROTGPO8POSREQPollTimerFunc][209.770004] BIOS is requesting system i2c bus, data08=4, tmr_res=0
+[FC12] BMC granted system i2c bus to BIOS.
+[FC12] data08=6
+[GetSetPECIData]fail ioctl
+get_data_write_peci, 149, fail to GetSetPECIData()
+get_data_write_nm, 311, fail to MasterWriteSlaveRead()
+GPIOS5 FALLING edge triggered
+[Reset_handler]
+EventNotifier receives: 13th event:
+    ReceivedLen = 560
+    EventType = Alert
+    TimeStamp = 2021/08/11 07:25:31
+    Severity = Info
+    Message = The host FW user password has been removed.
+    MessageID = Event.1.0.HostFwPwdRemoved
+    MessageArguments =
+    OriginOfCondition =
+    EventDirAndType =
+    SensorType =
+    SensorName =
+[UtilClearHostFWUserInfo] Clear /nv/host_fw_credential_password successfully!
+[FC12][210.570007] data08=6
+[FC12] BIOS is requesting system i2c bus.
+[FC12] BMC had granted system i2c bus to BIOS before.
+[SetAST2600HWMFanDuty] PWM: pwm_no: 0, duty: 50
+[SetAST2600HWMFanDuty] PWM: pwm_no: 1, duty: 50
+[SetAST2600HWMFanDuty] PWM: pwm_no: 2, duty: 50
+[SetAST2600HWMFanDuty] PWM: pwm_no: 3, duty: 50
+[FC99] UtilCPLDROT_NVFileRead cmd_bmc=0, cmd_bios=0, biosBootID=0
+[isValidBootID] bootID 0000
+Enter GetSelfTestResultCmd
+EventNotifier receives: 14th event:
+    ReceivedLen = 560
+    EventType = Alert
+    TimeStamp = 2021/08/11 07:25:46
+    Severity = Info
+    Message = The host FW user password has been auto-generated.
+    MessageID = Event.1.0.GetHostFwPwdCmdIssued
+    MessageArguments =
+    OriginOfCondition =
+    EventDirAndType =
+    SensorType =
+    SensorName =
+PltSPICPLD_checkCOT() Within COT
+[GetDeviceFirmwareVersion] L526: Motherboard: ufm_header: 53 20 23 fb 00 18 e5 a6 00 00 00 04 20 00 00 00
+[enable_flash_access_bp] Enable Flash Access (0x06/0x64)
+[read_ufm_header] UFM_GUID_IN_FLASH: 53-20-0c-7e  00-18-72-f0  00-00-00-01  24-03-00-40
+[disable_flash_access_bp] Disable Flash Access (0x06/0x64)
+[OOB 0xA0] cmd code: 0x20, len:1
+[FC99] UtilCPLDROT_NVFileRead cmd_bmc=0, cmd_bios=0, biosBootID=0
+[isValidBootID] bootID 0000
+Enter GetSelfTestResultCmd
+[OOB 0xA0] cmd code: 0x12, len:12
+[OOB][GetSetBiosOOBIdentify]:Subcmd:0x12
+SetSelTimeCmd
+[FC99] UtilCPLDROT_NVFileRead cmd_bmc=0, cmd_bios=0, biosBootID=0
+[isValidBootID] bootID 0000
+Enter GetSelfTestResultCmd
+[  236.112109] cdev resume
+[  236.304258] g_hid gadget: high-speed config #1: HID Gadget
+[  236.432244] g_ether gadget: high-speed config #2: RNDIS
+[  236.438448] IPv6: ADDRCONF(NETDEV_CHANGE): usb0: link becomes ready
+[  236.725118] kb_ready
+[  236.754990] ms_ready
+BIOS HWInfo: 1c1f 1 0 0 0 0 0 0 0
+BMC  HWInfo: 1c1f 1 0 0 0 0 0 0 0
+[BIOS] SetSYSConfig
+[BIOS] SetSysMacAddress
+[FileUpload] CgiVars is not initialized due to file upload.
+Check_applytime_value = 2
+[upload_file_save_as] the upload file is stored in /tmp/bios_oem_fid. (len=236)
+[OOB 0xA0] cmd code: 0x9, len:2
+[GetOOBDataStatus] File: /tmp/bios_restore_setting does not exist.
+[OOB 0xA0] cmd code: 0x9, len:2
+[GetOOBDataStatus] File: /tmp/bios_restore_dmi does not exist.
+[OOB 0xA0] cmd code: 0x9, len:2
+[OOB][oob_data_to_bios]:opt: 8, file: /nv/bios/bios_storage, size: 49400
+1.biosfile_download
+[FileUpload] CgiVars is not initialized due to file upload.
+Check_applytime_value = 2
+[upload_file_save_as] the upload file is stored in /tmp/bios_asset. (len=16)
+[FileUpload] CgiVars is not initialized due to file upload.
+Check_applytime_value = 2
+[upload_file_save_as] the upload file is stored in /tmp/bios_new_setting. (len=59988)
+[59988 , 59513] bin file is different on file size.
+Restart HII CFG daemon ..............
+[FileUpload] CgiVars is not initialized due to file upload.
+Check_applytime_value = 2
+[upload_file_save_as] the upload file is stored in /tmp/bios_new_dmi. (len=891)
+[FileUpload] CgiVars is not initialized due to file upload.
+Check_applytime_value = 2
+[upload_file_save_as] the upload file is stored in /tmp/bios_hii. (len=47210)
+[47210 , 47218] bin file is different on file size.
+[FileUpload] CgiVars is not initialized due to file upload.
+Check_applytime_value = 2
+[upload_file_save_as] the upload file is stored in /tmp/bios_fullsmbios. (len=5323)
+Error! no Option Name Question ID: 495
+Restart HII CFG daemon ..............
+rm: can't remove '/tmp/hii_cfgd_sock': No such file or directory
+[FileUpload] CgiVars is not initialized due to file upload.
+Check_applytime_value = 2
+[upload_file_save_as] the upload file is stored in /tmp/bios_feature_flag. (len=40)
+EventNotifier receives: 15th event:
+    ReceivedLen = 560
+    EventType = ResourceAdded
+    TimeStamp = 2021/08/11 08:26:31
+    Severity = Info
+    Message = The %1 file was uploaded successfully.
+    MessageID = Event.1.0.FileUploaded
+    MessageArguments = fullsmbios
+    OriginOfCondition = /redfish/v1/Systems/1/Bios
+    EventDirAndType =
+    SensorType =
+    SensorName =
+[FileUpload] CgiVars is not initialized due to file upload.
+Check_applytime_value = 2
+[upload_file_save_as] the upload file is stored in /tmp/bios_storage. (len=49400)
+[FileUpload] CgiVars is not initialized due to file upload.
+Check_applytime_value = 2
+[upload_file_save_as] the upload file is stored in /tmp/bios_external_file. (len=1235)
+Bordon /tmp/bios_external_file /nv/bios/bios_external_file
+[NotifyBMCSensorStart] len: 16, set-bit: 1
+Error! no Option Name Question ID: 495
+[SetHWM_WDT_AST2600]en 0 timeout 5
+[FC12] 08h<-0
+[  258.261861] cdev suspend
+[  263.362873] cdev resume
+[  263.365622] cdev suspend
+[  263.485714] cdev suspend
+[  263.879400] [hid_reset:120]
+[  263.882533] [hid_reset:120]
+[  264.177908] g_hid gadget: high-speed config #1: HID Gadget
+[  264.401928] g_ether gadget: high-speed config #2: RNDIS
+[  265.415217] kb_ready
+[  265.418213] ms_ready
+ [RiserCard]==> LocID:02
+ [RiserCard]==> (null string)
+ [RiserCard]==> LocID:01
+ [RiserCard]==> (null string)
+==================================================
+riser->id         = RSC-UNDEFINED
+riser->location   = SXB2
+riser->pwm_zones  = 0x0
+    ----------------------------------------------
+    Name =
+    Slot = 0x1
+==================================================
+riser->id         = RSC-UNDEFINED
+riser->location   = SXB1
+riser->pwm_zones  = 0x0
+    ----------------------------------------------
+    Name =
+    Slot = 0x1
+==================================================
+riser->id         = RSC-UNDEFINED
+riser->location   = ONBOARD_M2
+riser->pwm_zones  = 0x0
+    ----------------------------------------------
+    Name =
+    Slot = 0x1
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        chip idx     = 0
+        fw version   =
+        type         = PCIE_NVME
+        vid/did      = 0x1344,0x51a2
+        svid/ssid    = 0x1344,0x1100
+        class/sclass = 0x0001,0x0008
+        bus/dev/func = 0xc5/0x00/0x00
+        ref_handle     = 0x0009
+        RiserUnit      = 0x0
+    ----------------------------------------------
+    Name =
+    Slot = 0x2
+at_b_RiserUnit:0
+== MRVL Discovering ==
+Not find NVMe controller[0],ch=6
+NVMe controller[0] NVMe driver NVMR3_216N_S4 is found onboard[6]
+ == ARTDiscovering ==
+==================[AOCM2Discovering start]===========================
+[AOCM2Discovering] [AOCM2] Try to discover AOCM2 controller...
+==================[AOCM2Discovering end]===========================
+[BRCMDiscovering] [Seconday - Card] Try to discover AOC/Riser BRCM controller...
+[BRCMDiscovering] [Seconday - Card] ch = 2
+Discrete BAT setting: low:0x69, failed:0x63
+[init_sensors] New Sdr records: 32
+[init_sensors] New Sensors: 30
+AOCTask slavetask_hwm_init
+==================================
+[AMD] b_CPUExist = 0x1
+==================================
+[slavetask_hwm_init] Finish Get ME Initialization = 1
+[adjust_cpu_threshold] cpu[0] TjMax=0x5F
+[adjust_cpu_threshold] cpu[1] TjMax=0x5F
+[adjust_cpu_threshold] cpu[2] TjMax=0x5F
+[adjust_cpu_threshold] cpu[3] TjMax=0x5F
+[SetAST2600HWMFanDuty] PWM: pwm_no: 0, duty: 50
+[SetAST2600HWMFanDuty] PWM: pwm_no: 1, duty: 50
+[SetAST2600HWMFanDuty] PWM: pwm_no: 2, duty: 50
+[SetAST2600HWMFanDuty] PWM: pwm_no: 3, duty: 50
+FANinit=1, SnrScanEn=1
+UtilFlashFindBmcVersion() finding "SMCIs_FW" in webpage size 0x00d00000
+UtilFlashFindBmcVersion() Found version 63.00.25 at 0x00a5d000
+UtilFlashFindBmcVersion() finding "SMCIs_FW" in nand_bmc1 size 0x02ec0000
+Discrete BAT setting: low:0x69, failed:0x63
+UtilFlashFindBmcVersion() Found version 63.99.80 at 0x02b5c000
+UtilFlashFindBmcVersion() finding "SMCIs_FW" in nand_bmc2 size 0x02ec0000
+UtilFlashFindBmcVersion() Found version 63.99.80 at 0x02b5c000
+[DEBUG] Open file fail
+UtilFlashFindBmcVersion() finding "SMCIs_FW" in nand_bmces size 0x02ec0000
+UtilFlashFindBmcVersion() Found version 63.00.25 at 0x02b5d000
+Get RevDate. start offset: 0x1ef0000, end offset: 0x1af0000
+nand_read_area(4, 0x01ef0000, 10000)=10000
+nand_read_area(4, 0x01ee0000, 10000)=10000
+nand_read_area(4, 0x01ed0000, 10000)=10000
+nand_read_area(4, 0x01ec0000, 10000)=10000
+nand_read_area(4, 0x01eb0000, 10000)=10000
+nand_read_area(4, 0x01ea0000, 10000)=10000
+nand_read_area(4, 0x01e90000, 10000)=10000
+nand_read_area(4, 0x01e80000, 10000)=10000
+nand_read_area(4, 0x01e70000, 10000)=10000
+nand_read_area(4, 0x01e60000, 10000)=10000
+nand_read_area(4, 0x01e50000, 10000)=10000
+nand_read_area(4, 0x01e40000, 10000)=10000
+nand_read_area(4, 0x01e30000, 10000)=10000
+nand_read_area(4, 0x01e20000, 10000)=10000
+nand_read_area(4, 0x01e10000, 10000)=10000
+nand_read_area(4, 0x01e00000, 10000)=10000
+nand_read_area(4, 0x01df0000, 10000)=10000
+nand_read_area(4, 0x01de0000, 10000)=10000
+nand_read_area(4, 0x01dd0000, 10000)=10000
+[SetAST2600HWMFanDuty] PWM: pwm_no: 0, duty: 20
+nand_read_area(4, 0x01dc0000, 10000)=10000
+nand_read_area(4, 0x01db0000, 10000)=10000
+nand_read_area(4, 0x01da0000, 10000)=10000
+nand_read_area(4, 0x01d90000, 10000)=10000
+nand_read_area(4, 0x01d80000, 10000)=10000
+nand_read_area(4, 0x01d70000, 10000)=10000
+nand_read_area(4, 0x01d60000, 10000)=10000
+nand_read_area(4, 0x01d50000, 10000)=10000
+nand_read_area(4, 0x01d40000, 10000)=10000
+nand_read_area(4, 0x01d30000, 10000)=10000
+nand_read_area(4, 0x01d20000, 10000)=10000
+mtdGetBiosRevDate() found it
+[mtdGetBiosRevDate] BIOS Date: 06/10/2021 Ver 2.0
+Get RevDate. start offset: 0x1ef0000, end offset: 0x1af0000
+nand_read_area(4, 0x01ef0000, 10000)=10000
+nand_read_area(4, 0x01ee0000, 10000)=10000
+nand_read_area(4, 0x01ed0000, 10000)=10000
+nand_read_area(4, 0x01ec0000, 10000)=10000
+nand_read_area(4, 0x01eb0000, 10000)=10000
+nand_read_area(4, 0x01ea0000, 10000)=10000
+nand_read_area(4, 0x01e90000, 10000)=10000
+nand_read_area(4, 0x01e80000, 10000)=10000
+nand_read_area(4, 0x01e70000, 10000)=10000
+nand_read_area(4, 0x01e60000, 10000)=10000
+nand_read_area(4, 0x01e50000, 10000)=10000
+nand_read_area(4, 0x01e40000, 10000)=10000
+nand_read_area(4, 0x01e30000, 10000)=10000
+nand_read_area(4, 0x01e20000, 10000)=10000
+nand_read_area(4, 0x01e10000, 10000)=10000
+nand_read_area(4, 0x01e00000, 10000)=10000
+nand_read_area(4, 0x01df0000, 10000)=10000
+nand_read_area(4, 0x01de0000, 10000)=10000
+nand_read_area(4, 0x01dd0000, 10000)=10000
+nand_read_area(4, 0x01dc0000, 10000)=10000
+nand_read_area(4, 0x01db0000, 10000)=10000
+nand_read_area(4, 0x01da0000, 10000)=10000
+nand_read_area(4, 0x01d90000, 10000)=10000
+nand_read_area(4, 0x01d80000, 10000)=10000
+nand_read_area(4, 0x01d70000, 10000)=10000
+nand_read_area(4, 0x01d60000, 10000)=10000
+nand_read_area(4, 0x01d50000, 10000)=10000
+nand_read_area(4, 0x01d40000, 10000)=10000
+nand_read_area(4, 0x01d30000, 10000)=10000
+nand_read_area(4, 0x01d20000, 10000)=10000
+mtdGetBiosRevDate() found it
+[mtdGetBiosRevDate] BIOS Date: 06/10/2021 Ver 2.0
+Get RevDate. start offset: 0x1ef0000, end offset: 0x1af0000
+nand_read_area(4, 0x01ef0000, 10000)=10000
+nand_read_area(4, 0x01ee0000, 10000)=10000
+nand_read_area(4, 0x01ed0000, 10000)=10000
+nand_read_area(4, 0x01ec0000, 10000)=10000
+nand_read_area(4, 0x01eb0000, 10000)=10000
+nand_read_area(4, 0x01ea0000, 10000)=10000
+nand_read_area(4, 0x01e90000, 10000)=10000
+nand_read_area(4, 0x01e80000, 10000)=10000
+nand_read_area(4, 0x01e70000, 10000)=10000
+nand_read_area(4, 0x01e60000, 10000)=10000
+nand_read_area(4, 0x01e50000, 10000)=10000
+nand_read_area(4, 0x01e40000, 10000)=10000
+nand_read_area(4, 0x01e30000, 10000)=10000
+nand_read_area(4, 0x01e20000, 10000)=10000
+nand_read_area(4, 0x01e10000, 10000)=10000
+nand_read_area(4, 0x01e00000, 10000)=10000
+nand_read_area(4, 0x01df0000, 10000)=10000
+nand_read_area(4, 0x01de0000, 10000)=10000
+PltSPICPLD_checkCOT() Within COT
+nand_read_area(4, 0x01dd0000, 10000)=10000
+nand_read_area(4, 0x01dc0000, 10000)=10000
+nand_read_area(4, 0x01db0000, 10000)=10000
+nand_read_area(4, 0x01da0000, 10000)=10000
+nand_read_area(4, 0x01d90000, 10000)=10000
+[cpld_init] L41: Motherboard: ufm_header: 53 20 23 fb 00 18 e5 a6 00 00 00 04 20 00 00 00
+nand_read_area(4, 0x01d80000, 10000)=10000
+nand_read_area(4, 0x01d70000, 10000)=10000
+nand_read_area(4, 0x01d60000, 10000)=10000
+nand_read_area(4, 0x01d50000, 10000)=10000
+nand_read_area(4, 0x01d40000, 10000)=10000
+nand_read_area(4, 0x01d30000, 10000)=10000
+nand_read_area(4, 0x01d20000, 10000)=10000
+mtdGetBiosRevDate() found it
+[mtdGetBiosRevDate] BIOS Date: 06/10/2021 Ver 2.0
+PltSPICPLD_checkCOT() Within COT
+[GetDeviceFirmwareVersion] L526: Motherboard: ufm_header: 53 20 23 fb 00 18 e5 a6 00 00 00 04 20 00 00 00
+[enable_flash_access_bp] Enable Flash Access (0x06/0x64)
+[read_ufm_header] UFM_GUID_IN_FLASH: 53-20-0c-7e  00-18-72-f0  00-00-00-01  24-03-00-40
+[disable_flash_access_bp] Disable Flash Access (0x06/0x64)
+[  347.488127] Vertical_Polarity  1 Horizontal_Polarity 0
+[  347.604568] width=1024, height=768
+[  347.608465] SDRAM_BW = 153 Mode_Bandwidth = 520
+[  347.613524] From Sync(Normal) Mode to DirectMode
+Virtual Video Decode Video...
+ len: 15367

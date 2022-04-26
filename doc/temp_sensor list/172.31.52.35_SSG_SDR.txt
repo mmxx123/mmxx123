@@ -1,0 +1,44 @@
+CPU Temp         | 01h | ok  |  3.1 | 47 degrees C
+System Temp      | 0Bh | ok  |  7.1 | 25 degrees C
+MB Rear IO Temp  | 0Ch | ok  |  7.2 | 33 degrees C
+CPU_VRM Temp     | 10h | ok  |  8.1 | 34 degrees C
+SOC_VRM Temp     | 12h | ok  |  8.3 | 43 degrees C
+VRMABCD Temp     | 14h | ok  |  8.5 | 44 degrees C
+VRMEFGH Temp     | 16h | ok  |  8.7 | 46 degrees C
+DIMMABCD Temp    | B0h | ok  | 32.64 | 33 degrees C
+DIMMEFGH Temp    | B1h | ok  | 32.65 | 34 degrees C
+FAN1             | 41h | ok  | 29.1 | 6720 RPM
+FAN2             | 42h | ok  | 29.2 | 6720 RPM
+FAN3             | 43h | ns  | 29.3 | Disabled
+FAN4             | 44h | ok  | 29.4 | 6720 RPM
+FAN5             | 45h | ns  | 29.5 | Disabled
+FAN6             | 46h | ns  | 29.6 | Disabled
+12V              | 30h | ok  |  7.18 | 11.82 Volts
+5VCC             | 31h | ok  |  7.19 | 4.99 Volts
+3.3VCC           | 32h | ok  |  7.20 | 3.28 Volts
+VBAT             | 33h | lnr | 40.0 | 0 unspecified
+5VSB             | 34h | ok  | 32.35 | 4.98 Volts
+3.3VSB           | 35h | ok  | 32.36 | 3.27 Volts
+VDDCR            | 36h | ok  | 32.37 | 0.94 Volts
+Vp1ABCD          | 38h | ok  | 32.4 | 1.26 Volts
+Vp1EFGH          | 39h | ok  | 32.40 | 1.26 Volts
+M2_SSD1 Temp     | 8Ch | ok  |  7.48 | 33 degrees C
+M2_SSD2 Temp     | 8Dh | ok  |  7.49 | 49 degrees C
+SOCRUN           | 3Ch | ok  | 32.43 | 0.91 Volts
+SOCDUAL          | 3Eh | ok  | 32.45 | 0.94 Volts
+Chassis Intru    | AAh | ok  | 23.1 | 0 unspecified
+
+BMC FRU          | 00h | ns  |  0.0 | Logical FRU @00h
+ATEN BMC         | 00h | ok  |  0.0 | Dynamic MC @ 20h
+
+PS1 Status       | C8h | ok  | 10.88 | Presence detected
+PSU1 Temp1       | 22h | ok  | 19.0 | 28 degrees C
+PSU1 Temp2       | 23h | ok  | 19.1 | 39 degrees C
+PSU1 PowerC      | FAh | ok  | 19.2 | 156 Watts
+PS2 Status       | C9h | ok  | 10.87 | Presence detected
+PSU2 Temp1       | 24h | ok  | 19.3 | 27 degrees C
+PSU2 Temp2       | 25h | ok  | 19.4 | 39 degrees C
+PSU2 PowerC      | FBh | ok  | 19.5 | 156 Watts
+AOC_NIC5 Temp    | A0h | ok  | 11.112 | 53 degrees C
+AOC_NIC2 Temp    | A1h | ok  | 11.113 | 52 degrees C
+U2_SSDA Temp     | 20h | ok  |  4.48 | 45 degrees C

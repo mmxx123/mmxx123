@@ -1,0 +1,2769 @@
+5/13>>>
+
+1. adjust cpu threshold to 90
+	next to adjust it by cpu model
+	
+	if milan & rome keep 95
+	else set to 90
+
+
+IPMI/COMMON/AST2600/OEMInit.c				x
+IPMI/LIB_COMMON/LibChassis.c				v
+IPMI/Platform/AST2600/board_H12SSG_AN6.c	v
+IPMI/Platform/lib/platform_speedway.c		x
+IPMI/SDRFile/H12SSG_AN6.txt					v
+IPMI/SDRFile/H12SSW_AN6.txt					x
+IPMI/SENSOR_DRV/AST2600/ast_peci.c			x
+
+--------???-----------------
+RT1	Inlet Temp	--> System Temp
+RT2	Peripheral Temp
+RT3	System Temp	--> Remove
+?	MB Hot Swap Temp
+
+------conclusion---------
+RT1 is inlet temp
+RT2 is system temp
+RT3 and MB Hot Swap Temp are ignore and not to show it .
+
+
+
+-----cpu overheat temp------
+
+ // revise overheat values by cpu model
+  66 unsigned int CPU_OVERHEAT_TEMP=95;
+  67 unsigned int VRM_OVERHEAT_TEMP=100;
+  68 BYTE tmp_str[10] = {0};         // CPU String
+  69
+  70 GetAMDCPUModel (&tmp_str[0]);
+  71
+  72 if(strcmp(tmp_str, "Threadr")){
+  73     console_log ("---Revise Threadr CPU and VRM Overheat Temp\n");
+  74     CPU_OVERHEAT_TEMP=90;
+  75     VRM_OVERHEAT_TEMP=95;
+  76 }
+  77 //console_log ("---Print CPU OH Temp=%d VRM OH Temp=%d\n", CPU_OVERHEAT_TEMP, VRM_OVERHEAT_TEMP);
+
+
+
+
+
+-----0523-----BYTE GetAMDCPUInit ()------@ast_peci.c-----------------------
+// tell from amd cpu model: Milan/Rome/Naples/TRP
+BYTE tmp_str[8] = {0};         // CPU String
+BYTE CPU_Threshold_Temp = 0;
+
+GetAMDCPUModel (&tmp_str[0]);
+console_log("tmp_str=%s",tmp_str);
+
+if(strcmp(tmp_str, "Threadr ")){
+	CPU_Threshold_Temp = 90;
+}
+else{
+	CPU_Threshold_Temp = 95;
+}
+console_log ("---Print CPU_Threshold_Temp=%d\n", CPU_Threshold_Temp);
+
+
+    // tell from amd cpu model: Milan/Rome/Naples/TRP
+    BYTE tmp_str[8] = {0};         // CPU String
+    BYTE CPU_Threshold_Temp = 0;
+
+    GetAMDCPUModel (&tmp_str[0]);
+    console_log("tmp_str=%s",tmp_str);
+
+    if(strcmp(tmp_str, "Threadr ")){
+         CPU_Threshold_Temp = 90;
+     }
+    else{
+        CPU_Threshold_Temp = 95;
+    }
+    
+    console_log ("---Print CPU_Threshold_Temp=%d\n", CPU_Threshold_Temp);
+
+    for (i = 0; i < 4; i++) {
+        //b_cpu_index[i] = at_St_METempTbl.b_Tjmax[i];
+        b_cpu_index[i] = CPU_Threshold_Temp;
+		
+		
+		
+		
+		
+		
+----------------------------------------------------------------------
+
+BMC WEB GUI Hostname>>
+
+
+../js/redfish/sys_cmpn/overview_info.js
+	 var networkSearch = {
+		request : {
+			uri: 'Managers/1/EthernetInterfaces/[Members]',
+			reload: true
+		},
+		columns : [
+			{
+				name: 'LANG_SYS_CMPN_HOSTNAME', // Hostname
+				field: 'HostName'
+			},
+			
+info_card
+sys_info_table
+LANG_SYS_CMPN_HOSTNAME		
+
+
+UtiLibLan.c
+ ret = get_hostname (hostname);
+ ret = ReadFile (HOSTNAME_FILE, host, 0, HOSTNAME_LEN);
+ #define HOSTNAME_FILE       "/etc/hostname_for_dhcp"
+ 
+libcgi_config_lan.c 
+hostname_ptr       = (char *)GetCgiPostVar ("hostname", HOSTNAME_STR_LEN + 1);
+LIB_CGI_INTERFACE (config_lan, priv)
+
+ ret = set_hostname (hostname_ptr);
+ 
+lancmd.h
+#define HOSTNAME_FILE       "/etc/hostname_for_dhcp" 
+ 
+UtiLibCmd.c
+void UtilSetIPAddress (BYTE b_DeviceID, BYTE *p_b_data)
+{
+    DWORD dw_IPAddr = 0, dw_InputIPAddr;
+    DWORD dw_Mask = 0;
+    BYTE  ab_DevNameTmp[16]              = {0};
+    BYTE  MsgArg[MAX_MSGARG_STRING_SIZE] = {0};
+
+    memset (ab_DevNameTmp, 0, sizeof (ab_DevNameTmp));
+    UtilGetDevName_Public (b_DeviceID, ab_DevNameTmp, sizeof (ab_DevNameTmp), 0);
+    UtilGetIPConf (&dw_IPAddr, &dw_Mask, ab_DevNameTmp);
+    dw_InputIPAddr = p_b_data[0] | (p_b_data[1] << 8) | (p_b_data[2] << 16) | (p_b_data[3] << 24);
+
+    if (dw_InputIPAddr != dw_IPAddr) {
+        memcpy (at_St_PS.a_St_LanInfo[b_DeviceID].IPAddr, p_b_data, 4);
+        at_w_NeedToCfgLan = SETIPADDRFLAG;
+
+        snprintf(MsgArg,sizeof(MsgArg),"%d:%d:%d:%d",
+                                        p_b_data[0],
+                                        p_b_data[1],
+                                        p_b_data[2],
+                                        p_b_data[3]);
+        LibSaveSysEvtLog (CONF_IPV4ADDR,MsgArg,"/redfish/v1/Managers/1/EthernetInterfaces/1");
+    }
+
+}
+ 
+----------------------------------------------------------------------
+ 
+#define BASIC_UART	    1
+#define TERMINAL_UART	4
+#define UART_DEVNAME                "/dev/uart%d"
+#define MAX_SER_CHNL                    3
+#define SCU_BASEADDR        (0x1e6e2000)
+#define HICRA_ADDR          (0x1E78909C)
+
+typedef struct UARTChnl
+{
+    unsigned char b_ChnlNo;        
+    unsigned char b_phychnlno;
+    unsigned char *b_p_UartRxBuf;
+    e_UARTRxBufSTATUS b_UartRxBufStatus;
+    unsigned short int w_RxCounter;
+    unsigned char *b_p_UartTxBuf;
+    unsigned char b_Set_In_Progress;
+    e_UARTChnlSTATUS b_status;
+    void *QPtr;
+} s_UARTChnlTag;
+
+
+typedef struct 
+{
+    unsigned char b_HardWarePhysicalChanl;
+    unsigned char b_ControlCode;
+    unsigned char ab_Addr[4];
+    unsigned char ab_SubAddr[6];    
+    
+}s_ChanlInitDataTag;
+
+
+
+extern void PltUART_EnableHWSOLCOM1 (void);
+extern void PltUART_EnableHWSOLCOM2 (void);
+
+BYTE Recv_From_UART (BYTE b_LogicalChNo, BYTE b_UARTChnlInfoIndex, BYTE *b_Buffer)
+	while (1) {
+        b_ReadSize = at_b_UART_Pool_Size;
+        b_status = PltUART_Read (b_PhysicalChNo, b_Buffer, &b_ReadSize);
+
+void UtilEnableHWSOL(void)
+{
+//    UtilEnableHWSOLCOM1();
+    UtilEnableHWSOLCOM2();
+}
+
+--- open UART2 Success ---
+--- at_a_dw_UartFd[2] = 4 ---
+PltUART_SetBaudRate [115200] = UART Set SerialMode = 0
+UART no hardware flow control
+PltUART_SetFlowControl [0]PltUART_Read fd[4];buf[1] =0
+
+BMC Debug Port>>
+COM: Enable port1 and port2, disable port3 and port4
+In:    serial@1e784000
+Out:   serial@1e784000
+console=ttyS4,115200n8
+
+[PltUART_EnableHWSOLCOM2:427] scu_reg=3fffff
+[PltUART_EnableHWSOLCOM2:433] scr_reg=3f00ff
+[PltUART_EnableHWSOLCOM2:439] hic_reg=0
+[PltUART_EnableHWSOLCOM2:445] hic_reg=1a00000
+
+Recv_From_UART:SOL and UART share the same physical port
+
+Recv_From_UART: Mode Not Support
+
+UART.c: main - b_PhysicalChNo = 2
+
+- Start UART channel. -
+UART.c: main - b_LogicalChNo = 3, b_PhysicalChNo = 2
+ipmi_uart: SOLConnectToDomainSocket Start
+
+ipmi_uart: SOLConnectToDomainSocket Done
+[   19.045420] Retry: Command = 1, Response_Code = ffff
+PltUART_SetBaudRate [115200] = --- PltUartInit dw_SerialMode=3UART Set SerialMode = 3
+[PltUART_EnableHWSOLCOM2:427] scu_reg=3fffff
+[PltUART_EnableHWSOLCOM2:433] scr_reg=3f00ff
+[PltUART_EnableHWSOLCOM2:439] hic_reg=1a00000
+[PltUART_EnableHWSOLCOM2:445] hic_reg=1a00000
+UART no hardware flow control
+PltUART_SetFlowControl [0]- init UART channels OK. Start UART Channel 2
+
+UART.c: main - b_PhysicalChNo = 2
+
+- Start UART channel. -
+UART.c: main - b_LogicalChNo = 3, b_PhysicalChNo = 2
+ipmi_uart: SOLConnectToDomainSocket Start
+
+PltUART_Init:i = 3, Open /dev/uart2
+--- open UART2 Success ---
+--- at_a_dw_UartFd[2] = 4 ---
+
+
+
+
+-----------------------------
+-----------------------------
+6/2 debug log>>>
+-----------------------------
+-----------------------------
+PltUART_Init:i = 3, Open /dev/uart2
+--- open UART2 Success ---
+--- at_a_dw_UartFd[2] = 6 ---
+
+UART.c: main - b_PhysicalChNo = 2
+
+- Start UART channel. -
+UART.c: main - b_LogicalChNo = 3, b_PhysicalChNo = 2
+ipmi_uart: SOLConnectToDomainSocket Start
+ipmi_uart: SOLConnectToDomainSocket Done
+uart b_BaudRate a
+PltUART_SetBaudRate [115200] = --- PltUartInit dw_SerialMode=0UART Set SerialMode = 0
+UART no hardware flow control
+PltUART_SetFlowControl [0]- init UART channels OK. Start UART Channel 2
+--- --- ---:
+--- Recv_From_UART:
+--- --- ---:
+
+----First boot & Pwr Off------------------------------------------------------
+--------ipmitool sol activate------------------------------------------
+	Message = SOL was %1 successfully.
+    MessageID = Event.1.0.SolLaunched
+    MessageArguments = launched
+--------type in sol------------------------------------------
+	PltUART_Write fd[6];buf[1] = d
+--------type in uart3------------------------------------------	
+	PltUART_Read fd[6];buf[1] =31
+	Recv_From_UART: b_status = 1, b_ReadSize = 1
+	Recv_From_UART:SOL and UART share the same physical port
+	Send SOL Packet size = 1
+--------ipmitool sol Deactivate------------------------------------------
+	Message = SOL was %1 successfully.
+    MessageID = Event.1.0.SolLaunched
+    MessageArguments = closed
+
+----Pwr On------------------------------------------------------
+	OEMGetSetSOLMode()
+--- 70SubCmd: b_SerialMode == 3 ---
+--- UtilLibSol.c UtilEnableHWSOL 
+---[PltUART_EnableHWSOLCOM2:431] scu_reg=3fffff
+--- disable physical com2 and com1 
+---[PltUART_EnableHWSOLCOM2:439] scr_reg=3f0000
+[PltUART_EnableHWSOLCOM2:445] hic_reg=0
+--- show current routing status 
+---[PltUART_EnableHWSOLCOM2:452] hic_reg=0
+
+EventNotifier receives: 16th event:
+    ReceivedLen = 560
+    EventType = ResourceUpdated
+    TimeStamp = 2021/06/02 01:37:49
+    Severity = Info
+    Message = SOL was configured %1 successfully.
+    MessageID = Event.1.0.SolModeChanged
+    MessageArguments = enable
+    OriginOfCondition =
+    EventDirAndType =
+    SensorType =
+    SensorName =
+
+PltUART_Read fd[6];buf[1] =31
+Recv_From_UART: b_status = 1, b_ReadSize = 1
+Recv_From_UART:SOL and UART share the same physical port
+ Recv_From_UART 31
+idx=2, b_ConnectMode=0
+Recv_From_UART: Mode Not Support
+
+IPMI messages传输的方式有三种：Basic Mode,PPP Mode和Terminal Mode。
+
+Interfaces:
+        open          Linux OpenIPMI Interface [default]
+        imb           Intel IMB Interface 
+        lan           IPMI v1.5 LAN Interface 
+        lanplus       IPMI v2.0 RMCP+ LAN Interface 
+        serial-terminal  Serial Interface, Terminal Mode 
+        serial-basic  Serial Interface, Basic Mode 
+		
+（1）PPP/UDP Proxy Operation
+   BMC可以支持一种mode，这种mode允许local system software(e.g. BIOS)通过BMC连接到remote console来发送和接收UDP数据包。这种操作通过和channel相联系的两个特殊的message buffers被支持的：PPP UDP Proxy Transmit Buffer和 PPP UDP Proxy Receive Buffer。
+   当PPP/UDP Proxy Operation被支持（并可用）BMC将会check 引入的UDP数据包中的destination port address。在除去一些data escaping并且check the FCS之后，BMC将会check 引入的UDP数据包中的destination port address。如果这个数据包没有写明primary or secondary RMCP Port addresses，BMC将会把满意的数据包放到PPP UDP Proxy Receive Buffer（假设packet合格，buffer已经是空的了）。否则packet经会被默默地抛弃。
+   当发送message到remote console时，local software会把UDP message的内容装载进PPP UDP Proxy Transmit Buffer，然后指引BMC将该message作为一个UDP数据包从给定的serial/modem channel释放。BMC根据在Send PPP UDP Proxy Packet command里和来自LAN Configuration parameters的数据来为the UDP and IP Header填写保留数据，然后传输这个packet。
+   PPP/UDP Proxy操作只能经过BMC system interface来为运行进行详细说明。
+
+
+bmc reboot>>>>
+
+PltUART_Init:i = 3, Open /dev/uart2
+--- open UART2 Success ---
+--- at_a_dw_UartFd[2] = 4 ---
+
+UART.c: main - b_PhysicalChNo = 2
+
+- Start UART channel. -
+UART.c: main - b_LogicalChNo = 3, b_PhysicalChNo = 2
+ipmi_uart: SOLConnectToDomainSocket Start
+ipmi_uart: SOLConnectToDomainSocket Done
+uart b_BaudRate a
+
+PltUART_SetBaudRate [115200] = --- PltUartInit dw_SerialMode=3UART Set SerialMode = 3
+
+--- UARTLib.c dw_SerialMode ==3
+--- UtilLibSol.c UtilEnableHWSOL 
+---[PltUART_EnableHWSOLCOM2:431] scu_reg=3fffff
+--- disable physical com2 and com1 
+---[PltUART_EnableHWSOLCOM2:439] scr_reg=3f0000
+[PltUART_EnableHWSOLCOM2:445] hic_reg=0
+--- show current routing status 
+---[PltUART_EnableHWSOLCOM2:452] hic_reg=0
+UART no hardware flow control
+PltUART_SetFlowControl [0]- init UART channels OK. Start UART Channel 2
+--- --- ---:
+--- Recv_From_UART:
+--- --- ---:
+
+------smcipmitool sol window-------------------------------
+PltUART_Enable [2]EventNotifier receives: 9th event:
+    ReceivedLen = 560
+    EventType = Alert
+    TimeStamp = 2021/06/02 01:31:51
+    Severity = Info
+    Message = SOL was %1 successfully.
+    MessageID = Event.1.0.SolLaunched
+    MessageArguments = opened
+    OriginOfCondition =
+    EventDirAndType =
+    SensorType =
+    SensorName =
+
+EventNotifier receives: 10th event:
+    ReceivedLen = 560
+    EventType = Alert
+    TimeStamp = 2021/06/02 01:31:51
+    Severity = Info
+    Message = SOL was %1 successfully.
+    MessageID = Event.1.0.SolLaunched
+    MessageArguments = launched
+    OriginOfCondition =
+    EventDirAndType =
+    SensorType =
+    SensorName =
+
+
+---sol type 1---->>
+PltUART_Write fd[6];buf[1] = 31								PltUART_Write()	write to uart3
+
+write back to sol: ??										PltUART_Write 
+															+++(send (at_ClientSock, b_Buffer, b_ReadSize, 0) == -1)
+PltUART_Write fd[6];buf[1] = 32
+send
+: Socket operation on non-socket
+															
+															
+
+---uart3 type 1--->>
+PltUART_Read fd[6];buf[1] =32								PltUART_Read() read from uart3
+Recv_From_UART: b_status = 1, b_ReadSize = 1				Recv_From_UART()
+Recv_From_UART:SOL and UART share the same physical port
+															+++process 0x0A & 0x0D for newline
+Send SOL Packet size = 1									(send (at_ClientSock, b_Buffer, b_ReadSize, 0) == -1)
+
+
+
+---uart3 type 1----Log>>>> @sol not activated-----
+PltUART_Read fd[4];buf[1] =31
+--- read from uart3 and write back to uart3
+Recv_From_UART: b_status = 1, b_ReadSize = 1
+Recv_From_UART:SOL and UART share the same physical port
+ Recv_From_UART 31
+idx=2, b_ConnectMode=0
+Recv_From_UART: Mode Not Support
+---temp=31
+PltUART_Write fd[4];buf[1] = 31
+--- write to uart3
+
+
+---uart3 type 1----Log>>>> @sol is activated-----
+PltUART_Read fd[4];buf[1] =31
+--- read from uart3 and write back to uart3
+Recv_From_UART: b_status = 1, b_ReadSize = 1
+Recv_From_UART:SOL and UART share the same physical port
+Send SOL Packet size = 1
+
+************************************************************
+PltUART_Read fd[6];buf[1] =31
+--- read from uart3 and write back to uart3
+Recv_From_UART: b_status = 1, b_ReadSize = 1
+Recv_From_UART:SOL and UART share the same physical port
+Send SOL Packet size = 1
+PltUART_Write fd[6];buf[1] = 31
+--- write to uart3 via sol_sshSend : 31
+--- send ok
+************************************************************
+
+
+
+
+
+
+
+
+---sol type 1----Log>>>> @sol is activated-----
+PltUART_SetBaudRate [115200] = PltUART_Write fd[4];buf[1] = 31
+--- write to uart3
+
+
+---uart3 type 1 @ sol not activated & remote console is on at html ----
+PltUART_Read fd[4];buf[1] =31
+--- read from uart3 and write back to uart3
+Recv_From_UART: b_status = 1, b_ReadSize = 1
+Recv_From_UART:SOL and UART share the same physical port
+PltUART_SetFlowControl [0] Recv_From_UART 31
+idx=2, b_ConnectMode=0
+Recv_From_UART: Mode Not Support
+---temp=31
+PltUART_Write fd[4];buf[1] = 31
+--- write to uart3
+
+
+
+
+
+
+PltUART_Write fd[4];buf[1] = d
+--- write to uart3
+b_DataSize = 15
+UART.c: main - Receive UART Message: 31 31 31 31 31
+Before IPMIentry .........
+MsgBufIn.b_rsAddr=0
+MsgBufIn.b_netFnrsLun=0
+MsgBufIn.b_cmd=0
+MsgBufIn.w_datalength=0
+MsgBufIn.b_data=
+[UDPListenTask] recv err 0
+
+
+---------------------------
+-----@sol is activated-----
+---------------------------
+****************************
+---sol type 1 >>>> uart3---
+****************************
+--- solreceivelan 371
+--- soluartsend L204
+PltUART_Write fd[6];buf[1] = 31
+--- write it back to uart3 here : 31
+--- sol write Line 186
+
+
+****************************
+---uart3 type 1 >>>> sol---
+****************************
+PltUART_Read fd[6];buf[1] =31
+--- sleep 3
+Recv_From_UART: b_status = 1, b_ReadSize = 1
+Recv_From_UART:SOL and UART share the same physical port
+Send SOL Packet size = 1
+process newline and write back to uart 3
+PltUART_Write fd[6];buf[1] = 31
+--- write it back to uart3 here : 31
+ Recv_From_UART
+idx=2, b_ConnectMode=0
+Recv_From_UART: Mode Not Support
+
+
+==================================================================================================================
+
+sol to uart>>
+										/UDPListenTask.c	UDPListenTask() 
+--- solreceivelan 371					/SOLCommon.c	SOLReceiveLAN() call UDPSocketSend()
+--- soluartsend L204sh 					/SOLLib.c		SOLUARTSend()
+PltUART_Write fd[6];buf[1] = 31							sol_write() call PltUART_Write()
+--- write it back to uart3 here : 31
+--- sol write Line 186									sol_write()
+
+
+
+sol -> uart --->>> 0607 (but at power off)
+
+--- UDPListenTask L343
+--- solreceivelan 371
+--- soluartsend L204
+PltUART_Write fd[4];buf[1] = 31
+--- write it back to uart3 here : 31
+--- solpartialsend 462						/SOLCommon.c	SOLPartialSend(),called by SOLFirstPacketSend()
+--- sol write Line 186 w_SOL_WriteLen=1		/SOLLib.c		sol_write()	SOLFirstPacketSend (b_SOL_WriteBuff, w_SOL_WriteLen);
+--- UDPListenTask L343
+--- soluartsend L204
+
+==================================================================================================================
+
+uart to sol>>
+
+PltUART_Read fd[6];buf[1] =32
+Recv_From_UART: b_status = 1, b_ReadSize = 1 b_Buffer=1980230
+--- process 0x0d ---											/UART.c
+--- write to uart3 by PltUART_Write ---							/UART.c
+PltUART_Write fd[6];buf[1] = 32									/AST2600/UARTLib.c
+--- write it back to uart3 here : 32								---write (at_a_dw_UartFd[b_PhyChannel]... will write to uart
+Recv_From_UART:SOL and UART share the same physical port		/UART.c
+--- config_smash=1
+Send SOL Packet size = 1
+--- send at_ClientSock = 5  b_ReadSize = 1							---send (at_ClientSock...) will send to SOL		
+--- solpartialsend 462											/SOLCommon.c
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=1				/UDPListenTask.c	p_fun()
+--- soluartsend L204											/SOLLib.c
+
+
+====function=======================================================================================================
+// add to UARTLib.c L166 after #ifdef DEBUG
+ipmi_log("--- write back to sol---\n");
+if (send (at_ClientSock, b_DataBufPtr, b_ReadSize, 0) == -1) {
+     perror ("send\n");
+}else{
+     ipmi_log ("--- send at_ClientSock = %d  b_ReadSize = %d\n", at_ClientSock, b_ReadSize);
+}
+------------------------------------------------------------------------------------------------------------------
+// add to SOLLib.c L190 after if (PltUART_Write (b_PhyChannel, b_SOL_WriteBuff, (BYTE *) &b_SOL_WriteLen) != STATUS_SUCCESS)
+// send back to sol
+SOLFirstPacketSend (b_SOL_WriteBuff, w_SOL_WriteLen);
+==================================================================================================================
+
+oem 30 70 6 3 Log>>		
+	PltUART_SetBaudRate [115200] = [PltUART_EnableHWSOLCOM2:418] 3fffff
+	[PltUART_EnableHWSOLCOM2:424] 3f00ff
+	EventNotifier receives: 32th event:
+    ReceivedLen = 560
+    EventType = ResourceUpdated
+    TimeStamp = 2021/04/28 03:34:43
+    Severity = Info
+    Message = SOL was configured %1 successfully.
+    MessageID = Event.1.0.SolModeChanged
+	MessageArguments = enable
+		
+oem 30 70 6 1 Log>>		
+	PltUART_SetBaudRate [115200] = UtilDisableHWSOL
+	EventNotifier receives: 35th event:
+    ReceivedLen = 560
+    EventType = ResourceUpdated
+    TimeStamp = 2021/04/28 03:37:40
+    Severity = Info
+    Message = SOL was configured %1 successfully.
+    MessageID = Event.1.0.SolModeChanged
+    MessageArguments = disable
+
+SOL>>>>
+check this function:
+
+ApiDoingActivatePayloadCMD
+
+
+******************************************************
+can read but write 會不會是卡住輸出200個byte，超過這個值就可以送出
+#define SIZE_OF_UART_BUF            200UL
+unsigned long int at_b_UART_Pool_Size = SIZE_OF_UART_BUF;
+ab_receiveBytes = recv (fd, buf, at_b_UART_Pool_Size * 2, 0);
+
+[BIOS]
+GetSetBiosOOBIdentify	--> The BIOS will set Board ID and building date to BMC.
+SetSysMacAddress		--> 0x30 cmd=0x9e for set sys mac address
+SetSYSConfig			--> Set System Configuration
+
+
+
+
+[p_fun] nread = 8, ab_receiveBytes = 8
+ipmi_lan: malloc.c:2379: sysmalloc: Assertion `(old_top == initial_top (av) && old_size == 0) || ((unsigned long) (old_size) >= MINSIZE && prev_inuse (old_top) && ((unsigned long) old_end & (pagesize - 1)) == 0)' failed.
+process ipmi_lan has problem!
++ Dump FW analysis pack
+umount: can't remount /dev/mtdblock4 read-only
+umount: tmpfs busy - remounted read-only
+umount: can't unmount /dev/pts: Invalid argument
+umount: can't remount tmpfs read-only
+The system is going down NOW!
+Sent SIGTERM to all processes
+usb terminated!
+FCGX_Accept_r failed: -4Kill a session due excption
+[ikvm_th] Free session resources.
+Requesting system reboot
+
+
+
+
+
+PltUART_SetBaudRate [115200] = --- UDPListenTask L343
+--- UDPListenTask L343
+--- UDPListenTask L343
+--- UDPListenTask L343
+--- UDPListenTask L343
+--- UDPListenTask L343
+[  471.563591] ms timeout
+[  471.673585] ms timeout
+[UDPListenTask] L146
+[UDPListenTask] fd=6 sock=5
+[UDPListenTask] L157
+[UDPListenTask] L165
+[p_fun] nread = 7, ab_receiveBytes = 7
+ipmi_lan: malloc.c:2379: sysmalloc: Assertion `(old_top == initial_top (av) && old_size == 0) || ((unsigned long) (old_size) >= MINSIZE && prev_inuse (old_top) && ((unsigned long) old_end & (pagesize - 1)) == 0)' failed.
+[  474.583644] ms timeout
+[  475.683717] ms timeout
+process ipmi_lan has problem!
++ Dump FW analysis pack
+umount: tmpfs busy - remounted read-only
+umount: can't unmount /dev/pts: Invalid argument
+[PltGPIO_DirectRead]Error open! bb00000,0
+umount: can't remount tmpfs read-only
+The system is going down NOW!
+Sent SIGTERM to all processes
+usb terminated!
+FCGX_Accept_r failed: -4Kill a session due excption
+[ikvm_th] Free session resources.
+Sent SIGKILL to all processes
+
+
+
+
+
+
+[p_fun] nread = 8, ab_receiveBytes = 7
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8[p_fun] nread = 8, ab_receiveBytes = 8
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8--- UDPListenTask L345
+[p_fun] nread = 8, ab_receiveBytes = 8
+--- UDPListenTask L345
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8[p_fun] nread = 8, ab_receiveBytes = 8
+--- UDPListenTask L345
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8--- UDPListenTask L345
+[p_fun] nread = 8, ab_receiveBytes = 8
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8[p_fun] nread = 8, ab_receiveBytes = 400
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=400[p_fun] nread = 8, ab_receiveBytes = 400
+--- UDPListenTask L345
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=400[p_fun] nread = 8, ab_receiveBytes = 392
+---  pst_UDP->ab_Data[5]=c1
+ --- SOLReceiveLAN UDPSocketSend dw_DataSize=40
+--- SOLUARTSend dw_counter=1
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+ --- SOLReceiveLAN UDPSocketSend dw_DataSize=40
+--- SOLUARTSend dw_counter=1
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+ --- SOLReceiveLAN UDPSocketSend dw_DataSize=40
+--- SOLUARTSend dw_counter=1
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+ --- SOLReceiveLAN UDPSocketSend dw_DataSize=40
+--- SOLUARTSend dw_counter=1
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+ --- SOLReceiveLAN UDPSocketSend dw_DataSize=40
+--- SOLUARTSend dw_counter=1
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+ --- SOLReceiveLAN UDPSocketSend dw_DataSize=40
+--- SOLUARTSend dw_counter=1
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+ --- SOLReceiveLAN UDPSocketSend dw_DataSize=40
+--- SOLUARTSend dw_counter=1
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+ --- SOLReceiveLAN UDPSocketSend dw_DataSize=40
+--- SOLUARTSend dw_counter=1
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+ --- SOLReceiveLAN UDPSocketSend dw_DataSize=40
+--- SOLUARTSend dw_counter=1
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+ --- SOLReceiveLAN UDPSocketSend dw_DataSize=40
+--- SOLUARTSend dw_counter=1
+[p_fun] nread = 8, ab_receiveBytes = 8
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8[p_fun] nread = 8, ab_receiveBytes = 8
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8[p_fun] nread = 8, ab_receiveBytes = 8
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+[p_fun] nread = 8, ab_receiveBytes = 8
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+[p_fun] nread = 8, ab_receiveBytes = 8
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+[p_fun] nread = 8, ab_receiveBytes = 8
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8--- UDPListenTask L345
+[p_fun] nread = 8, ab_receiveBytes = 8
+---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8[p_fun] nread = 8, ab_receiveBytes = 8
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+[p_fun] nread = 8, ab_receiveBytes = 8
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8--- UDPListenTask L345
+[p_fun] nread = 8, ab_receiveBytes = 8
+---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8[p_fun] nread = 8, ab_receiveBytes = 8
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8[p_fun] nread = 8, ab_receiveBytes = 8
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8[p_fun] nread = 8, ab_receiveBytes = 8
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8[p_fun] nread = 8, ab_receiveBytes = 8
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8[p_fun] nread = 8, ab_receiveBytes = 8
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8[p_fun] nread = 8, ab_receiveBytes = 8
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8[p_fun] nread = 8, ab_receiveBytes = 8
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+[p_fun] nread = 8, ab_receiveBytes = 8
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+[p_fun] nread = 8, ab_receiveBytes = 8
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8--- UDPListenTask L345
+[p_fun] nread = 8, ab_receiveBytes = 16
+---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+--- UDPListenTask L345
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=16---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+[p_fun] nread = 8, ab_receiveBytes = 8
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+[p_fun] nread = 8, ab_receiveBytes = 8
+--- SOLUARTSend dw_counter=0
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=8---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+[p_fun] nread = 8, ab_receiveBytes = 400
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=400--- SOLUARTSend dw_counter=0
+--- UDPListenTask L345
+[p_fun] nread = 8, ab_receiveBytes = 400
+---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=400---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+[p_fun] nread = 8, ab_receiveBytes = 400
+--- SOLUARTSend dw_counter=0
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=400[p_fun] nread = 8, ab_receiveBytes = 400
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=400--- UDPListenTask L345
+[p_fun] nread = 8, ab_receiveBytes = 400
+---  pst_UDP->ab_Data[5]=c1
+ --- SOLReceiveLAN UDPSocketSend dw_DataSize=40
+--- SOLUARTSend dw_counter=1
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=400[p_fun] nread = 8, ab_receiveBytes = 65
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=65--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+[p_fun] nread = 8, ab_receiveBytes = 15
+--- UDPListenTask L345
+[UDPListenTask] SOLFirstPacketSend b_receiveBytes=15---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+--- UDPListenTask L345
+---  pst_UDP->ab_Data[5]=c1
+---[SOLReceiveLAN] p_a_b_SOLOutBuf= 0 b_BreakFlag = 0
+--- SOLUARTSend dw_counter=0
+GPIOS4 FALLING edge triggered
+!!!------ [PowerO[  710.563981] cdev suspend
+
+
+====================================================================================
+
+70SubCmd.c>>>>
+------OEMGetSetSOLMode-------
+------lock com2sol by cmd: 30 70 6 1 1
+------unlock cmd: 30 70 6 1 0
+------write 0x30 or 0x31 to /tmp/b_sol
+
+#ifdef H12SSG_OEM_NVIDA
+    BYTE ret = 0;
+    char c_LockCom2SOL[1];
+    FILE *fp = NULL;
+
+    if (MsgBufIn->w_datalength ==3){
+        if ((MsgBufIn->b_data[1] ==1)&&(MsgBufIn->b_data[2] ==1)){      //   lock mode: 6 1 1
+
+            fp = fopen ("/tmp/b_sol", "w");
+            if (fp != NULL) {
+                    fseek(fp, SEEK_SET, 0);
+                    ret = fprintf(fp,"1"); 
+                    fclose(fp);	//closing file  
+                    fp = NULL;
+            }
+            //ipmi_log("---file write to /tmp/b_sol=1\n");
+
+            MsgBufOut->b_data[0] = COMP_NORMAL;
+            MsgBufOut->b_data[1] = MsgBufIn->b_data[2];
+            MsgBufOut->w_datalength = 2;
+        }
+        else if ((MsgBufIn->b_data[1] ==1)&&(MsgBufIn->b_data[2] ==0)){ // unlock mode: 6 1 0
+
+            fp = fopen ("/tmp/b_sol", "w");
+            if (fp != NULL) {
+                    fseek(fp, SEEK_SET, 0);
+                    ret = fprintf(fp,"0"); 
+                    fclose(fp);	//closing file  
+                    fp = NULL;
+            }
+            //ipmi_log("---file write to /tmp/b_sol=0\n");
+
+            MsgBufOut->b_data[0] = COMP_NORMAL;
+            MsgBufOut->b_data[1] = MsgBufIn->b_data[2];
+            MsgBufOut->w_datalength = 2;
+        }
+        else{
+            MsgBufOut->b_data[0] = COMP_INVALIDDATA;    // unexpected cmd will return 0xCC
+            MsgBufOut->w_datalength = 1;
+        }
+        return (CMD_SUCCESS);
+    }
+    else if (MsgBufIn->w_datalength ==2){    // set mode : 6 1 or 6 3
+
+        fp = fopen ("/tmp/b_sol", "r");
+
+        if (fp != NULL) {
+                fseek(fp, SEEK_SET, 0);
+                ret = fread (c_LockCom2SOL, 1, sizeof (c_LockCom2SOL), fp);
+                fclose (fp);
+                fp = NULL;
+        }
+        //ipmi_log("--- read /tmp/b_sol=%x\n",c_LockCom2SOL[0]);
+
+        if (c_LockCom2SOL[0] == 0x31) { // lock, return
+            MsgBufOut->b_data[0] = COMP_SUB_FUNC_HAS_BEEN_DISABLE;
+            MsgBufOut->w_datalength = 1;
+            return (CMD_SUCCESS);
+        }
+    }
+#endif
+
+
+
+
+UARTLib.c>>>>>
+@Line 115 +++
+
+#ifdef H12SSG_OEM_NVIDA
+// set default value 0 to the file
+    FILE *fp = NULL;
+
+    fp = fopen ("/tmp/b_sol", "w");
+    if (fp != NULL) {
+            fseek(fp, SEEK_SET, 0);
+            fprintf(fp,"0"); 
+            fclose(fp);	//closing file  
+            fp = NULL;
+    }else{
+        ipmi_log("---open /tmp/b_sol fail!!\n");    
+    }
+    //ipmi_log("---write 0 to /tmp/b_sol\n");
+#endif
+
+
+70SubCmd.c>>>>>
+
+#ifdef H12SSG_OEM_NVIDA
+
+    FILE *fp = NULL;
+    BYTE b_LockCom2SOL[1];
+
+    if (MsgBufIn->w_datalength ==3){
+        if ((MsgBufIn->b_data[1] ==1)&&(MsgBufIn->b_data[2] ==1)){      //   lock mode: 6 1 1
+
+            fp = fopen ("/tmp/b_sol", "w");
+            if (fp != NULL) {
+                    fseek(fp, SEEK_SET, 0);
+                    fprintf(fp,"1"); 
+                    fclose(fp);	//closing file  
+                    fp = NULL;
+            }
+            ipmi_log("---file write to /tmp/b_sol=1\n");
+
+            MsgBufOut->b_data[0] = COMP_NORMAL;
+            MsgBufOut->b_data[1] = MsgBufIn->b_data[2];
+            MsgBufOut->w_datalength = 2;
+        }
+        else if ((MsgBufIn->b_data[1] ==1)&&(MsgBufIn->b_data[2] ==0)){ // unlock mode: 6 1 0
+
+            fp = fopen ("/tmp/b_sol", "w");
+            if (fp != NULL) {
+                    fseek(fp, SEEK_SET, 0);
+                    fprintf(fp,"0"); 
+                    fclose(fp);	//closing file  
+                    fp = NULL;
+            }
+            ipmi_log("---file write to /tmp/b_sol=0\n");
+
+            MsgBufOut->b_data[0] = COMP_NORMAL;
+            MsgBufOut->b_data[1] = MsgBufIn->b_data[2];
+            MsgBufOut->w_datalength = 2;
+        }
+        else{
+            MsgBufOut->b_data[0] = COMP_INVALIDDATA;    // unexpected cmd will return 0xCC
+            MsgBufOut->w_datalength = 1;
+        }
+        return (CMD_SUCCESS);
+    }
+    else if (MsgBufIn->w_datalength ==2){    // set mode : 6 1 or 6 3
+
+        fp = fopen ("/tmp/b_sol", "r");
+
+        if (fp != NULL) {
+                fseek(fp, SEEK_SET, 0);
+                fread (b_LockCom2SOL, 1, sizeof (b_LockCom2SOL), fp);
+                fclose (fp);
+                fp = NULL;
+        }
+        ipmi_log("--- read /tmp/b_sol=%x\n",b_LockCom2SOL[0]);
+
+        if (b_LockCom2SOL[0] == 0x31) { // lock, return
+            MsgBufOut->b_data[0] = COMP_SUB_FUNC_HAS_BEEN_DISABLE;
+            MsgBufOut->w_datalength = 1;
+            return (CMD_SUCCESS);
+        }
+    }
+#endif
+
+
+
+
+#ifdef H12SSG_OEM_NVIDA
+    BYTE ret = 0;
+    char c_LockCom2SOL[1];
+    FILE *fp = NULL;
+
+    if (MsgBufIn->w_datalength ==3){
+        if ((MsgBufIn->b_data[1] ==1)&&(MsgBufIn->b_data[2] ==1)){      //   lock mode: 6 1 1
+
+            fp = fopen ("/tmp/b_sol", "w");
+            if (fp != NULL) {
+                    fseek(fp, SEEK_SET, 0);
+                    ret = fprintf(fp,"1"); 
+                    fclose(fp);	//closing file  
+                    fp = NULL;
+            }
+            //ipmi_log("---file write to /tmp/b_sol=1\n");
+
+            MsgBufOut->b_data[0] = COMP_NORMAL;
+            MsgBufOut->b_data[1] = MsgBufIn->b_data[2];
+            MsgBufOut->w_datalength = 2;
+        }
+        else if ((MsgBufIn->b_data[1] ==1)&&(MsgBufIn->b_data[2] ==0)){ // unlock mode: 6 1 0
+
+            fp = fopen ("/tmp/b_sol", "w");
+            if (fp != NULL) {
+                    fseek(fp, SEEK_SET, 0);
+                    ret = fprintf(fp,"0"); 
+                    fclose(fp);	//closing file  
+                    fp = NULL;
+            }
+            //ipmi_log("---file write to /tmp/b_sol=0\n");
+
+            MsgBufOut->b_data[0] = COMP_NORMAL;
+            MsgBufOut->b_data[1] = MsgBufIn->b_data[2];
+            MsgBufOut->w_datalength = 2;
+        }
+        else{
+            MsgBufOut->b_data[0] = COMP_INVALIDDATA;    // unexpected cmd will return 0xCC
+            MsgBufOut->w_datalength = 1;
+        }
+        return (CMD_SUCCESS);
+    }
+    else if (MsgBufIn->w_datalength ==2){    // set mode : 6 1 or 6 3 or get mode : 6 0
+
+        if (MsgBufIn->b_data[1] == 0) { //get mode : 6 0
+            MsgBufOut->b_data[0] = COMP_NORMAL;
+            MsgBufOut->b_data[1] = at_St_PS.a_St_SerChnlInfo[i].b_SerialMode;
+            MsgBufOut->w_datalength = 2;
+            return (CMD_SUCCESS);
+        }
+
+        if ((MsgBufIn->b_data[1] > 0) || (MsgBufIn->b_data[1] < 4)) { // set mode : 6 1 / 6 2 / 6 3
+
+            // check lock byte from file: /tmp/b_sol
+            fp = fopen ("/tmp/b_sol", "r");
+
+            if (fp != NULL) {
+                    fseek(fp, SEEK_SET, 0);
+                    ret = fread (c_LockCom2SOL, 1, sizeof (c_LockCom2SOL), fp);
+                    fclose (fp);
+                    fp = NULL;
+            }
+            ipmi_log("--- read /tmp/b_sol=%x\n",c_LockCom2SOL[0]);
+
+            if (c_LockCom2SOL[0] == 0x31) { // lock, return
+                MsgBufOut->b_data[0] = COMP_SUB_FUNC_HAS_BEEN_DISABLE;
+                MsgBufOut->w_datalength = 1;
+                return (CMD_SUCCESS);
+            }
+        }
+        else{
+            MsgBufOut->b_data[0] = COMP_INVALIDDATA;    // unexpected cmd will return 0xCC
+            MsgBufOut->w_datalength = 1;
+            return (CMD_SUCCESS);
+        }
+    }
+#endif
+
+
+
+BMC Reboot Problem>>>>
+...
+Retry open file /nv/SELBlock ....
+*** buffer overflow detected ***: ./sysinit terminated
+Aborted
+...
+process ipmi_lan has problem!
+ -=_+ ipmi_kcs 15 miss, re-call up it
++ Dump FW analysis pack
+----> fileAPI.c 的 #define BUF_SZ 0x8000 要改大於4096*20+10
+
+
+unsigned short int -> unsigned int 影響的宣告>>>
+NVRamRead
+NVRamWrite
+NVRamCommit
+NVRamAPI
+NVRamTable
+
+
+
+typedef struct NVRamTableType {
+    unsigned char b_channel;
+    unsigned char b_slaveaddr;
+    unsigned short int w_offset;		--->	改成 int
+    unsigned short int w_size;			--->	改成 int
+    char b_nvramtype;
+    NVRamAPI *APIEntryPoint;
+} NVRamTable;
+
+其他相關的有: 只改跟sel相關的
+FileReadDrv			fileAPI.c .h	v
+FileWriteDrv		fileAPI.c .h	v
+NVRamAccessCheck	NvramApi.c .h	v	
+NVRamRead			nvram.c			v
+NVRamWrite			nvram.c			v
+NVRamCommit			nvram.c			v
+
+但 sel info 裡面的 percentage used ? free space ? 有問題
+
+
+再改 UtilSelNVRamRead 相關>>>
+
+x12_p/IPMI/LIB_COMMON/UtilSelCmds.c			v	
+x12_p/IPMI/LIB_COMMON/inc/rm_utilities.h	v
+x12_p/IPMI/LIB_COMMON/inc/UtilSelCmds.h		v
+x12_p/IPMI/IPMI_CMDS/Sel/ExtRamSyncSel.c	v
+
+再改 UtilSelNVRamWrite 相關>>>
+x12_p/IPMI/LIB_COMMON/UtilSelCmds.c			v
+x12_p/IPMI/LIB_COMMON/inc/rm_utilities.h	v
+x12_p/IPMI/LIB_COMMON/inc/UtilSelCmds.h		v
+
+
+會call到 NVRamRead 並與sel有關的有:
+UtilSelCmds.c	v
+
+會call到 NVRamWrite 並與sel有關的有:
+x12_p/IPMI/NVRAM/nvram.c		v
+x12_p/IPMI/NVRAM/inc/nvram.h	v
+
+會call到 NVRamAccessCheck 並與sel有關的有:
+x12_p/IPMI/NVRAM/NvramApi.c		v
+x12_p/IPMI/NVRAM/inc/NvramApi.h	v
+x12_p/IPMI/NVRAM/fileAPI.c		v
+
+會call到 NVRamCommit 並與sel有關的有:
+x12_p/IPMI/NVRAM/nvram.c	v
+
+會call到 FileReadDrv 並與sel有關的有:	v
+
+會call到 FileWriteDrv 並與sel有關的有:	v
+
+會call到 UtilNvramSelGetMaxSize 並與sel有關的有:	v
+
+目前異動的檔案如下:
+
+git add IPMI/IPMI_CMDS/Sel/ExtRamSyncSel.c
+git add IPMI/LIB_COMMON/UtilSelCmds.c
+git add IPMI/LIB_COMMON/inc/LibSystemEventLog.h
+git add IPMI/LIB_COMMON/inc/UtilSelCmds.h
+git add IPMI/LIB_COMMON/inc/rm_utilities.h
+git add IPMI/NVRAM/AST2600/nvramtable.c
+git add IPMI/NVRAM/NvramApi.c
+git add IPMI/NVRAM/fileAPI.c
+git add IPMI/NVRAM/inc/NvramApi.h
+git add IPMI/NVRAM/inc/fileAPI.h
+git add IPMI/NVRAM/inc/nvram.h
+git add IPMI/NVRAM/nvram.c
+
+
+加入add sel的debug msg>
+
+#ifdef H12SSG_OEM_NVIDA
+IPMI/NVRAM/inc/nvram.h
+
+STATUS(* NVRamCommit)(unsigned char, unsigned short int, unsigned short int);
+unsigned short int w_offset,
+unsigned short int w_length,
+extern STATUS NVRamCommit(unsigned char, unsigned short int, unsigned short int);
+
+IPMI/NVRAM/nvram.c
+...
+
+Fix(NVDA-BMC-Core-033): BMC must support Minimum 3K SEL events
+
+Cause:
+    Missing H12SSG_OEM_NVIDA flag on nvram files will result in building project H12SSW_AN6 failed
+Solution:
+    Add missing H12SSG_OEM_NVIDA flag on nvram.h and nvram.c
+Note:
+    Impact MB: H12SSW_AN6
+	
+	
+	
+change sensor name>>>>	
+	
+Generate SDR binary file...
+#../Tools/Sdr2bin/Sdr2bin 1800  ../IPMI/SDRFile/H12SSG_AN6.txt  tmp/SDRBlock.H12SSG_AN6
+SDR "Motherboard Rear IO Temp" length can't exceed 16 bytes.
+copy SDRBlock.H12SSG_AN6  to ../FileSystem/AST2600/X12/SDRFiles
+
+
+
+board_H12SSG_AN6.c>>
+sensor table >>	36 sensors ( 6 gpu temp )	>> SDRFile
+
+
+ReadGPUDrv	>>	DiscoverGPU		
+>>		MonitorGPUTemp - get readingGPU	
+>>	UpdateSMCSensorData - SMCSensorData[i].Value = reading
+
+at_p_St_OEMGlobalVar.SMCSensorData
+St_SMCSensorDataVarTag      SMCSensorData[100]
+{
+    BYTE SlaveAddr;
+    BYTE Bank;
+    BYTE Offset;
+    BYTE Value;
+}St_SMCSensorDataVarTag;
+
+refer to sensortype.h>>
+	control_reg = GET_DATA_ADDRESS (hWInfo_1);
+    slave_addr  = GET_DEVICE_ADDRESS (hWInfo_1);
+    bank_select = GET_DEVICE_ADDRESS (hWInfo_2);
+	
+	hWInfo_1
+	
+	
+	
+ipmitool -I lanplus -H 192.168.1.34  -U ADMIN -P ADMIN raw 0x0a 0x24 0 0 0x51 0x01 0x34 0x20 0x00 0x73 0x0b 0x02 0x7F 0x68 0x01 0x01 0x00 0x0A 0x00 0x6A 0x3F 0x3F 0x00 0x01 0x00 0x00 0x01 0x00 0x00 0x00 0x00 0x00 0x07 0x2D 0x43 0xFC 0x7F 0x80 0x5F 0x5A 0x55 0x05 0x05 0x10 0x02 0x02 0x00 0x00 0x00 0xC9 0x47 0x50 0x55 0x37 0x20 0x54 0x65 0x6d 0x70
+
+Cause:
+    i.  oem SDRFiles are moved to oem location
+    ii. generating X12STL_F.txt shows sdr length error
+
+Solution:
+    i.  revise script to generate oem H12SSW/G_AN6.txt to oem SDRBlock.H12SSW/G_AN6
+        from directory: IPMI/SDRFile/OEM/nvda/
+        to   directory: FileSystem/AST2600/X12/SDRFiles/OEM/nvda/
+    ii. fix record length of X12STL_F.txt
+
+Note:
+    X12STL_F.txt is not oem project. Just fix it to avoid seeing error.
+
+Impact MB:
+    h12ssw-an6-nc24b
+    h12ssg-an6-nc24b
+	
+	
+	
+Inlet Temp       | -128.000	>>	display na when disconnected
+Inlet Temp       | 09h | ns  |  7.0 | Disabled
+
+Sensor_Init_Agent1
+	sensor_init_handler (sdrs_checksum);
+	
+	at_a_b_SdrBuf	at_p_St_GlobalVar->SensorVarInfo.at_a_b_SdrBuf
+	
+SensorTask
+	ReadSensorAPI
+		ReadSensor
+		
+		
+ws_St_PWR_SENSORAPI
+ws_St_##PWR_SENSOR##API		
+
+ws_St_## name ##API
+
+Read## name ##Drv
+Read##PWR_SENSOR##Drv
+	GetPSInfo_temp1(psu_index)
+
+
+[init_sensors] New Sdr records: 38
+[init_sensors] New Sensors: 38
+AOCTask slavetask_hwm_init
+[get_tjmax][151] Succesfully get CPU0 Tjmax : hex 0x62 dec 98
+ CPU0: Tjmax 98
+[get_tjmax][151] Succesfully get CPU1 Tjmax : hex 0x0 dec 0
+ CPU1: Tjmax 0
+[get_tjmax][143] fail ioctl
+[get_tjmax][143] fail ioctl
+[get_tjmax][143] fail ioctl
+Fail to get CPU2 Tjmax, try with ME
+Got Error CC AC From ME for TjMax
+Fail to get CPU3 Tjmax, try with ME
+Got Error CC AC From ME for TjMax
+==================================
+b_CPUExist = 0x3
+==================================
+[slavetask_hwm_init] Finish Get ME Initialization = 3
+[adjust_cpu_threshold] cpu[0] TjMax=0x62
+[adjust_cpu_threshold] cpu[1] TjMax=0x0
+[adjust_cpu_threshold] cpu[2] TjMax=0x64
+[adjust_cpu_threshold] cpu[3] TjMax=0x64
+FANinit=1, SnrScanEn=1
+
+PltSystemMux(RSC_UNDEFINED, ONBOARD,bSlotNum)
+PltSystemMux_...(  , PLX, 0x50 )
+SetSystemMux_X12DPG_OA6 (BYTE id, BYTE location, BYTE slot)
+	id			
+	location	ONBOARD/SXB1/AIOM	/PLX=0x45
+	slot		slot_ch = slot + **	// 0x50
+
+MUX_XO3LFCPLD (bus_no, X12DPG_SYS_MUX, location_ch)
+	bus_no			2
+	X12DPG_SYS_MUX	0x70
+	location_ch		5/5/1	/0x5	<=>	ONBOARD/SXB1/AIOM	/PLX
+	
+MUX_XO3LFCPLD(BYTE i2c_ch, BYTE addr, BYTE ch)
+	// 2 0x70 0x05
+		muxCh = (ch <= 31) ? (0x40 + ch) : 0; => 0x45
+		
+	
+PltI2C_Retry(&St_I2CSensorFrame, 3)
+	St_I2CSensorFrame.b_slaveaddress    = I2C_ADDR_A8;
+	slot_ch		slot	PLX1/PLX2	0X50/0X51
+	// 2 0xA8 0x50
+	
+{
+	0x93,   // PLX1 Temp
+	0x12704500 | TEMPERATURE_SENSOR,
+	0xA8500000 | (SENSOR_SCAN_INTERVAL_ONE_SECOND * 3),
+
+---dw_HWInfo1 & dw_HWInfo2----------------------------------------------------
+	0x94,   // PLX2 Temp
+	0x12B24500 | TEMPERATURE_SENSOR,
+	  1-------	GET_MUX_INFO_MASK
+	   2------	GET_PHYSICAL_BUS_NO_MASK
+	    B2----	GET_DEVICE_ADDRESS_MASK
+		  00--	GET_DATA_ADDRESS_MASK		*I2C OFFSET
+		    00	GET_SENSOR_TYPE_MASK
+		
+	0xA8510000 | (SENSOR_SCAN_INTERVAL_ONE_SECOND * 3),
+	  A8------	GET_SOFTWARE_OFFSET_MASK		GET_MUX1_SLAVE_MASK
+		51----	GET_SENSOR_MODULE_NUMBER_MASK	GET_MUX1_VALUE_MASK
+		  0000	GET_AOC_TYPE_MASK
+
+AdujstProbeTable()
+cmd 20 c0 70 df 0
+cmd 20 18 52 5 70 0 45
+cmd 20 18 52 5 a8 0 5C	-> 54
+cmd 20 18 52 5 a8 0 57	-> 61
+
+--------------------------------------------------------------------------------
+   *if AccountLockoutCounterResetAfter is set to 0 then it can be reproduced.
+   ACCOUNT_LOCKOUT_COUNTER_RESET_AFTER
+   counterReset
+   parseInt(user_count_reset_val,10)
+   gAttributes
+   ACCOUNTSERVICE_CONFIG_FILE	nv/redfish/accountservice.ini	AccountLockoutCounterResetAfter=0
+   SetPWDComplexity	GetPWDComplexity
+   
+--------------------------------------------------------------------------------
+BB_PUSH(BBT_CHASSIS_CONTROL, BB_CCV1_HARD_RESET, src);  ???
+--------------------------------------------------------------------------------
+slavetask_RenewAESForCritData -> RenewAESForCriData -> aes_encrypt (EVP_aes_256_cbc (), sha256_value
+CopyCriticalFileToBackup -> ???
+
+show_user_info -> at_St_UserExVarInfo[i].a_b_PlainPasswd[j] -> no caller ??
+OEMGetHostFWUserPassword -> 0x30 0x68 0x1e -> gen random passwd
+ApiDoingSetUserPwdCmd -> UtilSetUserPassword -> UtilSetUserSecretPW 
+-> user_acc_encrypt -> aes_encrypt (EVP_aes_256_cbc ()... 
+-> memcpy (at_St_PS.a_St_UserSecretPWInfo[b_userID].a_b_CipherPasswd, cipher_pw, len);
+
+DecryptUserPW -> 
+
+
+1. Update get cpld version>>
+
+2. update Issue>>
+Test AccountLockoutDuration Key Negative -> 
+Check Boot Options URI without UEFI -> There is no Dual mode. Please check with BIOS.
+Test Enable SysLockdown Redfish Behavior -> PostCode stopped at 9e. Please fix the boot issue and retry.
+
+
+
+## cpld update>>
+
+upload.cpp -> upload::upload
+upload::post_handler -> case UPDATE_TARGET_CPLD_MB:
+	cpld_enterupdatemode -> LibMBCPLDUpdateCleanup -> cpld_postfwupload_x12 
+	-> UtilCPLDROT_verifyFile
+cpld_pushuri::cpld_fwupdate -> create_update_task -> slavetask_cpld_mb_update or
+UploadMBCPLD -> LibMBCPLDUpdate_preBootRot
+	RoTMBCPLDUpdate_prep
+		UtilCPLDROT_extractMBCpldFile (infile, jedfile, imgToValidate)
+			infile -> imgToValidate -> decode image -> extract jedfile
+			*infile contains signature table, signature and image
+			*jedfile is image only 132 bytes ??
+			-> PltSPICPLD_signCheck(imgToValidate)
+				(1) CPLD assumes there is a signature table located at NAND die-0, 64MB
+				(2) 0x1D = 03h, 0x1A = 07h to verify the image stored in die-0 64MB
+				(3) CPLD slip the board-ID and rollback check in this operation
+				-> 	PltSPICPLD_ValidateImage(3, &result); 3 is NV
+					Use CPLD to validate image in NAND (SPICPLD_DEVNAME = /dev/spi1nand0)
+					BMC ---PLD_BMC_SPI--- CPLD(LCMXO3LF) ---PLD_SPI_NAND--- NAND EEPROM(UM14)
+					PltSPICPLD_Read(CPLD_REG_UPDATE_STATUS, &reg1b);
+					reg1b : 1-validate success; 2-failed
+/tmp/input.jed
+/tmp/cpld_rom
+char imgToValidate[]    = "/tmp/cpld_fwimg.val";
+char jedfile[]          = "/tmp/cpld_fwimg.jed";
+
+	get_jed_info (file) -> get 132 bytes
+	check_cpld_board_mismatch
+	
+	power down -> save file in /nv -> queue up update cpld 
+	-> UtilCPLDROT_addTask(MBCPLD_UPDATE)
+	-> BMC reset and update cpld before end of COT
+	
+----update cpld from web-----
+----log----
+[upload_file_save_as] the upload file is stored in /tmp/cpld_rom. (len=1473865)
+-> PushUri::upload_file_save_as(void) -> called by upload::post_handler
+
+web_lib.c: [get_fw_updating_lock] get lock of DevFW=0x200
+UtilCPLDROT_verifyFile() jedsize[60534.947811] 
+xxxxxxx nand_delay task:index.fcgi mtd:spi2.0 start=0x4000000 +++
+
+checkBBM flash->bufR[] = 83 ff 03 ff 00 00 00 00
+-> Bad Block Management in NAND Flash Memory
+...
+nand_prog_area(7, 0x00160000, 7d49)=7d49
+PltSPICPLD_ValidateImage() reg1a=0x00 reg1b=0x00
+    I/OPTEE: 0x1d: verify image id 3
+    I/OPTEE: ROT command 0x07 received.
+    I/OPTEE: ROT cmd 0x07, verify image 3
+    I/OPTEE: Error! mismatch signature table version: 0xcff5acca
+PltSPICPLD_ValidateImage() validate image 3 i=0 reg1b=0x02
+PltSPICPLD_signCheck() Failed
+UtilCPLDROT_verifyFile() "/tmp/cpld_fwimg.val" image validation failed
+[cpld_postfwupload_x12:107]
+ cpld image verify failed.
+web_lib.c: [release_fw_updating_lock] release lock of DevFW=0x200
+[post_handler:456], cpld board mismatch.
+
+-----bmc firmware updated failed------
+Log>
+[BmcFwUpload] Signature verification failed.
+//check firmware tag
+chk_result = check_fw_tag(img_ptr, at_FS_size);
+chk_result == ERR_SIGNATURE
+	check_fwimg_sign(src, size) < 0 -> return ERR_SIGNATURE;
+	//compare the flash key with image's.
+    if( (*fklen != *iklen) || 
+	(0 != memcmp((void*)b_pubkey, (void*)b_imgkey, *fklen)) ) 
+	-> console_log("Key mismatch.\n");
+nor_mtd_dev_node[] = "/dev/mtd5"	-> b_pubkey
+nand_mtd_dev_node[] = "/dev/mtd13"
+src -> b_imgkey
+
+
+
+
+
+-------upload .jed file-------
+Check_applytime_value = 1
+[upload_file_save_as] the upload file is stored in /tmp/cpld_rom. (len=1473865)
+web_lib.c: [get_fw_updating_lock] get lock of DevFW=0x200
+UtilCPLDROT_veri[  266.631231] xxxxxxx nand_delay task:index.fcgi mtd:spi2.0 start=0x4000000 +++
+fyFile() jedsize=-1096912969 (0xbe9e6fb7)
+[  266.720185] xxxxxxx nand_delay task:index.fcgi mtd:spi2.0 start=0x4000000 +++
+[  266.807515] xxxxxxx nand_delay task:index.fcgi mtd:spi2.0 start=0x4000000 +++
+[  266.894439] xxxxxxx nand_delay task:index.fcgi mtd:spi2.0 start=0x4000000 +++
+[  266.981428] xxxxxxx nand_delay task:index.fcgi mtd:spi2.0 start=0x4000000 +++
+[  267.068946] xxxxxxx nand_delay task:index.fcgi mtd:spi2.0 start=0x4000000 +++
+[  267.156354] xxxxxxx nand_delay task:index.fcgi mtd:spi2.0 start=0x4000000 +++
+[  267.243624] xxxxxxx nand_delay task:index.fcgi mtd:spi2.0 start=0x4000000 +++
+[  267.331140] xxxxxxx nand_delay task:index.fcgi mtd:spi2.0 start=0x4000000 +++
+[  267.417967] xxxxxxx nand_delay task:index.fcgi mtd:spi2.0 start=0x4000000 +++
+[  267.504724] xxxxxxx nand_delay task:index.fcgi mtd:spi2.0 start=0x4000000 +++
+[  267.591399] xxxxxxx nand_delay task:index.fcgi mtd:spi2.0 start=0x4000000 +++
+PltSPICPLD_Valid    I/OPTEE: 0x1d: verify image id 3
+ateImage() reg1a    I/OPTEE: ROT command 0x07 received.
+    I/OPTEE: ROT cmd 0x07, verify image 3
+    I/OPTEE: Error! mismatch signature table version: 0xcff5acca
+=0x00 reg1b=0x00
+PltSPICPLD_ValidateImage() validate image 3 i=0 reg1b=0x02
+PltSPICPLD_signCheck() Failed
+UtilCPLDROT_verifyFile() "/tmp/cpld_fwimg.val" image validation failed
+[cpld_postfwupload_x12:107]
+ cpld image verify failed.
+web_lib.c: [release_fw_updating_lock] release lock of DevFW=0x200
+[post_handler:458], cpld board mismatch.
+
+
+-------upload .bin file-------
+Check_applytime_value = 1
+[upload_file_save_as] the upload file is stored in /tmp/cpld_rom. (len=140304)
+UtilCPLDROT_verifyFile() jedsize[  375.407721] xxxxxxx nand_delay task:index.fcgi mtd:spi2.0 start=0x4000000 +++
+=138881 (0x00021e81)
+[  375.496132] xxxxxxx nand_delay task:index.fcgi mtd:spi2.0 start=0x4000000 +++
+PltSPICPLD_ValidateImage() reg1a=0x00 reg1b=0x00
+PltSPICPLD_ValidateImage() validate image 3 i=2 reg1b=0x01
+PltSPICPLD_signCheck() Passed
+JED_VER=f3 a0 4
+[UtilCPLDROT_verifyFile:2049]: CPLD image ver=f3 a0 4
+[enable_flash_access_bp] Enable Flash Access (0x06/0x64)
+[read_ufm_header] UFM_GUID_IN_FLASH: 00-00-00-00  00-00-00-00  00-00-00-00  00-00-00-00
+[disable_flash_access_bp] Disable Flash Access (0x06/0x64)
+[read_mb_ufm_header] L1088: Motherboard: ufm_header: at_b_CpldUfmHeader[]: 53 20 23 fb 00 18 e5 a6 00 00 00 04 20 00 00 00
+
+
+
+
+getBMCKeyParam(PKPARAM_OFFSET, keyParamStr); 0x1FC0C20
+
+keyparamCpldFormat(keyParamStr, cpld, BMC_SIGN_SIZE, keyCode);
+	BMC_SIGN_SIZE 512
+	keyCode[UFM_PAGE_SIZE]
+	UFM_PAGE_SIZE 16
+
+ - Hash with SHA-512 and signed with RSA-4096
+	
+
+
+PKPARAM_OFFSET      (SIGN_SEGMENT + KEYP_OFFSET) 
+					= 0x1FE0000 - 0x1F3E0 = 0x1FC0C20
+	SIGN_SEGMENT    (SPL_B_OFFSET - PAGE_SIZE_NVM) 
+					= 0x02000000 - 0x20000 = 0x1FE0000
+	KEYP_OFFSET        (KEYA_OFFSET   - MAX_PKEYLEN - 32)
+					= 0x1F800 - 1024 - 32 = 0x1F3E0
+		SPL_B_OFFSET	0x02000000
+		PAGE_SIZE_NVM      0x20000
+		KEYA_OFFSET        (SIGA_OFFSET   - MAX_PKEYLEN)
+							= 0x1FC00 - 1024 = 0x1F800
+		MAX_PKEYLEN        1024
+		SIGA_OFFSET        (PAGE_SIZE_NVM - MAX_SIGNLEN) 
+							= 0x20000 - 1024 = 0x1FC00
+		MAX_SIGNLEN        1024
+		
+		
+SET_PWM_TABLE (AST2500_ONEZONE) -> .fan_mgnt.FanPWMRegion = PWMRegion_AST2500_ONEZONE
+	
+#define SET_PWM_TABLE(n) _SET_PWM_TABLE(n)
+#define _SET_PWM_TABLE(n) \
+    .fan_mgnt.FanPWMRegion    =  PWMRegion_## n, \
+								 PWMRegion_AST2500_ONEZONE
+    .fan_mgnt.NumFanPWMRegion = (BYTE)(sizeof(PWMRegion_##n)/sizeof(St_PWMRegionVarTag))	
+
+DECLARE_PWM_TABLE(AST2500) -> static St_PWMRegionVarTag PWMRegion_AST2500 []=
+
+#define DECLARE_PWM_TABLE(n) _DECLARE_PWM_TABLE(n)
+#define _DECLARE_PWM_TABLE(n) \
+static St_PWMRegionVarTag PWMRegion_## n []=
+
+
+
+---------------------------------------------------------------------------
+Max: To implement the dispatch module as upper layer on top of MCTP. 
+(1)	Dispatch discovery notify to all DPU, based on the PCI ID of DPU from SMBIOS. 
+(2)	MCTP driver, (MCTP with PCIe- binding), requester ID.)  Dispatch MCTP to SPDM instance by different PCI ID (request ID). 
+
+i. 	parse smbios to get all DPUs' BDF
+	Mellanox MT42822 BlueField-2 >>
+		chip idx     = 0
+        fw version   =
+        type         = PCIE_NIC
+        vid/did      = 0x15b3,0xa2d6
+        svid/ssid    = 0x15b3,0x0048
+        class/sclass = 0x0002,0x0000
+        bus/dev/func = 0xc1/0x00/0x00	-> func 0/1 is network controller
+        ref_handle     = 0x0038			-> func 2 is Soc Management Interface
+        RiserUnit      = 0x1
+
+dmidecode -t 41
+apseed 	c3/00/00
+dmidecode -t 9
+BF2 	c1/00/00
+M.2 	41/00/00
+
+cmd 20 c0 70 d9
+
+	EACH_PCIE_DEVICE (riser, dev, PCIE_GPU)
+	PopRiserType() -> PrintRiserTypeList (riserTypeList)
+	
+	EACH_PCIE_LOCATION (riser) {	
+		EACH_PCIE_CARD_ON_LOCATION (card, riser) {
+			EACH_PCIE_CHIP_ON_CARD (chip, card) {
+				chip->id.vendor_id
+				chip->id.device_id
+			}
+		}
+	}
+	
+	ParseSMBiosAndVPD (BIOS_CUR_FULLSMBIOS)
+	BIOS_NV_PATH "/bios_fullsmbios"
+	GetDMITableInformation (gRawData, TYPE_ALL, vpdlist) -> Get TYPE_161 instead
+	
+	//0x30 0x70 0xd3 [bus] [dev] [fun] [msg_type] [read_len] [tx b1] [tx b2] ...
+	static CMD_STATUS SendMCTPOverPCIePacket 
+	cmd 20 c0 70 d3 c1 00 7e 00 1 1
+	
+oem cmd>
+cmd 20 0 2 1
+cmd 20 c0 70 f9
+---mxdbg vid/did/bus/dev/func = 0x15b3/0xa2d6/0xc1/0x00/0x00
+---mxdbg bus/dev/func = 0xc1/0x00/0x00
+---mxdbg vid/did/bus/dev/func = 0x1344/0x51a2/0x41/0x00/0x00
+
+
+at_b_RiserUnit:1
+NIC chipset (0x15b3,0xa2d6) sensorID = 0x1
+addr.smbus_addr.bus_no = 0x2
+addr.smbus_addr.addr = 0x64
+
+//0x30 0x70 0xd4 [i2c_addr] [msg_type] [read_len] [tx b1] 
+cmd 20 c0 70 d4 64 7e 1 1
+
+>>
+rmmod /bin/module/aspeed_mctp.ko
+lsmod |grep mctp
+insmod /bin/module/aspeed-mctp.ko
+
+
+Driver > AST2600 > MCTP_PCIe > aspeed-mctp.c
+
+IPMI > LIB_COMMON > AST2600 > UtilMCTP.c >
+BMC_Initial_process()
+
+
+IPMI/SENSOR_DRV/MCTP/BRCMMCTPDrv.c >
+DoBRCM3008MCTPDiscovery ( dev_no,
+						  ptr->data.BusNum,
+						  ptr->data.DevNum,
+						  ptr->data.FunNum,
+						  &eid);
+
+IPMI/SENSOR_DRV/I2C/BRCM3008Drv.c >
+DoBRCMPCIeDiscovery <- BRCMDiscovering() <- AOCTask.c : PERIPHERIAL_INILT (BRCMDiscovering        , 1),
+ParseSMBiosFile (BIOS_CUR_FULLSMBIOS)
+GetType9List () : BF2/M.2 dmidecode -t 9
+DoBRCM3008MCTPDiscovery (....) through type 41 or 9
+	get_endpoint_id (msg.xfer.xfer_buff, &msg.xfer.xfer_len);
+    p = (ctrlMsg *)msg.xfer.xfer_buff;
+	PltMCTP_WriteRead (&msg) -> ast_mctp_emit (...)
+-> get target dev BDF&EID
+
+DoBRCM3108Discovery
+//Do BRCM3108 I2C discovering
+IssueI2CCmd (  ch,						channel
+			   BRCM_SLAVE_ADDR,			slave addr
+			   (BYTE *) & BRCMCtrlCmd,	W buffer	1st: MFI_OOB_CONTROL_RESET
+													2nd: MR_DCMD_CTRL_GET_INFO
+													3rd: MFI_OOB_CONTROL_RESUME
+			   I2C_R_BUF,				R buffer
+			   sizeof (BRCMCtrlCmd_t),	W len
+			   4)						R len
+
+//Do BRCM3108 MCTP discovering
+DoBRCM3108MCTPDiscovery (const BYTE    dev_no,
+                               const BYTE    bus,
+                               const BYTE    dev,
+                               const BYTE    fun,
+                               BYTE         *eid)
+//Getting endpoint id
+ St_MCTPMsg msg;					// xfer_buff[MAX_XFER_BUFF_SIZE];
+	memset (&msg, 0, size);
+	msg.request = AST_MCTP_IOCTXRX;
+	get_endpoint_id (msg.xfer.xfer_buff, &msg.xfer.xfer_len);
+ ctrlMsg *p = (ctrlMsg *)msg.xfer.xfer_buff; // cast buff to ctrlMsg data type
+set bdf and end pt id...
+PltMCTP_WriteRead (&msg)
+// mctp write read
+//ast_mctp_emit
+initial_mctp_pcie_header
+ast_mctp_emit
+
+
+cmd 20 c0 70 df 0
+
+cmd 20 c0 70 f9
+
+//0x30 0x70 0xd4 [i2c_addr] [msg_type] [read_len] [tx b1] [tx b2]
+SendMCTPOverI2CPacket
+
+message type: 0(mctp ctrl) 7e(pci) 7f(iana)
+	MCTP_MSG_TYPE_CONTROL,              // 0
+    MCTP_MSG_TYPE_PLDM,                 // 1
+    MCTP_MSG_TYPE_NCSI_OVER_MCTP,       // 2
+    MCTP_MSG_TYPE_NCSI_OVER_ETHERNET,   // 3
+    MCTP_MSG_TYPE_NVMEMI,               // 4
+    MCTP_MSG_TYPE_SPDM,                 // 5
+
+cmd 20 c0 70 d4 20 5 1 1
+
+=================
+access hw tpm
+=================
+how to access hw tpm via spi through tee
+
+=================
+x509 format
+=================
+x509 csr add extension field
+key usage in extension field
+serial number
+
+=========================================
+tee cmds: run cmd, get cert, access fw tpm
+=========================================
+
+---------update tee to fix-----------------
+[FC99] bmcStg_antiRBID=1, ufm_antiRBID=a047
+AntiRollBack checking Failed.
+
+------update bios to fix--------------------
+Configure GPIOE2 E3 as input pin
+[GetSELTimeFromME] Fail in reading SEL Time from ME
+[GetSELTimeFromME] Retry Get SEL Time from ME.......0
+[GetSELTimeFromME] Retry Get SEL Time from ME.......1
+[GetSELTimeFromME] Retry Get SEL Time from ME.......2
+Got Error I2C From ME for Get SEL Time
+[sync_system_time] ME did not response.!
+
+--------wrong bios image--------------------------------------------------
+[upload_file_save_as] the upload file is stored in /tmp/bios_rom. (len=33554432)
+web_lib.c: [get_fw_updating_lock] get lock of DevFW=0x2
+[  178.568484] sh (4405): drop_caches: 3
+ParseBiosFlashLayout_INTEL_EAGLE()+
+at_dw_BiosFlashBOFFSET : 0x1000000
+at_dw_BiosFlashBSIZE   : 0x1000000
+[bios_upload] at_dw_MEFlashOFFSET   : 0x00001000
+[bios_upload] at_dw_MEFlashSIZE     : 0x00fff000
+[bios_upload] at_dw_GBERFlashOFFSET : 0x07fff000
+[bios_upload] at_dw_GBERFlashSIZE   : 0x00000000
+[bios_upload] at_dw_GBEAFlashOFFSET : 0x07fff000
+[bios_upload] at_dw_GBEAFlashSIZE   : 0x00000000
+ParseBiosFlashLayout_INTEL_EAGLE()-
+[FC80] rw_offset=1ff0000, at_dw_BiosFlashBSIZE=1000000, BIOS_WSIZE=10000, at_dw_BiosFlashBOFFSET=1000000
+[FC99] Skip init_flash_dev
+[compare_bios_board_id] Comparing Board ID here...
+[compare_bios_board_id] bios id mismatch in index : 4
+[compare_bios_board_id] bios id from image :31 35 64 39		// 15d9 ab_NewBoarId[i]
+[compare_bios_board_id] board id in FW :31 63 35 65			// 1c5e ab_BoardId[i] -> PltBoardID -> 
+web_lib.c: [release_fw_updating_lock] release lock of DevFW=0x2
+
+
+----------------------------------------------------
+[FC80] rw_offset=1ff0000, at_dw_BiosFlashBSIZE=1000000, BIOS_WSIZE=10000, at_dw_BiosFlashBOFFSET=1000000
+[FC99] Skip init_flash_dev
+[compare_bios_board_id] Comparing Board ID here...
+No session to Kill
+[secure bios] SignStartOffset = 0x1000800, SignEndOffset = 0x1000a00, RotTable size = 0x88
+========= len:512 ==========digest
+27 ab b7 0b d4 a6 5a 1b 3e dc 97 51 65 3d 3b fd
+f5 98 2d ef 9f 1e 32 92 bd 1d 43 70 c5 3f af 47
+93 b1 f5 8c a4 f7 8f 03 99 22 67 65 7d e8 d4 70
+18 49 dd 61 9f af d1 27 72 3a 01 33 14 c2 0f bd
+b6 de 4d f2 12 04 58 cd 83 1d 6b a2 12 5e 8a 88
+12 ca 04 e3 1c e5 09 42 ed 13 7b 5b f3 f2 cd eb
+ed 31 27 39 07 ef 0f 8e 69 f0 7c 26 b0 c6 1a f6
+11 c4 f3 4d 69 0f fd a5 34 e3 89 a3 3f 3b 7c da
+5c 26 14 a5 33 c2 17 ca a2 f2 45 24 3b 15 56 02
+8c 22 e2 6a 7f 27 10 12 b3 56 c3 a5 85 6f 57 ea
+03 c2 74 f9 cb 25 75 1b 00 38 c7 90 e3 85 0e a1
+c5 57 c9 7d 7f ab 85 0d 02 1c df 24 f7 bb 98 04
+05 dd ba 6a 2e c1 2e 0e 1e af bf 2a da b6 22 6a
+f1 2b 0d dd b0 de 0b d5 f0 51 2b 63 52 33 7b f3
+99 24 74 54 3a b9 16 b7 d6 79 85 cb a5 16 0a ee
+b9 3e de 52 b8 6c 17 c4 71 a6 f2 30 50 c4 92 8f
+cd 2a c2 95 29 0d 06 68 5e d9 95 8f 68 30 d6 45
+94 20 c7 ac c4 f1 92 3e 41 1a 67 49 39 4c 49 23
+58 40 81 83 fa 10 db 27 6d 80 49 e1 e2 d2 ce ff
+60 34 18 26 78 20 c0 7d 99 26 89 37 b2 a1 e4 e4
+b4 d7 a6 f6 da 66 b5 6e 88 20 57 5a f5 63 ba ef
+54 73 b2 e7 1b 27 0c 21 35 e2 4e ba 70 51 78 c6
+cb fc 57 4a be d1 b4 5e 50 0f 80 b3 ec 9a 9d b9
+22 6c 92 00 ac 92 91 37 5d ef 5a 8d de fe ad 80
+aa 38 4b 5b 06 e8 03 8f b3 61 59 ad f0 a5 bf 85
+e7 f2 30 1f bd b4 77 c1 d7 6d cf 6a 8d a1 53 d6
+9c d9 35 23 f9 d7 5a 18 72 42 f9 bf e9 fd 55 57
+20 8c 7b a7 57 4f 46 a1 9f 87 16 76 37 26 e1 22
+cd bf 3b d5 b2 6a 24 e9 46 50 6c 1d 7f 9d e8 13
+8e 5a ca fd a7 a6 50 b8 80 6b 02 44 1c 09 88 41
+f7 91 e3 2f 36 79 a7 3a 08 73 47 20 98 68 77 cc
+85 b5 f0 1b 1b 42 1c 46 28 20 42 51 89 94 45 53
+==============================
+==============================
+[secure bios] length = 0x0, Protect_address = 0x1ee8000, Protect_Size = 0118000
+[secure bios] length = 0x8, Protect_address = 0x1aea000, Protect_Size = 0ae000
+[secure bios] length = 0x10, Protect_address = 0x1120000, Protect_Size = 0200
+[secure bios] length = 0x18, Protect_address = 0x1121280, Protect_Size = 068ed80
+[secure bios] length = 0x20, Protect_address = 0x186a000, Protect_Size = 0200000
+[secure bios] length = 0x28, Protect_address = 0x1a6a000, Protect_Size = 080000
+[secure bios] length = 0x30, Protect_address = 0x1b98000, Protect_Size = 0350000
+[secure bios] length = 0x38, Protect_address = 0x0, Protect_Size = 01000
+[secure bios] length = 0x40, Protect_address = 0x1ab000, Protect_Size = 0229000
+[secure bios] length = 0x48, Protect_address = 0xa8000, Protect_Size = 0103000
+[secure bios] length = 0x50, Protect_address = 0x4000, Protect_Size = 01000
+[secure bios] length = 0x58, Protect_address = 0x5000, Protect_Size = 020000
+[secure bios] length = 0x60, Protect_address = 0x1000000, Protect_Size = 0800
+========= len:32 ==========calc_hash
+1b f7 13 ce 93 af 14 17 5b 3b 49 9f a9 bf 82 c5
+b7 64 16 5b c1 65 61 db 40 6b 65 de 93 fa e0 5e
+========bmc and bios are not both production version======================
+mmc_read_area(5, 0x039ff800, 400)=400
+[secure bios2] secure BIOS verification result: fail
+[verify_bios_upload_image] Failed to run PltSecureBiosVerify...
+----------------------------------------------------
+ret = RSA_verify (	  NID_sha512,
+					  digest,
+					  SHA512_DIGEST_LENGTH,
+					  signature,
+					  SIGNATURE_LENGTH,
+					  rsa);
+
+
+
+curl -i -X POST \
+   -H "Content-Type:multipart/form-data" \
+   -H "Authorization:Basic QURNSU46QURNSU4=" \
+   -F "ipmi_config_file=@\"./save_config.bin\";type=application/octet-stream;filename=\"save_config.bin\"" \
+   -F "UpdateParameters={\"Targets\": [\"/redfish/v1/Managers/1\"],\"@Redfish.OperationApplyTime\": \"Immediate\",\"Oem\": {} }" \
+ 'https://10.181.90.244/redfish/v1/UpdateService/Oem/Supermicro/IPMIConfig/Actions/SmcIPMIConfig.Upload'
+
+
+curl -i -k -X POST \
+   -H "Content-Type:multipart/form-data" \
+   -H "Authorization:Basic QURNSU46QURNSU4=" \
+   -F "type=application/octet-stream;filename=\"save_config2.bin\"" \
+ 'https://10.181.90.244/redfish/v1/UpdateService/Oem/Supermicro/IPMIConfig/Actions/SmcIPMIConfig.Download'
+ 
+ 
+12/14>
+ devUptCmd bin -> SetNextOwner RenewDevAK SetFwSignCA
+ devOwn sign cmd file -> signature => fill 0 for test first
+ installUDS using ascii to write 24 ascii code, for example: 012345...47, 48 chars => 303132333435....3234, 24 chars
+ 
+ get challenge nonce >> get 32 bytes >> transfer to 16 bytes nonce string
+ /tmp/nfs # hexdump -C /tmp/1.bin
+00000000  31 32 33 34 35 36 37 38  39 41 42 43 30 31 30 30  |123456789ABC0100|
+00000010  30 30 30 30 44 36 33 36  37 44 37 43 38 45 31 46  |0000D6367D7C8E1F|
+--> transfer 12 to 0x12 34 to 0x34 ... -> 
+
+
+
+134071 >>
+<ChangeDMIinfo>x3
+Test case 220 - OOB - Changed BIOS settings should be preserved after Update BIOS with--preserve_setting.
+Test case 212 - OOB - ChangeDMIinfo and compare it change or not even after flash BIOS.
+Test case 306 - In-Band - ChangeDMIinfo and compare it change or not even after flash BIOS
+-> 	DMIinfo is changed after BIOS updated with/without preserve_setting
+	It supposed to be changed after BIOS updated, right? Please confirm with bios team.
+		Reboot will not changed DMIinfo.
+		Update BIOS with sum --preserve_setting -> DMIinfo will changed.
+		Update BIOS with web and preserved setting -> DMIinfo will changed
+
+Test case 221 - OOB - Check BBS.
+-> 	selectedOption="Dual" should not be contained in bioscfg_template_1210_194112.xml
+	because this OEM BIOS supports the boot mode in UEFI only.
+
+Test case 354 - In-Band - Test "Modify user via BMCCfg"
+-> 	I have no error code after changed BMCCfg with sum tool.
+	Please check my BMCCfg file and screencapture in attached files.
+	It looks like bmccfg_1211_054504.xml in test case is an invalid configuration file
+	that results in running SUT CMD (./sum -c ChangeBmcCfg --file bmccfg_1211_054523.xml) has error.
+
+<MountIsoImage/UnmountIsoImage>x3
+Test case 267 - OOB - Test SUM command "MountIsoImage" and "UnmountIsoImage" with IPv6
+Test case 353 - In-Band - Test SUM command "MountIsoImage" and "UnmountIsoImage" with IPv6
+Test case 453 - Multiple systems OOB - Test SUM command "MountIsoImage" and "UnmountIsoImage" with IPv6
+-> ignore IPv6 test case
+
+<SetHttpBoot> x3
+Test case 351 - In-Band - SetHttpBoot
+Test case 451 - Multiple systems OOB - SetHttpBoot
+Test case 265 - OOB - SetHttpBoot
+-> From the error message as following, please consult with the bios team.
+   Invalid BIOS internal file
+   Can not find HTTP boot module version control in this BIOS.
+
+<SetHttpsBoot> x3
+Test case 274 - OOB - SetHttpsBoot
+Test case 358 - In-Band - SetHttpsBoot
+Test case 460 - Multiple systems OOB - SetHttpsBoot
+-> Error! BIOSCfg doesn't contain "Enroll HTTPS Boot TLS Certificate"
+   From above error message, please consult with the bios team.
+
+
+Flow of replace certificate>>
+replace_certificate::post_handler		: check input if pass call tee_save_certificate_request
+-> prepare_replace_certificate_info		: get cert from json input
+-> certtable_get_cert_name_file_by_uri	: check internal cert and get file path
+-> tee_save_certificate_request			: save cert string into file
+
+pass> replace with \n
+-----BEGIN CERTIFICATE-----MIIFZDCCA0wCFAGk1NcpYE9H9Ggkm/4/G4MwR9FTMA0GCSqGSIb3DQEBCwUAMHAxCzAJBgNVBAYTAlVTMQswCQYDVQQIDAJDQTERMA8GA1UEBwwIU2FuIEpvc2UxEzARBgNVBAoMClN1cGVybWljcm8xCzAJBgNVBAsMAklUMR8wHQYDVQQDDBZTTUNJQ0EuU3VwZXJtaWNyby4wMDAxMB4XDTIxMTIwNzAyMjYyOVoXDTMxMTIwNTAyMjYyOVowbTELMAkGA1UEBhMCVVMxCzAJBgNVBAgMAkNBMREwDwYDVQQHDAhTYW4gSm9zZTETMBEGA1UECgwKU3VwZXJtaWNybzELMAkGA1UECwwCSVQxHDAaBgNVBAMME1BDQS5TdXBlcm1pY3JvLjAwMDEwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQCuN0+rStu9fIvg+2KQrgw13+yddo1K6HgC2pswc8WvHNzcXbKKdSmxYO4kQ+p91JSol7DRfKB0ZWwQuPsl+zDiHdPjyzFPRBe9Z8zGIAqw+8k5kGSCPDjQPBNWjW0VQYcLvrhgkuIVSVSGNlG6NoQ30K3NuC+bwEmrte8FrBQIuemRcmR1fFJ//5NeZ24tIiSnY4108BvsSoUzrk6KitRVtAhDB3WHcjpmOl4FU0V/cgoAyLC+tj0actouyjgCNp4S8T19ALj3DXZMGOSEQbS/ZfQSc+0kOJiyu1i4rhlT1RhW3IzUMCt6nGJuF9D1ErSevpUfacrQEpjefflhmg6RQ2qNnrRESRt/BNzqUV1b/IzIIAIySc1VaVpVUQoDR/fescwBfpJXwTRxvlDqI99CLxi4dKQ0q6zBEknzI3jTbEZkmo8NeuJBXLt95LM9nIcq2pHp0v0veZVoOURm27JeQ/rv92CdTPYfpBa1ZwVNX/OcBk+1CKt6LrSQejGLE/w76Uik62iHG42P8uQeWQ0UrJMHTgLasjlx1gkTO2ZeHBUECzAWU2XnQ15fKyBkVg7aZruO5H2tRxLYiJ5b/o+fD6KAjwrd0pTCH0rwPYcwR76b4l+NOAMsFh4f+1/vbrcxjuxt9EihdlVhGfTOeoIi5vrHy20tYU18sjcJvhbEjwIDAQABMA0GCSqGSIb3DQEBCwUAA4ICAQBCbiO1qR6yJ319mZCb0ld6dbL7OlCysncwf3AVj/rSto+yGJQjuS7Z95KI7Xcc9RE1YgpC58btZruAXUL9cOR9ZWlDcH+RnUQ2GAnG5AHfnMSP4K4ZHjSbJx+Rfc5KGYJCavTp0Yv531xUaY+y1toqfzEtnEUCd4Uq7w5iPFWszoOE//tnFwCyRgASpRyR2x8H7FtQ/+ZfGPPkwFN/DlxWf086qjRNRnl/GsEMFi9Bz8rwrwvHIa8PUVVa7TpvRM7PEg4ejU+OZdPxZhlY58wYYyFZNau4/MX9E/faexwbHbn1KU2L43OLURyCB3QjDuit9q84K91GLo90pUnlcb8oz6INRakw8iylQnR/+Ni6UAK8xzpT+gd2Vob8QjlLCv0BPrJenxK8HTRcZ4WyquT4573SwmlStQ1hEjxE6XurrD6DIkaJjdy1gCn+PXzWtwoCO00R2urhN6TlIOyyrKdi/ateWheezq0hdDl6XWiKJCQ5aKhdkRTiQKzEsi1FfUO6EzPYsx3V1Rd57CK9r9f22FFY50ErbQn6PdHUrtEIUMZsA4H9DpwOQvwNQiabkD6U/IW+jzQq49s3P9hfgjYVL8UjLG+MzyibIXgnH5eCMcq5veIcV6XCZW34yt+1gLY8JKI/Fmj23XgPmy0RCAxfK/36RmLXniA6dKetlD0ASA==-----END CERTIFICATE-----
+log>
+method: 3, depth: 2, seg_size: 4
+get cert string size: 1900
+get cert string content: 5A
+get cert string content: 38
+get cert string content: 7A
+get cert string content: 47
+certtable_get_cert_name_file_by_uri: get cert id: 4
+certtable_get_cert_name_file_by_uri: get cert name: currentownca
+certtable_get_cert_name_file_by_uri: get cert file: /tmp/currentownca.crt
+check is_internalcert: 1, cert_name: currentownca, cert_file: /tmp/currentownca.crt
+write tmp cert file: /tmp/currentownca.crt
+method: 1, depth: 2, seg_size: 4
+
+
+failed>
+-----BEGIN CERTIFICATE-----\nMIIFZDCCA0wCFAGk1NcpYE9H9Ggkm/4/G4MwR9FTMA0GCSqGSIb3DQEBCwUAMHAx\nCzAJBgNVBAYTAlVTMQswCQYDVQQIDAJDQTERMA8GA1UEBwwIU2FuIEpvc2UxEzAR\nBgNVBAoMClN1cGVybWljcm8xCzAJBgNVBAsMAklUMR8wHQYDVQQDDBZTTUNJQ0Eu\nU3VwZXJtaWNyby4wMDAxMB4XDTIxMTIwNzAyMjYyOVoXDTMxMTIwNTAyMjYyOVow\nbTELMAkGA1UEBhMCVVMxCzAJBgNVBAgMAkNBMREwDwYDVQQHDAhTYW4gSm9zZTET\nMBEGA1UECgwKU3VwZXJtaWNybzELMAkGA1UECwwCSVQxHDAaBgNVBAMME1BDQS5T\ndXBlcm1pY3JvLjAwMDEwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQCu\nN0+rStu9fIvg+2KQrgw13+yddo1K6HgC2pswc8WvHNzcXbKKdSmxYO4kQ+p91JSo\nl7DRfKB0ZWwQuPsl+zDiHdPjyzFPRBe9Z8zGIAqw+8k5kGSCPDjQPBNWjW0VQYcL\nvrhgkuIVSVSGNlG6NoQ30K3NuC+bwEmrte8FrBQIuemRcmR1fFJ//5NeZ24tIiSn\nY4108BvsSoUzrk6KitRVtAhDB3WHcjpmOl4FU0V/cgoAyLC+tj0actouyjgCNp4S\n8T19ALj3DXZMGOSEQbS/ZfQSc+0kOJiyu1i4rhlT1RhW3IzUMCt6nGJuF9D1ErSe\nvpUfacrQEpjefflhmg6RQ2qNnrRESRt/BNzqUV1b/IzIIAIySc1VaVpVUQoDR/fe\nscwBfpJXwTRxvlDqI99CLxi4dKQ0q6zBEknzI3jTbEZkmo8NeuJBXLt95LM9nIcq\n2pHp0v0veZVoOURm27JeQ/rv92CdTPYfpBa1ZwVNX/OcBk+1CKt6LrSQejGLE/w7\n6Uik62iHG42P8uQeWQ0UrJMHTgLasjlx1gkTO2ZeHBUECzAWU2XnQ15fKyBkVg7a\nZruO5H2tRxLYiJ5b/o+fD6KAjwrd0pTCH0rwPYcwR76b4l+NOAMsFh4f+1/vbrcx\njuxt9EihdlVhGfTOeoIi5vrHy20tYU18sjcJvhbEjwIDAQABMA0GCSqGSIb3DQEB\nCwUAA4ICAQBCbiO1qR6yJ319mZCb0ld6dbL7OlCysncwf3AVj/rSto+yGJQjuS7Z\n95KI7Xcc9RE1YgpC58btZruAXUL9cOR9ZWlDcH+RnUQ2GAnG5AHfnMSP4K4ZHjSb\nJx+Rfc5KGYJCavTp0Yv531xUaY+y1toqfzEtnEUCd4Uq7w5iPFWszoOE//tnFwCy\nRgASpRyR2x8H7FtQ/+ZfGPPkwFN/DlxWf086qjRNRnl/GsEMFi9Bz8rwrwvHIa8P\nUVVa7TpvRM7PEg4ejU+OZdPxZhlY58wYYyFZNau4/MX9E/faexwbHbn1KU2L43OL\nURyCB3QjDuit9q84K91GLo90pUnlcb8oz6INRakw8iylQnR/+Ni6UAK8xzpT+gd2\nVob8QjlLCv0BPrJenxK8HTRcZ4WyquT4573SwmlStQ1hEjxE6XurrD6DIkaJjdy1\ngCn+PXzWtwoCO00R2urhN6TlIOyyrKdi/ateWheezq0hdDl6XWiKJCQ5aKhdkRTi\nQKzEsi1FfUO6EzPYsx3V1Rd57CK9r9f22FFY50ErbQn6PdHUrtEIUMZsA4H9DpwO\nQvwNQiabkD6U/IW+jzQq49s3P9hfgjYVL8UjLG+MzyibIXgnH5eCMcq5veIcV6XC\nZW34yt+1gLY8JKI/Fmj23XgPmy0RCAxfK/36RmLXniA6dKetlD0ASA==\n-----END CERTIFICATE-----\n
+log>
+method: 1, depth: 5, seg_size: 7
+method: 1, depth: 2, seg_size: 4
+method: 1, depth: 2, seg_size: 4
+method: 1, depth: 3, seg_size: 5
+method: 3, depth: 2, seg_size: 4
+method: 1, depth: 5, seg_size: 7
+method: 1, depth: 3, seg_size: 5
+debug>>
+parse_err = is_replace_certificate_bad_request
+handle_json_string -> return 1
+###########REPLACE_CERT_CERT_TYPE##############################
+###########REPLACE_CERT_CERT_URI##############################
+
+
+"error":{
+"code": "Base.v1_4_0.GeneralError",
+"Message": "A general error has occurred. See ExtendedInfo for more information.",
+"@Message.ExtendedInfo":[
+{
+"MessageId": "Base.1.4.PropertyValueFormatError",
+"Severity": "Warning",
+"Resolution": "Correct the value for the property in the request body and resubmit the request if the operation failed.",
+"Message": "The value -----BEGIN CERTIFICATE-----\nMIIFZDCCA0wCFAGk1NcpYE9H9Ggkm/4/G4MwR9FTMA0GCSqGSIb3DQEBCwUAMHAx\nCzAJBgNVBAYTAlVTMQswCQYDVQQIDAJDQTERMA8GA1UEBwwIU2FuIEpvc2UxEzAR\nBgNVBAoMClN1cGVybWljcm8xCzAJBgNVBAsMAklUMR8wHQYDVQQDDBZTTUNJQ0Eu\nU3VwZXJtaWNyby4wMDAxMB4XDTIxMTIwNzAyMjYyOVoXDTMxMTIwNTAyMjYyOVow\nbTELMAkGA1UEBhMCVVMxCzAJBgNVBAgMAkNBMREwDwYDVQQHDAhTYW4gSm9zZTET\nMBEGA1UECgwKU3VwZXJtaWNybzELMAkGA1UECwwCSVQxHDAaBgNVBAMME1BDQS5T\ndXBlcm1pY3JvLjAwMDEwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQCu\nN0+rStu9fIvg+2KQrgw13+yddo1K6HgC2pswc8WvHNzcXbKKdSmxYO4kQ+p91JSo\nl7DRfKB0ZWwQuPsl+zDiHdPjyzFPRBe9Z8zGIAqw+8k5kGSCPDjQPBNWjW0VQYcL\nvrhgkuIVSVSGNlG6NoQ30K3NuC+bwEmrte8FrBQIuemRcmR1fFJ//5NeZ24tIiSn\nY4108BvsSoUzrk6KitRVtAhDB3WHcjpmOl4FU0V/cgoAyLC+tj0actouyjgCNp4S\n8T19ALj3DXZMGOSEQbS/ZfQSc+0kOJiyu1i4rhlT1RhW3IzUMCt6nGJuF9D1ErSe\nvpUfacrQEpjefflhmg6RQ2qNnrRESRt/BNzqUV1b/IzIIAIySc1VaVpVUQoDR/fe\nscwBfpJXwTRxvlDqI99CLxi4dKQ0q6zBEknzI3jTbEZkmo8NeuJBXLt95LM9nIcq\n2pHp0v0veZVoOURm27JeQ/rv92CdTPYfpBa1ZwVNX/OcBk+1CKt6LrSQejGLE/w7\n6Uik62iHG42P8uQeWQ0UrJMHTgLasjlx1gkTO2ZeHBUECzAWU2XnQ15fKyBkVg7a\nZruO5H2tRxLYiJ5b/o+fD6KAjwrd0pTCH0rwPYcwR76b4l+NOAMsFh4f+1/vbrcx\njuxt9EihdlVhGfTOeoIi5vrHy20tYU18sjcJvhbEjwIDAQABMA0GCSqGSIb3DQEB\nCwUAA4ICAQBCbiO1qR6yJ319mZCb0ld6dbL7OlCysncwf3AVj/rSto+yGJQjuS7Z\n95KI7Xcc9RE1YgpC58btZruAXUL9cOR9ZWlDcH+RnUQ2GAnG5AHfnMSP4K4ZHjSb\nJx+Rfc5KGYJCavTp0Yv531xUaY+y1toqfzEtnEUCd4Uq7w5iPFWszoOE//tnFwCy\nRgASpRyR2x8H7FtQ/+ZfGPPkwFN/DlxWf086qjRNRnl/GsEMFi9Bz8rwrwvHIa8P\nUVVa7TpvRM7PEg4ejU+OZdPxZhlY58wYYyFZNau4/MX9E/faexwbHbn1KU2L43OL\nURyCB3QjDuit9q84K91GLo90pUnlcb8oz6INRakw8iylQnR/+Ni6UAK8xzpT+gd2\nVob8QjlLCv0BPrJenxK8HTRcZ4WyquT4573SwmlStQ1hEjxE6XurrD6DIkaJjdy1\ngCn+PXzWtwoCO00R2urhN6TlIOyyrKdi/ateWheezq0hdDl6XWiKJCQ5aKhdkRTi\nQKzEsi1FfUO6EzPYsx3V1Rd57CK9r9f22FFY50ErbQn6PdHUrtEIUMZsA4H9DpwO\nQvwNQiabkD6U/IW+jzQq49s3P9hfgjYVL8UjLG+MzyibIXgnH5eCMcq5veIcV6XC\nZW34yt+1gLY8JKI/Fmj23XgPmy0RCAxfK/36RmLXniA6dKetlD0ASA==\n-----END CERTIFICATE-----\n for the property CertificateString is of a different format than the property can accept.",
+"MessageArgs":[
+	"-----BEGIN CERTIFICATE-----\nMIIFZDCCA0wCFAGk1NcpYE9H9Ggkm/4/G4MwR9FTMA0GCSqGSIb3DQEBCwUAMHAx\nCzAJBgNVBAYTAlVTMQswCQYDVQQIDAJDQTERMA8GA1UEBwwIU2FuIEpvc2UxEzAR\nBgNVBAoMClN1cGVybWljcm8xCzAJBgNVBAsMAklUMR8wHQYDVQQDDBZTTUNJQ0Eu\nU3VwZXJtaWNyby4wMDAxMB4XDTIxMTIwNzAyMjYyOVoXDTMxMTIwNTAyMjYyOVow\nbTELMAkGA1UEBhMCVVMxCzAJBgNVBAgMAkNBMREwDwYDVQQHDAhTYW4gSm9zZTET\nMBEGA1UECgwKU3VwZXJtaWNybzELMAkGA1UECwwCSVQxHDAaBgNVBAMME1BDQS5T\ndXBlcm1pY3JvLjAwMDEwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQCu\nN0+rStu9fIvg+2KQrgw13+yddo1K6HgC2pswc8WvHNzcXbKKdSmxYO4kQ+p91JSo\nl7DRfKB0ZWwQuPsl+zDiHdPjyzFPRBe9Z8zGIAqw+8k5kGSCPDjQPBNWjW0VQYcL\nvrhgkuIVSVSGNlG6NoQ30K3NuC+bwEmrte8FrBQIuemRcmR1fFJ//5NeZ24tIiSn\nY4108BvsSoUzrk6KitRVtAhDB3WHcjpmOl4FU0V/cgoAyLC+tj0actouyjgCNp4S\n8T19ALj3DXZMGOSEQbS/ZfQSc+0kOJiyu1i4rhlT1RhW3IzUMCt6nGJuF9D1ErSe\nvpUfacrQEpjefflhmg6RQ2qNnrRESRt/BNzqUV1b/IzIIAIySc1VaVpVUQoDR/fe\nscwBfpJXwTRxvlDqI99CLxi4dKQ0q6zBEknzI3jTbEZkmo8NeuJBXLt95LM9nIcq\n2pHp0v0veZVoOURm27JeQ/rv92CdTPYfpBa1ZwVNX/OcBk+1CKt6LrSQejGLE/w7\n6Uik62iHG42P8uQeWQ0UrJMHTgLasjlx1gkTO2ZeHBUECzAWU2XnQ15fKyBkVg7a\nZruO5H2tRxLYiJ5b/o+fD6KAjwrd0pTCH0rwPYcwR76b4l+NOAMsFh4f+1/vbrcx\njuxt9EihdlVhGfTOeoIi5vrHy20tYU18sjcJvhbEjwIDAQABMA0GCSqGSIb3DQEB\nCwUAA4ICAQBCbiO1qR6yJ319mZCb0ld6dbL7OlCysncwf3AVj/rSto+yGJQjuS7Z\n95KI7Xcc9RE1YgpC58btZruAXUL9cOR9ZWlDcH+RnUQ2GAnG5AHfnMSP4K4ZHjSb\nJx+Rfc5KGYJCavTp0Yv531xUaY+y1toqfzEtnEUCd4Uq7w5iPFWszoOE//tnFwCy\nRgASpRyR2x8H7FtQ/+ZfGPPkwFN/DlxWf086qjRNRnl/GsEMFi9Bz8rwrwvHIa8P\nUVVa7TpvRM7PEg4ejU+OZdPxZhlY58wYYyFZNau4/MX9E/faexwbHbn1KU2L43OL\nURyCB3QjDuit9q84K91GLo90pUnlcb8oz6INRakw8iylQnR/+Ni6UAK8xzpT+gd2\nVob8QjlLCv0BPrJenxK8HTRcZ4WyquT4573SwmlStQ1hEjxE6XurrD6DIkaJjdy1\ngCn+PXzWtwoCO00R2urhN6TlIOyyrKdi/ateWheezq0hdDl6XWiKJCQ5aKhdkRTi\nQKzEsi1FfUO6EzPYsx3V1Rd57CK9r9f22FFY50ErbQn6PdHUrtEIUMZsA4H9DpwO\nQvwNQiabkD6U/IW+jzQq49s3P9hfgjYVL8UjLG+MzyibIXgnH5eCMcq5veIcV6XC\nZW34yt+1gLY8JKI/Fmj23XgPmy0RCAxfK/36RmLXniA6dKetlD0ASA==\n-----END CERTIFICATE-----\n",
+	"CertificateString"
+],
+"RelatedProperties":[
+	"CertificateString"
+]
+},
+{
+"MessageId": "",
+"Severity": "",
+"Resolution": "",
+"Message": "",
+"MessageArgs":[
+""
+],
+"RelatedProperties":[
+	"parse_err = is_replace_certificate_bad_request"
+]
+}
+
+
+if (len >= max_len) {
+        PROPERTY_VALUE_FORMAT_ERROR (msg);
+        e->create_redfish_message (msg, {s,p}, {p});
+        return 1;
+    }
+
+    if (!parse::is_printable_string (s)) {
+        PROPERTY_VALUE_FORMAT_ERROR (msg);
+        e->create_redfish_message (msg, {s, p}, {p});
+        return 1;
+    }
+	
+bool parse::is_printable_string (string &data_str)
+{
+    int valid_count = count_if (data_str.begin(),
+                                data_str.end(),
+                                [](unsigned char c){return isprint(c);});
+								
+isprint() -> ascii 0x20 ~ 0x7f hex is printable -> 0x0a, newline is not printable!!
+--> modify to:
+	int valid_count = count_if (data_str.begin(),
+                                data_str.end(),
+                                [](unsigned char c){return (isprint(c) || '\n');});
+
+
+2022/1/6>>
+replace cert - devikca > 
+	repeat this step will get error: 400 Bad Request after more than 5 times...
+	something wrong in tee?
+
+2022/1/7>>
+Upload DeviceUpdate Cmd... Failed! - 400 Bad Request
+verified signature --- NG
+
+2022/1/7>>
+Deploy DevIKCA...Failed! Error: 400
+Stop Provision!
+
+Log>
+optee_smci_tee_service -k -t 4 -i /tmp/devikca.crt
+    I/OPTEE: kctable_get_entity get entity 12 (1931 byte) from flash 0x65000
+    I/OPTEE: key_verify_cert failed to verify client cert, ret = -9984
+
+
+Deploy pCA...Failed! Error: 400
+Stop Provision!
+
+Log>
+	I/OPTEE: key_verify_cert failed to parse ca cert, ret = -10368
+    D/OPTEE:CPU 1 thread 0 set_key:218 set_key invaild pca
+
+workaround>>
+	using python2 or bmc reset
+
+
+
+
+
+U2_SSDA Temp
+
+sensor#	20
+4b	upper non-recoverable threshold	75
+46	upper critical threshold	70
+41	upper non-critical threshold	65
+5	Lower non-recoverable threshold	5
+5	Lower critical threshold	5
+a	Lower non-critical thrshold	10
+-> /nv/SDRFile has threshold
+->> but ipmitool get na
+
+guest_hw2:~/max/debug_temp $ ipmitool -I lanplus -H 172.31.36.38 -U ADMIN -P FMRDVSBENU raw 0x30 0x70 0x3C
+ 20 00 54 00
+guest_hw2:~/max/debug_temp $ ipmitool -I lanplus -H 172.31.36.38 -U ADMIN -P FMRDVSBENU raw 0x30 0x70 0x3C
+ b0 00 08 00
+guest_hw2:~/max/debug_temp $ ipmitool -I lanplus -H 172.31.36.38 -U ADMIN -P FMRDVSBENU raw 0x30 0x70 0x3C
+ 20 00 0f 00
+guest_hw2:~/max/debug_temp $ ipmitool -I lanplus -H 172.31.36.38 -U ADMIN -P FMRDVSBENU raw 0x30 0x70 0x3C
+ 20 00 41 00
+-> GetCurrentPollingSensorNumber -> sensor 0x20 has reading issue
+	20	at_b_currentPollingSensorNumber
+	00	at_b_MainBoardPower
+	0e	at_b_CurrentIndex
+	00	at_b_LastSetupFail
+
+raw 0x30 0x70 0x3b 1 0x20 10 00>
+U2_SSDA Temp     | 10.000     | degrees C  | ok    | 5.000     | 5.000     | na        | na        | 70.000    | 75.000
+-> set fake sensor value to 10 --> threshold show up and value is not renew
+
+
+board_H12SSG_AN6.c>>
+SET_ONBOARD_NVMESSD_INFO (6,   0,    0,           NULL) 
+ SET_ONBOARD_NVMESSD_INFO(ch, lo, slot,            mux) 
+_SET_ONBOARD_NVMESSD_INFO(ch, lo, slot, 1,      1, mux)
+_SET_ONBOARD_NVMESSD_INFO(ch, lo, slot, bpn, cpld, mux)
+
+BrdOnboardNVMeSSDCPLDCnt = bpn = 1
+
+
+NVMeSDDDiscovering{...
+for (i = 0; i < BrdOnboardNVMeSSDBPNCnt; i++){...
+	ch = BrdOnboardNVMeSSDBusNo;
+	EACH_NVMe_DRIVER (index, entry, NVMeDriverList, St_NVMe_DriverList) {...
+		b_found = entry->driver->probe(ch,i)
+			NVMeSSDProbe or NVMR3_216N_S4Probe
+		if (AddController(ch,i,index,b_found) != -1) {...
+			i=BrdOnboardNVMeSSDBPNCnt
+			index -> NVMeDriverList[index]
+			dev_no 	-> 	add next controller
+			entry->driver->name		=NVMeSSD or NVMR3_216N_S4
+			ch						=6			BrdOnboardNVMeSSDBusNo
+
+DECLARE_NVME_DRIVER (NVMeSSD);
+DECLARE_NVME_DRIVER(n) St_NVMe_driver NVMeSSD NVMe_driver={...
+	.poll           =   NVMeSSDPoll,
+	.probe          =   NVMeSSDProbe,
+...}
+
+EACH_PCIE_CONTROLLER (NVMeBPN, dev) {
+	DoPCIeSSD (GET_DEV_NO (dev));
+=> for ( dev = &at_NVMeBPN_Controller[0]; dev <= &at_NVMeBPN_Controller[1]; dev++) 
+	if (dev->card.present)
+	DoPCIeSSD (dev->card.dev_no) // driver->poll(aocNum,ch) -> NVMeSSDPoll or NVMR3_216N_S4Poll
+
+GET_DEV_NO(_x)	(_x->card.dev_no)
+
+GET_DEV_PTR(_type, _devno_) = at_##_type##_Controller[_devno_]
+GET_DEV_PTR (NVMeBPN, aocNum) = at_NVMeBPN_Controller[aocNum]
+DECLARE_DEV_PTR(_type, _dev_) St_##_type##_Controller *_dev_
+DECLARE_DEV_PTR (NVMeBPN, dev)  = GET_DEV_PTR (NVMeBPN, aocNum);
+=> St_NVMeBPN_Controller *dev = at_NVMeBPN_Controller[aocNum]
+
+EACH_PCIE_CONTROLLER (NVMeBPN, dev)
+=> for ( dev = &at_NVMeBPN_Controller[0]; dev <= &at_NVMeBPN_Controller[2 - 1]; dev++) 
+	if (dev->card.present)
+
+typedef struct NVMessd_controller {
+     St_PCIECard card;
+     BYTE        max_temp;
+     BYTE        max_slot_num;
+     BYTE        onboard;
+     BYTE        driver_index;
+     BYTE        ver_format;
+     BYTE        group_idx;
+     BYTE        fwVersion;
+}St_NVMeBPN_Controller;
+
+channel=0 (0000) bus id=6=110 private bus=1 -> i2c bus number = 0000 1101 = 0D
+NVMeAddr[grpup=0]=0x66
+
+NVMeI2CCmd (I2C_W_BUF, I2C_R_BUF, write length, read length, ch, addr)
+NVMeI2CCmd (0x00 or 0x01, I2C_R_BUF, 1, 1, 6, 0x66)
+
+read NVME_REG_PRESENT_L = 0x00(NVMeSSD) or 0x10(NVMR3_216N_S4)
+ipmitool -I lanplus -H 172.31.36.38 -U ADMIN -P FMRDVSBENU raw 0x6 0x52 0x0D 0x66 0x1 0x0
+ 00
+read NVME_REG_PRESENT_H = 0x01>
+ipmitool -I lanplus -H 172.31.36.38 -U ADMIN -P FMRDVSBENU raw 0x6 0x52 0x0D 0x66 0x1 0x1
+ 00
+ 
+ 
+ case SAMSUNG_VENDOR_ID:
+ tempSlaveAddr = I2C_R_BUF[NVME_REG_VPD1_ADDR];
+ NVME_REG_VPD1_ADDR = 0x55
+ I2C_W_BUF[0]  = NVME_REG_VPD1_TEMP;
+ NVME_REG_VPD1_TEMP = 0x05
+ NVMeI2CCPLDCmd (I2C_W_BUF, I2C_R_BUF, 1, 2, ch, tempSlaveAddr)
+ -> NVMeI2CCPLDCmd (0x05, I2C_R_BUF, 1, 2, ch, I2C_R_BUF[0x55])
+ p_temp->Temp[6] = GetNVMeSSDTemp (I2C_R_BUF[0], I2C_R_BUF[1]);
+ ipmitool -I lanplus -H 172.31.36.38 -U ADMIN -P FMRDVSBENU raw 0x6 0x52 0x0D 0x05 0x2 0x1
+ 
+ NEW ADMIN ACCOUNT>>
+ ADMIN2
+ 1QAZ@wsx
+ 
+ 
+Mar  2 00:15:50 (none) user.debug NVMeTask: oooxxxooo [DoPCIeSSD] NVMeDriverList[dev->driver_index=1]
+Mar  2 00:15:50 (none) user.debug NVMeTask:  oooxxxooo [GetBitmapFromCPLD] *pdwBitmap=3
+Mar  2 00:15:50 (none) user.debug NVMeTask: oooxxxooo [NVMR3_216N_S4Poll] j=0, ch=6 NVME_BPN_PRESENT=0 dwBitmap=3
+Mar  2 00:15:50 (none) user.debug NVMeTask:  oooxxxooo [GetBitmapFromCPLD] *pdwBitmap=fffffffc
+Mar  2 00:15:50 (none) user.debug NVMeTask:  oooxxxooo [GetBitmapFromCPLD] *pdwBitmap=0
+Mar  2 00:15:50 (none) user.debug NVMeTask: oooxxxooo [NVMR3_216N_S4Poll] dwBitmap=0
+Mar  2 00:15:50 (none) user.debug NVMeTask:  oooxxxooo  nvme_temp (aocNum, group, i).Temp[6]=27
+Mar  2 00:15:50 (none) user.debug NVMeTask:  oooxxxooo  nvme_temp (aocNum, group, i).Temp[6]=26
+Mar  2 00:15:51 (none) user.debug : oooxxxooo MAX_AOC_NVMeBPN_NUM:2 dev_no:0
+Mar  2 00:15:51 (none) user.debug : oooxxxooo b_temp:27
+
+NVMeSSDProbe>>
+1559     // Check the CPLD generation
+1560     // This API only supports the generation 1 of NVMe controller.
+1561     I2C_W_BUF[0] = NVME_REG_FW_VER_L;
+1562     if (NVMeI2CCmd(I2C_W_BUF, I2C_R_BUF, 1, 1, ch, addr) == I2C_OK) {
+1563     ¦   if ((I2C_R_BUF[0] == NVME_REG_VER_GEN2_CPLD) ||		//0x55
+1564     ¦   ¦   (I2C_R_BUF[0] == NVME_REG_VER_GEN2_CPLD_DATE) ||	//0x56
+1565     ¦   ¦   (I2C_R_BUF[0] == NVME_REG_VER_GEN2_MCU)  ||		//0x57
+1566     ¦   ¦   (I2C_R_BUF[0] == NVME_REG_VER_GEN2_MCU_DATE) ||	//0x58
+1567     ¦   ¦   (I2C_R_BUF[0] == 0)) {	// if 0 means not found
+1568     ¦   ¦   return b_found;
+1569     ¦   }
+1570     ¦   else {
+1571     ¦   ¦   controller->group_idx = cpld_no;
+1572     ¦   ¦   b_found = NVMe_FOUND;
+1573     ¦   }
+1574     }
+
+NVMR3_216N_S4Probe>>
+144     if (NVMeI2CCmd (I2C_W_BUF, I2C_R_BUF, 1, 1, ch, addr) == I2C_OK) {
+145     ¦   if ((I2C_R_BUF[0] != NVME_REG_VER_GEN2_CPLD) &&
+146     ¦   ¦   (I2C_R_BUF[0] != NVME_REG_VER_GEN2_CPLD_DATE) &&
+147     ¦   ¦   (I2C_R_BUF[0] != NVME_REG_VER_GEN2_MCU) &&
+148     ¦   ¦   (I2C_R_BUF[0] != NVME_REG_VER_GEN2_MCU_DATE)) {
+149     ¦   ¦   return b_found;
+150     ¦   }
+151     ¦   controller->group_idx = cpld_no;
+152     ¦   b_found = NVMe_FOUND;
+153     }
+154     else {
+155     ¦   return b_found;
+156     }
+
+
+S445387X2205516A        -> stop on 3/7
+172.31.37.43       
+FFQOXITZLN
+ 
+S445387X2205516B        -> stop on 3/7  
+172.31.37.54       
+FKMHZEOOFQ
+ 
+S445387X2205517A		-> stop on 3/7
+172.31.37.66
+EYDFIGCUHL
+ 
+S445387X2205517B      	-> still running on 3/8 1700    
+172.31.36.38       		-> has mincom and debug version
+FMRDVSBENU
+ 
+S445387X2205518A        -> failed one  
+172.31.37.60       		-> i2c patch and debug version
+FTYTIZOCYM
+ 
+S445387X2205518B        -> power off status
+172.31.37.62       		-> cpld slot 0 and 1 ejected
+FNKZBCJUNK
+ 
+S445387X2205519A        -> stop on 3/7
+172.31.46.45       
+GXBBPUNLMN
+ 
+S445387X2205519B        -> stop on 3/7  
+172.31.46.59       
+GYMXUZOLCN
+ 
+S445387X2205520A        -> stop on 3/7  
+172.31.46.58       
+FMQQUXFTIX
+ 
+S445387X2205520B        -> stop on 3/7    
+172.31.46.57       
+GXAPVHPZOO
+
+
+3674
+get aoc nic ...
+
+
+
+
+RA>>
+
+-----------------------------Pass-----------------------------
+
+maxt@maxt-Virtual-Machine:~/project/ra_client_tool$ python3 SetTransitionState.py 1
+----------------------------------
+Step 1. Create DevUpdt Command Bin
+----------------------------------
+Create DevUpdtCmdFile...Done
+
+----------------------------
+Step 2. Send DevUpdt Command
+----------------------------
+Send DevUpdt Command...Done
+
+----------------------------------------------
+Set Transition State: Not Allowed PASS!
+----------------------------------------------
+
+/ #     D/OPTEE:CPU 1 thread 0 invoke_command:691 command entry point[5] for "pta_ta6.ta"
+get nonce: 123456789ABC000000005B6AA659B533
+[FileUpload] CgiVars is not initialized due to file upload.
+Check_applytime_value = 2
+[upload_file_save_as] the upload file is stored in /tmp/deviceupdateCMD.bin. (len=544    D/OPTEE:CPU 0 thread 0 invoke_command:691 command entry point[6] for "pta_ta6.ta"
+)
+run optee_smc    D/OPTEE:CPU 0 thread 0 set_upd_cmd:570 set_upd_cmd cmd size = 544
+i_tee_service -u    I/OPTEE: kctable_get_active_dev_upd_gidx table_header->magic_symbol = 0x5aa5a55a, bit_map[0] = 0x75
+ -i /tmp/deviceu    I/OPTEE: table_info->version = 0x100
+pdateCMD.bin
+    I/OPTEE: kctable_get_entity get entity 13 (2365 byte) from flash 0x6a000
+    D/OPTEE:CPU 0 thread 0 updcmd_execute:283 Set next owner ca
+
+
+-----------------------------Failed-----------------------------
+
+maxt@maxt-Virtual-Machine:~/project/ra_client_tool$ python3 SetFWSignK.py 0
+---------------------------------------
+Step 1. Claim BMCFWSignKCA FW Sign Key
+---------------------------------------
+Claim FW Sign Key...Failed! Error: 400
+
+/ #
+/ # [FileUpload] CgiVars is not initialized due to file upload.
+Check_applytime_value = 2
+[upload_file_save_as] the upload file is stored in /tmp/deviceupdateCMD.bin. (len=4640)
+
+/ #
+/ #
+/ #
+/ #
+
+Pass>
+SetTransitionState.py
+RenewDevAK.py
+GetFWHash.py
+ClearRootCA.py
+
+Fail>
+SetFWSignK.py
+
+
+
+
+MegaRAID 12GSAS/PCIe Secure SAS39xx
+https://www.broadcom.com/products/storage/raid-on-chip/sas-3916
+
+
+
+
+
+add power supply b_SensorNum = c4 w_RervID=2
+---i=0----
+add xx power supply b_SensorNum = 22
+Add PWR sensor 22
+GET_RISER_INDEX 0
+[ApiDoingAddSDRCmd:947] w_SDRRec_ID = 0xbcb
+[ApiDoingAddSDRCmd:963] w_SDRAddOffset = 0xbc9
+[ApiDoingAddSDRCmd:983] at_w_SDR_TAIL_PTR = 0xbc9
+[ApiDoingAddSDRCmd:1016] at_w_LAST_SDR_ID = 0xbcb
+add xx power supply b_SensorNum = 23
+Add PWR sensor 23
+GET_RISER_INDEX 0
+[ApiDoingAddSDRCmd:947] w_SDRRec_ID = 0xc0e
+[ApiDoingAddSDRCmd:963] w_SDRAddOffset = 0xc0c
+[ApiDoingAddSDRCmd:983] at_w_SDR_TAIL_PTR = 0xc0c
+[ApiDoingAddSDRCmd:1016] at_w_LAST_SDR_ID = 0xc0e
+add xx power supply b_SensorNum = fa
+Add PWR sensor fa
+GET_RISER_INDEX 0
+[ApiDoingAddSDRCmd:947] w_SDRRec_ID = 0xc51
+[ApiDoingAddSDRCmd:963] w_SDRAddOffset = 0xc4f
+[ApiDoingAddSDRCmd:983] at_w_SDR_TAIL_PTR = 0xc4f
+[ApiDoingAddSDRCmd:1016] at_w_LAST_SDR_ID = 0xc51
+[ApiDoingAddSDRCmd:947] w_SDRRec_ID = 0xc94
+[ApiDoingAddSDRCmd:963] w_SDRAddOffset = 0xc92
+[ApiDoingAddSDRCmd:983] at_w_SDR_TAIL_PTR = 0xc92
+[ApiDoingAddSDRCmd:1016] at_w_LAST_SDR_ID = 0xc94
+add power supply b_SensorNum = c7 w_RervID=6
+---i=3----
+add xx power supply b_SensorNum = 28
+Add PWR sensor 28
+GET_RISER_INDEX 0
+[ApiDoingAddSDRCmd:947] w_SDRRec_ID = 0xcd7
+[ApiDoingAddSDRCmd:963] w_SDRAddOffset = 0xcd5
+[ApiDoingAddSDRCmd:983] at_w_SDR_TAIL_PTR = 0xcd5
+[ApiDoingAddSDRCmd:1016] at_w_LAST_SDR_ID = 0xcd7
+add xx power supply b_SensorNum = 29
+Add PWR sensor 29
+GET_RISER_INDEX 0
+[ApiDoingAddSDRCmd:947] w_SDRRec_ID = 0xd1a
+[ApiDoingAddSDRCmd:963] w_SDRAddOffset = 0xd18
+[ApiDoingAddSDRCmd:983] at_w_SDR_TAIL_PTR = 0xd18
+[ApiDoingAddSDRCmd:1016] at_w_LAST_SDR_ID = 0xd1a
+add xx power supply b_SensorNum = fd
+Add PWR sensor fd
+GET_RISER_INDEX 0
+[ApiDoingAddSDRCmd:947] w_SDRRec_ID = 0xd5d
+[ApiDoingAddSDRCmd:963] w_SDRAddOffset = 0xd5b
+[ApiDoingAddSDRCmd:983] at_w_SDR_TAIL_PTR = 0xd5b
+[ApiDoingAddSDRCmd:1016] at_w_LAST_SDR_ID = 0xd5d
+[PowerSupplyInit](1791) Paul checking it
+
+
+psu1 22/23
+psu2 24/25
+psu3 26/27
+psu4 28/29
+
+AddPWRSDR (BYTE dev_no,BYTE SensorNumber,BYTE pwr_info_index)
+AddPWRSDR (i,b_SensorNum,0+3*i);
+AddPWRSDR (i,b_SensorNum,1+3*i);
+AddPWRSDR (i,b_SensorNum,2+3*i);
+psu1
+ ( 0, 22, 0 ) -> PSU1 Temp1
+ ( 0, 23, 1 ) -> PSU1 Temp2
+ ( 0, fa, 2 ) -> PSU1 PowerCons.
+psu4
+ ( 3, 28, 9 ) -> PSU4 Temp1
+ ( 3, 29, 10) -> PSU4 Temp2
+ ( 3, fd, 11) -> PSU4 PowerCons.
+
+
+i=0,3
+(ProbeTable + b_Counter)->b_SnrNo        = PSU1_TEMP1_SNR_NUM+2*i; -> 0x22+2*0=0x22 -> 0x22+2*3=0x28
+(ProbeTable + b_Counter)->dw_HWInfo1     =  psStatusHWInfo (i) | TEMPERATURE_SENSOR  ; 			-> 0x01
+(ProbeTable + b_Counter)->dw_HWInfo2     = 0x00000000 | (SENSOR_SCAN_INTERVAL_ONE_SECOND * 3);
+(ProbeTable + b_Counter)->p_CallBackPtr  = 0;
+(ProbeTable + b_Counter)->p_FncPtr       = (void *) &ws_St_PWR_SENSORAPI;
+b_Counter ++ ;
+
+(ProbeTable + b_Counter)->b_SnrNo        = PSU1_TEMP1_SNR_NUM + 1 + 2*i;
+(ProbeTable + b_Counter)->dw_HWInfo1     =  psStatusHWInfo (i)  | POWER_TEMPERATURE2_SENSOR  ;	-> 0xC2
+(ProbeTable + b_Counter)->dw_HWInfo2     = 0x00000000 | (SENSOR_SCAN_INTERVAL_ONE_SECOND * 3);
+(ProbeTable + b_Counter)->p_CallBackPtr  = 0;
+(ProbeTable + b_Counter)->p_FncPtr       = (void *) &ws_St_PWR_SENSORAPI;
+b_Counter ++ ;
+
+(ProbeTable + b_Counter)->b_SnrNo        = SPECICAL_11_SNR_NUM + i; -> 0xfa+0=0xfa -> 0xfa+3=0xfd
+(ProbeTable + b_Counter)->dw_HWInfo1     =  psStatusHWInfo (i)  | POWER_SUPPY_SENSOR ;			-> 0x08
+(ProbeTable + b_Counter)->dw_HWInfo2     = 0x00000000 | (SENSOR_SCAN_INTERVAL_ONE_SECOND * 3);
+(ProbeTable + b_Counter)->p_CallBackPtr  = 0;
+(ProbeTable + b_Counter)->p_FncPtr       = (void *) &ws_St_PWR_SENSORAPI;
+b_Counter ++ ;
+
+*p_b_TempBuf = GetPSInfo_temp2(psu_index);
+
+
+#ifdef X12DPG_OEM_NVDA
+#define SET_PS_SLOT_INFO(idx,ch,addr,fru,sensor,type)   \
+    psSlot(idx).channelNum   = ch, \
+    psSlot(idx).slaveAddr    = (addr), \
+    psSlot(idx).slaveAddrFru = (fru), \
+    psSlot(idx).sensorNum    = (sensor +    idx), \
+    psSlot(idx).psUnitType   = type,\
+    psSlot(idx).dwPSHWInfo   = (ch << 24) | ((addr) << 16) | ((idx) << 28),\
+    psSlot(idx).dwPSFruInfo  = (ch << 24) | ((fru) << 16) |((idx) << 28)
+#else
+....
+
+ SET_PS_SLOT_INFO (i, PltPSI2CChnl, 0xB0, 0xA0, 0xC4, PSU_TYPE_PMBUS_STD);
+ 
+ ReadPWR_SENSORDrv
+ 
+ 
+H12SSG_OEM_NVIDA>>
+GPU PowerCons Duplicated Issue>> 
+Apr 20 06:58:12 (none) user.debug AOCTask: >>> [GPU4] Capability3=00000000
+Apr 20 06:58:12 (none) user.debug AOCTask: [NvidiaGPUDiscover][slot4] Total GPU Core: 1
+Apr 20 06:58:12 (none) user.debug AOCTask: Found NvidiaGPU4 zone 0 UNR:98
+Apr 20 06:58:12 (none) user.debug AOCTask: p_SDR:    62 5F 58 10 05 05
+Apr 20 06:58:12 (none) user.debug AOCTask: snr_info: 62 5F 58 00 00 00
+Apr 20 06:58:12 (none) user.debug AOCTask: GPU thermal threshold matching result:1
+Apr 20 06:58:12 (none) user.debug AOCTask: Del GPU senor number e2
+Apr 20 06:58:12 (none) user.debug AOCTask: p_SDR:    62 5F 58 10 05 05
+Apr 20 06:58:12 (none) user.debug AOCTask: snr_info: 62 5F 58 00 00 00
+Apr 20 06:58:12 (none) user.debug AOCTask: GPU thermal threshold matching result:1
+Apr 20 06:58:12 (none) user.debug AOCTask: Del GPU senor number e4
+
+gpu_sensor(x,y)     GPUZone[x].GPU_sensor[y]
+
+[NvidiaGPUDiscover][slot4] Total GPU Core: 1
+Found NvidiaGPU4 zone 0 UNR:98
+ 
+>>> [GPU2] Capability3=00000000
+[NvidiaGPUDiscover][slot2] Total GPU Core: 1
+Found NvidiaGPU2 zone 0 UNR:98
+[SetThresholdsBySMBPBI:990]: Set GPU threshold, UC=95, UNR=98 at zone=0, slot=4
+
+ GPU1_TEMP_SENSOR				0x0b
+ GPU1_POWER_CONSUMPTON_SENSOR	0xCB
+ 
+ GPU_01_TEMP_SNR_NUM 			0x70
+ GPU_01_POWER_CONSUM_SNR_NUM    0xE0
+
+
+00000a30  43 6f 6e 73 2e 00 d7 7a  0a 39 0a 51 01 34 20 00  |Cons...z.9.Q.4 .|
+
+00000a30  43 6f 6e 73 2e 00 d7 bd  0a 39 0a 51 01 34 20 00  |Cons.....9.Q.4 .|
+
+[NvidiaGPUDiscover][slot4] Total GPU Core: 1
+Found NvidiaGPU4 zone 0 UNR:98
+Add GPU sensor 72
+[ApiDoingAddSDRCmd:947] w_SDRRec_ID = 0xa39
+[ApiDoingAddSDRCmd:963] w_SDRAddOffset = 0xa37
+[ApiDoingAddSDRCmd:983] at_w_SDR_TAIL_PTR = 0xa37
+[ApiDoingAddSDRCmd:1016] at_w_LAST_SDR_ID = 0xa39
+Add GPU power consumption sensor e2
+[ApiDoingAddSDRCmd:947] w_SDRRec_ID = 0xa7c
+[ApiDoingAddSDRCmd:963] w_SDRAddOffset = [   80.217369] i2c-mctp-slave-mqueue 2-0010: i2c_slave_register: client slave flag not                           set. You might see address collisions
+0xa7a
+[ApiDoing[   80.231365] i2c i2c-2: new_device: Instantiated device mctp-slave-mqueue at 0x10
+AddSDRCmd:983] at_w_SDR_TAIL_PTR = 0xa7a
+[ApiDoingAddSDRCmd:1016] at_w_LAST_SDR_ID = 0xa7c
+Add GPU sensor 74
+[ApiDoingAddSDRCmd:947] w_SDRRec_ID = 0xabf
+[ApiDoingAddSDRCmd:963] w_SDRAddOffset = 0xabd
+[ApiDoingAddSDRCmd:983] at_w_SDR_TAIL_PTR = 0xabd
+[ApiDoingAddSDRCmd:1016] at_w_LAST_SDR_ID = 0xabf
+Add GPU power consumption sensor e4
+[ApiDoingAddSDRCmd:947] w_SDRRec_ID = 0xb02
+[ApiDoingAddSDRCmd:963] w_SDRAddOffset = 0xb00
+[ApiDoingAddSDRCmd:983] at_w_SDR_TAIL_PTR = 0xb00
+[ApiDoingAddSDRCmd:1016] at_w_LAST_SDR_ID = 0xb02
+
+
+[NvidiaGPUDiscover][slot4] Total GPU Core: 1
+Found NvidiaGPU4 zone 0 UNR:98
+	-> b_index = 4 b_zone=0
+	-> gpu_sensor (0, 4).Sensor_num = 0x70+4 => GPU_01_TEMP_SNR_NUM
+	-> gpu_sensor (0, 4).b_present =1
+	
+	gpu_sensor (0, 4).Sensor_num => GPU_01_POWER_CONSUM_SNR_NUM = ??
+
+Del GPU senor number 72
+Del GPU senor number e2
+Del GPU senor number e4
+
+
+power off -> on >>>>
+
+[NvidiaGPUDiscover][slot4] Total GPU Core: 1
+Found NvidiaGPU4 zone 0 UNR:98
+
+b_index=4
+gpu_sensor (0, b_index).b_present=1
+gpu_sensor (0, b_index).Sensor_num=74
+p_SDR:    62 5F 58 10 05 05
+snr_info: 62 5F 58 00 00 00
+GPU thermal threshold matching result:1
+b_SensorNum=74
+
+Del GPU senor number e4 b_index=18
+
+----------b_index=4 b_SnrTpe=f GPU1_TEMP_SENSOR=b
+
+AddGPUPowerConsSDR (b_index, 
+	gpu_sensor (0, b_index).Sensor_num - GPU_01_TEMP_SNR_NUM + GPU_01_POWER_CONSUM_SNR_NUM);
+	               2        0x72         0x70                  0xe0 = 0xe2
+				   4        0x74         0x70                  0xe0 = 0xe4
+
+	if (gpu_sensor (0, b_index).b_present &&
+        gpu_sensor (0, b_index).Sensor_num == b_SensorNum && -> ||
+
+gpu_sensor (0, b_index).Sensor_num = b_SensorNum - GPU_01_POWER_CONSUM_SNR_NUM + GPU_01_TEMP_SNR_NUM
+							  0x72 = 0xe2 - 0xe0 + 0x70 
+
+
+
+b_index=4
+gpu_sensor (0, b_index).b_present=1
+gpu_sensor (0, b_index).Sensor_num=74
+p_SDR:    62 5F 58 10 05 05
+snr_info: 62 5F 58 00 00 00
+GPU thermal threshold matching result:1
+b_SensorNum=74 .sdr_found=1
+
+
+
+b_index=2
+gpu_sensor (0, b_index).b_present=1
+gpu_sensor (0, b_index).Sensor_num=72
+
+b_index=4
+gpu_sensor (0, b_index).b_present=1
+gpu_sensor (0, b_index).Sensor_num=74
+p_SDR:    FF FF FF 01 01 01
+snr_info: 62 5F 58 00 00 00
+GPU thermal threshold matching result:0
+
+Del GPU senor number e4 b_index=18
+Add GPU sensor 72
+b_SDRBuff[36]=0x62
+b_SDRBuff[37]=0x5f
+b_SDRBuff[38]=0x58
+b_SDRBuff[41]=0x10
+b_SDRBuff[40]=0x5
+b_SDRBuff[39]=0x5
+[ApiDoingAddSDRCmd:947] w_SDRRec_ID = 0x79b
+[ApiDoingAddSDRCmd:963] w_SDRAddOffset = 0x799
+[ApiDoingAddSDRCmd:983] at_w_SDR_TAIL_PTR = 0xb00
+----ifdef HAS_NVDA_OEM----------ifndef X12DPG_OEM_NVDA AddGPUPowerConsSDR-------
+Add GPU power consumption sensor e2
+
+
+
+
+
+[NvidiaGPUDiscover][slot4] Total GPU Core: 1
+Found NvidiaGPU4 zone 0 UNR:98
+b_index=0
+gpu_sensor (0, b_index).b_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+b_index=1
+gpu_sensor (0, b_index).b_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+b_index=2
+gpu_sensor (0, b_index).b_present=1
+gpu_sensor (0, b_index).Sensor_num=72
+b_index=3
+gpu_senso[  159.682184] i2c-mctp-slave-mqueue 2-0010: i2c_slave_register: client slave flag not set. You might see address collisions
+r (0, b_index).b[  159.695271] i2c i2c-2: new_device: Instantiated device mctp-slave-mqueue at 0x10
+_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+b_index=4
+gpu_sensor (0, b_index).b_present=1
+gpu_sensor (0, b_index).Sensor_num=74
+p_SDR:    62 5F 58 10 05 05
+snr_info: 62 5F 58 00 00 00
+GPU thermal threshold matching result:1
+b_SensorNum=74 .sdr_found=1
+b_index=0
+gpu_sensor (0, b_index).b_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+b_index=1
+gpu_sensor (0, b_index).b_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+b_index=2
+gpu_sensor (0, b_index).b_present=1
+gpu_sensor (0, b_index).Sensor_num=72
+b_index=3
+gpu_sensor (0, b_index).b_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+b_index=4
+gpu_sensor (0, b_index).b_present=1
+gpu_sensor (0, b_index).Sensor_num=74
+p_SDR:    FF FF FF 01 01 01
+snr_info: 62 5F 58 00 00 00
+GPU thermal threshold matching result:0
+b_index=5
+gpu_sensor (0, b_index).b_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+b_index=6
+gpu_sensor (0, b_index).b_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+b_index=7
+gpu_sensor (0, b_index).b_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+b_index=8
+gpu_sensor (0, b_index).b_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+b_index=9
+gpu_sensor (0, b_index).b_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+b_index=a
+gpu_sensor (0, b_index).b_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+b_index=b
+gpu_sensor (0, b_index).b_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+b_index=c
+gpu_sensor (0, b_index).b_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+b_index=d
+gpu_sensor (0, b_index).b_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+b_index=e
+gpu_sensor (0, b_index).b_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+b_index=f
+gpu_sensor (0, b_index).b_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+b_index=10
+gpu_sensor (0, b_index).b_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+b_index=11
+gpu_sensor (0, b_index).b_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+b_index=12
+gpu_sensor (0, b_index).b_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+b_index=13
+gpu_sensor (0, b_index).b_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+b_index=14
+gpu_sensor (0, b_index).b_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+b_index=15
+gpu_sensor (0, b_index).b_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+b_index=16
+gpu_sensor (0, b_index).b_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+b_index=17
+gpu_sensor (0, b_index).b_present=0
+gpu_sensor (0, b_index).Sensor_num=0
+Del GPU senor number e4 b_index=18
+Add GPU sensor 72
+b_SDRBuff[36]=0x62
+b_SDRBuff[37]=0x5f
+b_SDRBuff[38]=0x58
+b_SDRBuff[41]=0x10
+b_SDRBuff[40]=0x5
+b_SDRBuff[39]=0x5
+[ApiDoingAddSDRCmd:947] w_SDRRec_ID = 0x79b
+[ApiDoingAddSDRCmd:963] w_SDRAddOffset = 0x799
+[ApiDoingAddSDRCmd:983] at_w_SDR_TAIL_PTR = 0xb00
+----ifdef HAS_NVDA_OEM----------ifndef X12DPG_OEM_NVDA AddGPUPowerConsSDR-------
+Add GPU power consumption sensor e2
+[ApiDoingAddSDRCmd:947] w_SDRRec_ID = 0xa7c
+[ApiDoingAddSDRCmd:963] w_SDRAddOffset = 0xa7a
+[ApiDoingAddSDRCmd:983] at_w_SDR_TAIL_PTR = 0xb00
+
+
+
+
+power consumption sdr type = 8 or 1 ??
+sensor type = 8 in SDR
+
+GPU_add_sdr for each gpu if present && found -> call AddGPUSDR and AddGPUPowerConsSDR
+AddGPUSDR setup SDR rec -> UNRThreshold init value = 0x
+AddGPUPowerConsSDR call GPUPowerConsSDRInit -> UNRThreshold init value = 0xFF
+
+KeplerGPUDiscover call SetThresholds -> SetThresholdsBySMBPBI to set threshold
+
+
+Patch>>
+vim IPMI/SENSOR_DRV/I2C/GPUSensorDrv.c
+// skip GPU Power Consumption thermal check
+    if ((p_SDR[7] >= GPU_01_POWER_CONSUM_SNR_NUM) && (p_SDR[7] <= GPU_06_POWER_CONSUM_SNR_NUM)) {
+        return 1;
+    }
+	
+if ( ((p_SDR[12] == 0x1) &&
+         (IS_SNR_NUM_IN_RANGE (p_SDR[7], GPU_01_TEMP_SNR_NUM, GPU_24_TEMP_SNR_NUM))) ||
+         ((p_SDR[12] == 0x8) &&
+         (IS_SNR_NUM_IN_RANGE (p_SDR[7], GPU_01_POWER_CONSUM_SNR_NUM, GPU_06_POWER_CONSUM_SNR_NUM))) ) {
+		 
+if (gpu_sensor (0, b_index).b_present &&
+               (gpu_sensor (0, b_index).Sensor_num == b_SensorNum ||
+                gpu_sensor (0, b_index).Sensor_num == b_SensorNum - GPU_01_POWER_CONSUM_SNR_NUM + GPU_01_TEMP_SNR_NUM) &&
+                gpu_match_thermal_th(p_SDR, &gpu_sensor(0, b_index)) == TRUE) {
+				
+
+				
+Fix(SDR): Fix redundant GPU Power Consumption sensor
+
+Casue:
+    GPU Power Consumption sensor is not removed when GPU card unpluged
+    and the sensor is added again after GPU card is pluged back
+Solution:
+    Filter GPU Power Consumption sensor when it's not presented
+
+Impact MB:
+    All MBs with HAS_NVDA_OEM flag
+Validation:
+    Unplug and plug GPU card and check sensor list
+
+

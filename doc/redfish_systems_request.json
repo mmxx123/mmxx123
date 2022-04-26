@@ -1,0 +1,2082 @@
+{
+  "version": 6,
+  "entities": [
+    {
+      "entity": {
+        "type": "Project",
+        "description": "",
+        "id": "38efad06-cb8a-4ac6-966e-0ade5223331e",
+        "name": "redfish/Systems"
+      },
+      "children": [
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.181.90.61",
+              "path": "/redfish/v1/Systems/1/Bios/"
+            },
+            "id": "7fbfb21d-8beb-426a-bb18-24a044ad3871",
+            "name": "Bios",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc5789",
+              "name": "PATCH"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\"Attributes\":{\"NUMANodesPerSocket\":\"NPS1\"}}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.181.90.61",
+              "path": "/redfish/v1/Systems/1/Bios"
+            },
+            "id": "9121b8b3-5a6d-4714-be81-5832b8cd4dfb",
+            "name": "Bios PATCH",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc5789",
+              "name": "PATCH"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\"Attributes\":{\"BootModeSelect\":\"Dual\"}}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.4.122",
+              "path": "/redfish/v1/Systems/1/Bios"
+            },
+            "id": "847d513b-797f-421c-9a1a-520e065ac452",
+            "name": "Bios patch",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.181.90.61",
+              "path": "/redfish/v1/Systems/1/Bios/SD"
+            },
+            "id": "867d908b-88f0-4c4b-a731-88c46c386480",
+            "name": "Bios/SD",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.3.59",
+              "path": "/registries/BiosAttributeRegistry.1.0.0.json"
+            },
+            "id": "5f013d77-9452-43e8-aa54-3ca60f3d32f5",
+            "name": "BiosAttributeRegistry",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.181.90.103",
+              "path": "/redfish/v1/Systems/BlueField2/Bios/Pending"
+            },
+            "id": "a20f70f4-13cd-4dbe-bd5d-bca36f5f7c60",
+            "name": "BlueField 2 Bios",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc5789",
+              "name": "PATCH"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\"Attributes\":\n{\"SPCR UART\":\"Disabled\",\n \"Enable SMMU\": false,\n \"Disable SPMI\": true, \"Enable 2nd eMMC\": false,\n \"Boot Partition Protection\": true,\n \"Disable PCIe\": false, \"Enable OP-TEE\": true,\n \"Disable TMFF\": false, \"Reset EFI Variables\": true,\n \"Reset MFG Info\": false\n}}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.181.90.103",
+              "path": "/redfish/v1/Systems/BlueField2/Bios/Pending"
+            },
+            "id": "43898120-ba4c-4225-833c-d1dad221d13b",
+            "name": "BlueField 2 Bios PATCH",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.3.59",
+              "path": "/redfish/v1/Systems/BlueField2/SecureBoot/Pending"
+            },
+            "id": "ba156d66-8c33-451f-a8a7-865834ba2163",
+            "name": "BlueField 2 SecureBoot",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc5789",
+              "name": "PATCH"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\"SecureBootEnable\": true}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.3.59",
+              "path": "/redfish/v1/Systems/BlueField2/SecureBoot/Pending"
+            },
+            "id": "e1be69e5-c0c8-4e37-a92f-16cfa0fc103a",
+            "name": "BlueField 2 SecureBoot PATCH",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.181.90.103",
+              "path": "/redfish/v1/Systems/BlueField2/Bios"
+            },
+            "id": "c13b0a5e-10bf-42e5-9701-aacad71a88f8",
+            "name": "BlueField 3 Bios",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc5789",
+              "name": "PATCH"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\"Attributes\":\n{\"SPCR UART\":\"Disabled\",\n \"Enable SMMU\": false,\n \"Disable SPMI\": true, \"Enable 2nd eMMC\": false,\n \"Boot Partition Protection\": true,\n \"Disable PCIe\": false, \"Enable OP-TEE\": true,\n \"Disable TMFF\": false, \"Reset EFI Variables\": true,\n \"Reset MFG Info\": false\n}}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.4.122",
+              "path": "/redfish/v1/Systems/BlueField2/Bios"
+            },
+            "id": "ddc81c99-acd3-4fee-8946-854017aee03b",
+            "name": "BlueField 3 Bios PATCH",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.3.59",
+              "path": "/redfish/v1/Systems/BlueField2/SecureBoot"
+            },
+            "id": "e5947009-99ab-4c1b-a37f-63b3ffe5a9a9",
+            "name": "BlueField 3 SecureBoot",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc5789",
+              "name": "PATCH"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\"SecureBootEnable\": true}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.3.59",
+              "path": "/redfish/v1/Systems/BlueField2/SecureBoot"
+            },
+            "id": "71027110-aa3a-4b4b-8269-0f1f19c671b4",
+            "name": "BlueField 3 SecureBoot PATCH",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\"BiosPendingAction\":\n {\"ChangePassword\": \"on\",\n  \"PasswordName\":\"AdministratorPassword\",\n  \"OldPassword\":\"123qwe\",\n  \"NewPassword\":\"1QAZ2WSX\"\n }}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.3.59",
+              "path": "/redfish/v1/Systems/BlueField2/Bios/Actions/Pending/Bios.ChangePassword"
+            },
+            "id": "13194791-dc56-43fa-bcc2-41d8d9755243",
+            "name": "BlueField Bios ChangePassword",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": ""
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.3.59",
+              "path": "/redfish/v1/Systems/BlueField2/Bios/Actions/Pending/Bios.ResetBios"
+            },
+            "id": "af77a452-625a-47e2-91d9-93c02c52013c",
+            "name": "BlueField Bios Reset",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.3.59",
+              "path": "/redfish/v1/Systems/BlueField2/Actions/BlueField.CleanData"
+            },
+            "id": "e5a7c3af-eb08-477b-8821-c839e322a992",
+            "name": "BlueField Clean Current",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.3.59",
+              "path": "/redfish/v1/Systems/BlueField2/Actions/Pending/BlueField.CleanData"
+            },
+            "id": "9653203d-b03c-4983-bb42-c7cf38dfe94f",
+            "name": "BlueField Clean Pending",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.4.122",
+              "path": "/redfish/v1/Systems/1/Memory/1"
+            },
+            "id": "f507bbd8-3e50-4c66-bb35-2e6bed4b3266",
+            "name": "BlueField Memory",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\"ResetType\": \"Mode1\"}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.181.90.103",
+              "path": "/redfish/v1/Systems/BlueField2/Actions/Pending/ComputerSystem.Reset"
+            },
+            "id": "291fcce5-01ff-4363-9f78-79f069df307c",
+            "name": "BlueField System Reset",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.3.59",
+              "path": "/redfish/v1/Systems/BlueField2/ResetActionInfo"
+            },
+            "id": "9b36ec67-989c-4f08-b420-35b422b17fdd",
+            "name": "BlueField Systems ResetActionInfo",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.181.90.103",
+              "path": "/redfish/v1/Systems/BlueField2/Pending"
+            },
+            "id": "94a68314-8186-48d8-bcbb-24639310c4c5",
+            "name": "BlueField Systems/2",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc5789",
+              "name": "PATCH"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\"Boot\": {\n\"AutomaticRetryAttempts\":1,\n\"AutomaticRetryConfig\": \"Enabled\",\n\"BootSourceOverrideEnabled\":\"Once\",\n\"BootSourceOverrideMode\":\"UEFI\",\n\"BootSourceOverrideTarget\": \"UefiBootNext\",\n\"BootNext\": \"Boot0001\",\n\"BootOrder\":[\"Boot0000\", \"Boot0001\", \"Boot0002\", \"Boot0003\"]\n}}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.181.90.103",
+              "path": "/redfish/v1/Systems/BlueField2/Pending"
+            },
+            "id": "b22de153-cdbe-47e8-ab87-b5354fde993c",
+            "name": "BlueField Systems/2 PATCH",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.181.90.103",
+              "path": "/redfish/v1/Systems/BlueField2"
+            },
+            "id": "3e455637-f83e-4460-b692-6585b260dbc2",
+            "name": "BlueField Systems/3",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc5789",
+              "name": "PATCH"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\"Boot\": {\n\"AutomaticRetryAttempts\":1,\n\"AutomaticRetryConfig\": \"Enabled\",\n\"BootSourceOverrideEnabled\":\"Once\",\n\"BootSourceOverrideMode\":\"UEFI\",\n\"BootSourceOverrideTarget\": \"UefiBootNext\",\n\"BootNext\": \"Boot0001\",\n\"BootOrder\":[\"Boot0000\", \"Boot0001\", \"Boot0002\", \"Boot0003\"]\n},\n\"BlueFieldFirmwareInventory\": {\n\"FirmwareVersion\":\"0.00.03\",\n\"SoftwareVersion\":\"1.02.11\"\n}}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.3.59",
+              "path": "/redfish/v1/Systems/BlueField2"
+            },
+            "id": "8baed107-21ca-47bb-8c80-b3010a9ea2f6",
+            "name": "BlueField Systems/3 PATCH 1",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc5789",
+              "name": "PATCH"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\"BlueFieldFirmwareInventory\": {\n\"FirmwareVersion\":\"0.00.03\",\n\"SoftwareVersion\":\"1.02.11\"\n}}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.3.59",
+              "path": "/redfish/v1/Systems/BlueField2"
+            },
+            "id": "edfc3a05-dc7e-4adb-b62b-dac9394adaa3",
+            "name": "BlueField Systems/3 PATCH 2",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\"QuietBoot\":false}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.3.59",
+              "path": "/redfish/v1/Systems/BlueField2/BootOptions/Pending"
+            },
+            "id": "a996f136-536d-42cb-a955-a59bdb8fd869",
+            "name": "BlueFiled 2 BootOptions",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc5789",
+              "name": "PATCH"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\"BootOptionEnabled\":true}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.3.59",
+              "path": "/redfish/v1/Systems/BlueField2/BootOptions/HTTP2/Pending"
+            },
+            "id": "9e056d4f-9c28-4c89-a594-4c1e9c4778cb",
+            "name": "BlueFiled 2 BootOptions PATCH",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\"QuietBoot\":false}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.3.59",
+              "path": "/redfish/v1/Systems/BlueField2/BootOptions/"
+            },
+            "id": "1619c9d8-fd5e-47fc-93dc-cec96bbae960",
+            "name": "BlueFiled 3 BootOptions",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc5789",
+              "name": "PATCH"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\"BootOptionEnabled\":true}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.3.59",
+              "path": "/redfish/v1/Systems/BlueField2/BootOptions/PXE1"
+            },
+            "id": "a36ff932-38a5-49cf-8775-1d78c45eff17",
+            "name": "BlueFiled 3 BootOptions PATCH",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": ""
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.4.122",
+              "path": "/redfish/v1/Systems/1/BootOptions/"
+            },
+            "id": "6d1bd0fc-b0fa-47ed-bc95-c0be1cf2552d",
+            "name": "BootOptions",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc5789",
+              "name": "PATCH"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\"BootOptionEnabled\":false}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.4.122",
+              "path": "/redfish/v1/Systems/1/BootOptions/Boot0002"
+            },
+            "id": "8a8f7ce7-3204-4d13-9ee3-a99ab1615bee",
+            "name": "BootOptions patch",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.4.122",
+              "path": "/redfish/v1/Systems/1/EthernetInterfaces/"
+            },
+            "id": "f245634b-a8ec-4125-a360-31880f3bb67b",
+            "name": "EthernetInterface",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.161.48.90",
+              "path": "/redfish/v1/Systems/1/Bios"
+            },
+            "id": "bfb63f1a-ab11-4897-9eb2-d1207d3e6a7c",
+            "name": "LogServices",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.161.48.90",
+              "path": "/redfish/v1/Systems/1/LogServices/Log1"
+            },
+            "id": "34717846-d12b-4c49-931e-f3acc2df7914",
+            "name": "LogServices/Log1/Entries",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.161.48.23",
+              "path": "/redfish/v1/Systems/1/Memory/GPU5/"
+            },
+            "id": "decd2eb8-2c8c-4866-95e6-1c6cc6c12ee2",
+            "name": "Memory",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.161.48.127",
+              "path": "/redfish/v1/Systems/1/Memory/1/MemoryMetrics"
+            },
+            "id": "a53cfd82-7975-456e-8c49-877d257f0d4f",
+            "name": "Memory/1/MemoryMetrics",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.161.48.127",
+              "path": "/redfish/v1/Systems/1/MemorySummary/MemoryMetrics"
+            },
+            "id": "746623e9-0f00-4c6a-a82d-798325ab7a9f",
+            "name": "MemorySummary/MemoryMetrics",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "172.30.132.58",
+              "path": "/redfish/v1/Systems/1/ProcessorSummary/ProcessorMetrics"
+            },
+            "id": "9cb1a566-de78-437a-a23a-2093f957a6ba",
+            "name": "ProcessorSummary/ProcessorMetrics",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.161.48.23",
+              "path": "/redfish/v1/Systems/1/Processors/1"
+            },
+            "id": "2911191b-ab53-472c-800e-66c4eb0eee57",
+            "name": "Processors",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.161.48.95",
+              "path": "/redfish/v1/Systems/1/SecureBoot/"
+            },
+            "id": "b3115744-6bab-4220-94df-425fddd7635d",
+            "name": "SecureBoot",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc5789",
+              "name": "PATCH"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\"SecureBootEnable\": true}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.161.48.95",
+              "path": "/redfish/v1/Systems/1/SecureBoot"
+            },
+            "id": "ada2f734-dbcf-4a78-adda-f884a6999936",
+            "name": "SecureBoot PATCH",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.181.90.214",
+              "path": "/redfish/v1/Systems/1/Storage/"
+            },
+            "id": "f67e5a3f-ea84-4137-b73f-a3b50ab53a78",
+            "name": "Storage",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "fragment": "/StorageControllers/0",
+              "host": "172.30.132.58",
+              "path": "/redfish/v1/Systems/1/Storage/NVMeSSD"
+            },
+            "id": "d4db1345-23c6-419c-81c9-3975fe9aa908",
+            "name": "Storage/NVMeSSD#/StorageControllers/0",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\"ResetType\": \"ForceRestart\"}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.181.90.61",
+              "path": "/redfish/v1/Systems/1/Actions/ComputerSystem.Reset"
+            },
+            "id": "3a7e1025-ebf0-4c6e-a9f1-6dfab20c26c1",
+            "name": "Systems Reset",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.4.122",
+              "path": "/redfish/v1/Systems/1/ResetActionInfo"
+            },
+            "id": "41f3b6c6-6003-4923-afad-47090cffb35a",
+            "name": "Systems ResetActionInfo",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.181.90.103",
+              "path": "/redfish/v1/Systems/1/"
+            },
+            "id": "436a2eef-b5a2-42b6-bd92-9ca6c330f88b",
+            "name": "Systems/1",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc5789",
+              "name": "PATCH"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\"BootOptionEnabled\":true}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.4.122",
+              "path": "/redfish/v1/Systems/1/BootOptions/Boot0001"
+            },
+            "id": "aaaeae9a-1637-40a4-a6fa-325b1c0bdc60",
+            "name": "Systems/1 BootOptions PATCH",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc5789",
+              "name": "PATCH"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\"Boot\": {\n\"BootSourceOverrideEnabled\":\"Once\",\n\"BootSourceOverrideMode\":\"Legacy\",\n\"BootSourceOverrideTarget\": \"UefiBootNext\",\n\"BootNext\": \"Boot0001\",\n\"BootOrder\":[\"Boot0001\", \"Boot0002\", \"Boot0003\", \"Boot0004\", \"Boot0005\"]\n}}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.181.90.214",
+              "path": "/redfish/v1/Systems/1"
+            },
+            "id": "a3b820aa-b339-4d4b-90e6-f6bce0281ae9",
+            "name": "Systems/1 PATCH",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc5789",
+              "name": "PATCH"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{ \n  \"FrontPanelLED\": {\n    \"LEDOperationMode\":\"Manual\",\n    \"OvertheatLED\": \"on\",\n    \"FanFailLED\": \"off\",\n\t\"PowerFailLED\": \"on\",\n\t\"UIDLED\": \"off\"\n}}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.4.122",
+              "path": "/redfish/v1/Systems/1"
+            },
+            "id": "9c6463d7-3390-4b81-99d6-ab4e37b54385",
+            "name": "Systems/1 PATCH LED",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1395 @@
+{
+  "version": 6,
+  "entities": [
+    {
+      "entity": {
+        "type": "Project",
+        "description": "",
+        "id": "42b0ae3a-0ff5-4e86-9810-0ad6f54d5d8e",
+        "name": "redfish/UpdateService"
+      },
+      "children": [
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.2.51",
+              "path": "/redfish/v1/UpdateService/Oem/Supermicro/FirmwareSecurity/AOC2_NCSI"
+            },
+            "id": "50988e13-1a13-4e91-a6a5-e5b3ac684372",
+            "name": "AOC2_NCSI",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.2.51",
+              "path": "/redfish/v1/UpdateService/FirmwareInventory/"
+            },
+            "description": "",
+            "id": "0c100805-a282-4860-9528-7859f32eb942",
+            "name": "Firmwareinventory",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "multipart/form-data",
+                "items": [
+                  {
+                    "enabled": true,
+                    "type": "File",
+                    "name": "ipmi_config_file"
+                  },
+                  {
+                    "type": "Text",
+                    "name": "UpdateParameters",
+                    "value": "{\"Targets\": [\"/redfish/v1/Managers/1\"],\"@Redfish.OperationApplyTime\": \"Immediate\",\"Oem\": {} }"
+                  }
+                ]
+              },
+              "bodyType": "Form"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.2.51",
+              "path": "/redfish/v1/UpdateService/Oem/Supermicro/IPMIConfig/Actions/SmcIPMIConfig.Upload"
+            },
+            "id": "0c754816-9714-4551-a59e-6e328e3dba34",
+            "name": "IPMIConfig upload",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ],
+            "assertions": [
+              {
+                "comparison": "Matches",
+                "subject": "ResponseStatus",
+                "path": "code",
+                "value": "/^0[0-9]{2}$/g"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "multipart/form-data",
+                "items": [
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "UpdateFile",
+                    "value": ""
+                  },
+                  {
+                    "type": "Text",
+                    "name": "UpdateParameters",
+                    "value": "{\"Targets\": [\"/redfish/v1/Managers/1\"],\"@Redfish.OperationApplyTime\": \"Immediate\",\"Oem\": {} }"
+                  }
+                ]
+              },
+              "bodyType": "Form"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.2.51",
+              "path": "/redfish/v1/UpdateService/Oem/Supermicro/IPMIConfig/Actions/SmcIPMIConfig.Download"
+            },
+            "id": "9ac2702f-5aba-4bee-af21-0fe62028293f",
+            "name": "IPMIConfig_save",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ],
+            "assertions": [
+              {
+                "comparison": "Matches",
+                "subject": "ResponseStatus",
+                "path": "code",
+                "value": "/^0[0-9]{2}$/g"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "multipart/form-data",
+                "items": []
+              },
+              "bodyType": "Form"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.161.48.95",
+              "path": "/redfish/v1/UpdateService/Oem/Supermicro/FirmwareSecurity/OTPData/Actions/SmcOTPData.Download"
+            },
+            "id": "ddcf283d-fba5-4ae7-89c6-247e871a1da5",
+            "name": "OTPData_save",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              }
+            },
+            "id": "909ae5c8-99ef-4211-85ee-d973aceb441e",
+            "name": "Request 27",
+            "headers": []
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.2.51",
+              "path": "/redfish/v1/UpdateService/Oem/Supermicro/FirmwareInventory"
+            },
+            "description": "",
+            "id": "8bde121c-e04a-4678-90b1-e381c97eb74d",
+            "name": "SMCFirmwareInventory",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.2.51",
+              "path": "/redfish/v1/UpdateService/Oem/Supermicro/FirmwareSecurity"
+            },
+            "id": "cffdffc2-08d4-4d4e-bf28-612a7dfb9c10",
+            "name": "SMC_firmwareSecurity",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": [
+                  {
+                    "type": "Text",
+                    "name": "",
+                    "value": ""
+                  }
+                ]
+              },
+              "bodyType": "Text",
+              "textBody": "{ \"ImageURI\": \"192.168.0.10/signed_AST2600_4675.bin\",\n \"Username\":\"harvey\",\n \"Password\":\"test1234\",\n\"TransferProtocol\": \"HTTP\",\n\"Targets\": [\"/redfish/v1/Managers/1\"]\n}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.2.51",
+              "path": "/redfish/v1/UpdateService/Actions/UpdateService.SimpleUpdate"
+            },
+            "id": "f9748a27-84db-4347-b2c8-5928564a881a",
+            "name": "SimpleUpdate",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": [
+                  {
+                    "type": "Text",
+                    "name": "",
+                    "value": ""
+                  }
+                ]
+              },
+              "bodyType": "Text",
+              "textBody": "{ \"ImageURI\": \"10.181.90.178/BIOS_H12SSG-AN6_20210827.bin\",\n \"Username\":\"harvey\",\n \"Password\":\"test1234\",\n\"TransferProtocol\": \"HTTP\",\n\"Targets\": [\"/redfish/v1/Systems/1\"]\n}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.2.51",
+              "path": "/redfish/v1/UpdateService/Actions/UpdateService.SimpleUpdate"
+            },
+            "id": "2f9b443c-07fc-4514-8de4-9de52258c971",
+            "name": "SimpleUpdate BIOS",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "multipart/form-data",
+                "items": []
+              },
+              "bodyType": "Form"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.2.51",
+              "path": "/redfish/v1/UpdateService/Oem/Supermicro/FirmwareSecurity/MultiLogs/Actions/SmcAllPostCode.Download"
+            },
+            "id": "ec69f8af-70bf-4035-8576-0fa51416b7ec",
+            "name": "SmcAllPostCode.Download",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.2.51",
+              "path": "/redfish/v1/UpdateService/Oem/Supermicro/FirmwareInventory/BMC"
+            },
+            "id": "e4e61311-7062-4567-a48c-8f84d88326d8",
+            "name": "SmcFirmwareInventory",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.2.51",
+              "path": "/redfish/v1/UpdateService/Oem/Supermicro/FirmwareInventory/BMC/Actions/SmcFirmwareInventory.Cancel"
+            },
+            "id": "df044a16-938e-4b3a-bb89-0e84a5650b8d",
+            "name": "SmcFirmwareInventory.Cancel",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.2.51",
+              "path": "/redfish/v1/UpdateService/Oem/Supermicro/FirmwareInventory/BIOS/Actions/SmcFirmwareInventory.Cancel"
+            },
+            "id": "e7b322ad-5ada-4082-9ecc-1dab6b7e954e",
+            "name": "SmcFirmwareInventory.Cancel BIOS",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.2.51",
+              "path": "/redfish/v1/UpdateService/Oem/Supermicro/FirmwareInventory/BMC/Actions/SmcFirmwareInventory.EnterUpdateMode"
+            },
+            "id": "6ac336c1-926a-42f6-b190-eacdeee6f5f1",
+            "name": "SmcFirmwareInventory.EnterUpdateMode",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.2.51",
+              "path": "/redfish/v1/UpdateService/Oem/Supermicro/FirmwareInventory/BIOS/Actions/SmcFirmwareInventory.EnterUpdateMode"
+            },
+            "id": "a6827af6-b7df-43e6-832a-3d050b1df632",
+            "name": "SmcFirmwareInventory.EnterUpdateMode BIOS",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "multipart/form-data",
+                "items": [
+                  {
+                    "type": "File",
+                    "name": "UpdateFile"
+                  }
+                ]
+              },
+              "bodyType": "Form"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.2.51",
+              "path": "/redfish/v1/UpdateService/Oem/Supermicro/FirmwareInventory/BMC/Actions/SmcFirmwareInventory.Update"
+            },
+            "id": "6fdb8086-8404-49d9-ab47-905c12095119",
+            "name": "SmcFirmwareInventory.Update",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "multipart/form-data",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\"PreserveME\": false, \"PreserveNVRAM\": false, \"PreserveSMBIOS\": false, \"PreserveBIOSATT\": true}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.2.51",
+              "path": "/redfish/v1/UpdateService/Oem/Supermicro/FirmwareInventory/BIOS/Actions/SmcFirmwareInventory.Update"
+            },
+            "id": "284351cd-e098-4c25-b1f6-f435be0d2a3c",
+            "name": "SmcFirmwareInventory.Update BIOS",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "multipart/form-data",
+                "items": []
+              },
+              "bodyType": "Form"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.2.51",
+              "path": "/redfish/v1/UpdateService/Oem/Supermicro/FirmwareInventory/BMC/Actions/SmcFirmwareInventory.Upload"
+            },
+            "id": "d8e06d48-176c-4230-9c65-1c718c50d086",
+            "name": "SmcFirmwareInventory.Upload",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "multipart/form-data",
+                "items": [
+                  {
+                    "enabled": true,
+                    "type": "File",
+                    "name": "UpdateFile"
+                  }
+                ]
+              },
+              "bodyType": "Form"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.2.51",
+              "path": "/redfish/v1/UpdateService/Oem/Supermicro/FirmwareInventory/BIOS/Actions/SmcFirmwareInventory.Upload"
+            },
+            "id": "2aac6e40-8b5f-4cce-a3d4-7810231b6546",
+            "name": "SmcFirmwareInventory.Upload BIOS",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "multipart/form-data",
+                "items": []
+              },
+              "bodyType": "Form"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.2.51",
+              "path": "/redfish/v1/UpdateService/Oem/Supermicro/FirmwareSecurity/MultiLogs/Actions/SmcMultiLogs.Download"
+            },
+            "id": "7406d4de-cb35-46dc-a3ac-c4813ad2e45e",
+            "name": "SmcMultiLogs.Download",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.2.51",
+              "path": "/redfish/v1/TaskMonitor/fa37JncCHryDsbzayy4cBWDxS22Jjzh"
+            },
+            "id": "6f6a0517-2f73-4b93-8ee1-d5a57cfee38c",
+            "name": "TaskMonitor",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.2.51",
+              "path": "/redfish/v1/TaskService/Tasks/"
+            },
+            "id": "83d8e5f8-1aae-4cf0-a40f-47e714a77d98",
+            "name": "TaskService/Tasks/",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.2.51",
+              "path": "/redfish/v1/UpdateService"
+            },
+            "id": "c09af3e2-fa32-4e5e-8b07-82abca941c2a",
+            "name": "UpdateService",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "multipart/form-data",
+                "items": []
+              },
+              "bodyType": "Form"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.181.90.103",
+              "path": "/redfish/v1/UpdateService/Oem/Supermicro//FirmwareSecurity/MultiLogs"
+            },
+            "id": "849dfc1f-5fd6-41ac-9fbb-ca00c81a7053",
+            "name": "smcMultiLogs",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "multipart/form-data",
+                "items": []
+              },
+              "bodyType": "Form"
+            },
+            "uri": {
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.181.90.103",
+              "path": "/redfish/v1/UpdateService/Oem/Supermicro//FirmwareSecurity/MultiLogs/Actions/SmcMultiLogs.Download"
+            },
+            "id": "2b0d8c4b-bdd4-4f23-97c2-aca4f0c6bec5",
+            "name": "smcMultiLogs.Download",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "multipart/form-data",
+                "items": [
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "UpdateParameters",
+                    "value": "{\"Targets\": [\"/redfish/v1/Systems/1/Bios\"],\"@Redfish.OperationApplyTime\": \"Immediate\", \"Oem\": { \"Supermicro\": { \"BIOS\": { \"PreserveME\": false, \"PreserveNVRAM\": false, \"PreserveSMBIOS\": false, \"BackupBIOS\": false, \"PreserveBIOSATT\": true}}}}"
+                  },
+                  {
+                    "enabled": true,
+                    "type": "File",
+                    "name": "UpdateFile"
+                  }
+                ]
+              },
+              "bodyType": "Form"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.2.51",
+              "path": "/redfish/v1/UpdateService/upload"
+            },
+            "id": "5121f4e2-9b7d-46c8-ba68-117c421cfabc",
+            "name": "upload BIOS",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "multipart/form-data",
+                "items": [
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "UpdateParameters",
+                    "value": "{\"Targets\": [\"/redfish/v1/Managers/1\"],\"@Redfish.OperationApplyTime\": \"OnStartUpdateRequest\",\"Oem\": {\"Supermicro\": { \"BMC\": {\"PreserveCfg\":true, \"PreserveSdr\":true, \"PreserveSsl\":true, \"BackupBmc\": true} }"
+                  },
+                  {
+                    "enabled": true,
+                    "type": "File",
+                    "name": "UpdateFile"
+                  }
+                ]
+              },
+              "bodyType": "Form"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.184.2.51",
+              "path": "/redfish/v1/UpdateService/upload"
+            },
+            "id": "6e312f8f-432c-4e01-8b5f-f4df4a28221d",
+            "name": "upload BMC",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "multipart/form-data",
+                "items": [
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "UpdateParameters",
+                    "value": "{“Targets”:[ /redfish/v1/UpdateService/FirmwareInventory/CPLD_Backplane_0”],”@Redfish.OperationApplyTime”:”Immediate”} "
+                  },
+                  {
+                    "enabled": true,
+                    "type": "File",
+                    "name": "UpdateFile"
+                  }
+                ]
+              },
+              "bodyType": "Form"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.163.49.51",
+              "path": "/redfish/v1/UpdateService/upload"
+            },
+            "id": "beeff7d0-7864-4f2c-bb22-4dbc3c916423",
+            "name": "upload CPLD_Backplane_0",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "multipart/form-data",
+                "items": [
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "UpdateParameters",
+                    "value": "{“Targets”:[ /redfish/v1/UpdateService/FirmwareInventory/CPLD_Midplane_0”],”@Redfish.OperationApplyTime”:”Immediate”} "
+                  }
+                ]
+              },
+              "bodyType": "Form"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "10.181.90.103",
+              "path": "/redfish/v1/UpdateService/upload"
+            },
+            "id": "ab34e4ec-8a44-4a2d-bee9-8333a1f58787",
+            "name": "upload CPLD_Midplane_0",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Basic QURNSU46QURNSU4="
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

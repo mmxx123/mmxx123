@@ -1,0 +1,122 @@
+00:00.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1480
+00:00.2 IOMMU: Advanced Micro Devices, Inc. [AMD] Device 1481
+00:01.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+00:02.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+00:03.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+00:03.1 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1483
+00:03.2 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1483
+00:03.3 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1483
+00:03.4 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1483
+00:04.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+00:05.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+00:07.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+00:07.1 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1484
+00:08.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+00:08.1 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1484
+00:14.0 SMBus: Advanced Micro Devices, Inc. [AMD] FCH SMBus Controller (rev 61)
+00:14.3 ISA bridge: Advanced Micro Devices, Inc. [AMD] FCH LPC Bridge (rev 51)
+00:18.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1490
+00:18.1 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1491
+00:18.2 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1492
+00:18.3 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1493
+00:18.4 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1494
+00:18.5 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1495
+00:18.6 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1496
+00:18.7 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1497
+05:00.0 Non-Essential Instrumentation [1300]: Advanced Micro Devices, Inc. [AMD] Device 148a
+05:00.2 Encryption controller: Advanced Micro Devices, Inc. [AMD] Device 1498
+06:00.0 Non-Essential Instrumentation [1300]: Advanced Micro Devices, Inc. [AMD] Device 1485
+06:00.2 Encryption controller: Advanced Micro Devices, Inc. [AMD] Device 1498
+06:00.3 USB controller: Advanced Micro Devices, Inc. [AMD] Device 148c
+40:00.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1480
+40:00.2 IOMMU: Advanced Micro Devices, Inc. [AMD] Device 1481
+40:01.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+40:01.1 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1483
+40:01.2 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1483
+40:01.3 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1483
+40:01.4 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1483
+40:02.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+40:03.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+40:04.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+40:05.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+40:07.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+40:07.1 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1484
+40:08.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+40:08.1 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1484
+40:08.2 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1484
+40:08.3 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1484
+45:00.0 Non-Essential Instrumentation [1300]: Advanced Micro Devices, Inc. [AMD] Device 148a
+45:00.2 Encryption controller: Advanced Micro Devices, Inc. [AMD] Device 1498
+46:00.0 Non-Essential Instrumentation [1300]: Advanced Micro Devices, Inc. [AMD] Device 1485
+46:00.1 Encryption controller: Advanced Micro Devices, Inc. [AMD] Device 1486
+46:00.2 Encryption controller: Advanced Micro Devices, Inc. [AMD] Device 1498
+46:00.3 USB controller: Advanced Micro Devices, Inc. [AMD] Device 148c
+47:00.0 SATA controller: Advanced Micro Devices, Inc. [AMD] FCH SATA Controller [AHCI mode] (rev 51)
+48:00.0 SATA controller: Advanced Micro Devices, Inc. [AMD] FCH SATA Controller [AHCI mode] (rev 51)
+80:00.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1480
+80:00.2 IOMMU: Advanced Micro Devices, Inc. [AMD] Device 1481
+80:01.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+80:02.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+80:03.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+80:03.1 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1483
+80:03.2 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1483
+80:03.3 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1483
+80:03.4 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1483
+80:04.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+80:05.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+80:07.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+80:07.1 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1484
+80:08.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+80:08.1 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1484
+80:08.2 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1484
+80:08.3 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1484
+85:00.0 Non-Essential Instrumentation [1300]: Advanced Micro Devices, Inc. [AMD] Device 148a
+85:00.2 Encryption controller: Advanced Micro Devices, Inc. [AMD] Device 1498
+86:00.0 Non-Essential Instrumentation [1300]: Advanced Micro Devices, Inc. [AMD] Device 1485
+86:00.2 Encryption controller: Advanced Micro Devices, Inc. [AMD] Device 1498
+87:00.0 SATA controller: Advanced Micro Devices, Inc. [AMD] FCH SATA Controller [AHCI mode] (rev 51)
+88:00.0 SATA controller: Advanced Micro Devices, Inc. [AMD] FCH SATA Controller [AHCI mode] (rev 51)
+c0:00.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1480
+c0:00.2 IOMMU: Advanced Micro Devices, Inc. [AMD] Device 1481
+c0:01.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+c0:01.1 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1483
+c0:01.2 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1483
+c0:01.3 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1483
+c0:01.4 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1483
+c0:02.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+c0:03.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+c0:03.3 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1483
+c0:04.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+c0:05.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+c0:05.1 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1483
+c0:05.2 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1483
+c0:07.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+c0:07.1 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1484
+c0:08.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Device 1482
+c0:08.1 PCI bridge: Advanced Micro Devices, Inc. [AMD] Device 1484
+c5:00.0 Non-Volatile memory controller: Micron Technology Inc Device 51a2 (rev 01)
+c6:00.0 USB controller: Renesas Technology Corp. uPD720202 USB 3.0 Host Controller (rev 02)
+c7:00.0 PCI bridge: ASPEED Technology, Inc. AST1150 PCI-to-PCI Bridge (rev 05)
+c8:00.0 VGA compatible controller: ASPEED Technology, Inc. ASPEED Graphics Family (rev 51)
+c9:00.0 Non-Essential Instrumentation [1300]: Advanced Micro Devices, Inc. [AMD] Device 148a
+c9:00.2 Encryption controller: Advanced Micro Devices, Inc. [AMD] Device 1498
+ca:00.0 Non-Essential Instrumentation [1300]: Advanced Micro Devices, Inc. [AMD] Device 1485
+ca:00.2 Encryption controller: Advanced Micro Devices, Inc. [AMD] Device 1498
+
+St_RiserType *riser = NULL;
+     St_PcieCard  *card  = NULL;
+     St_PcieChip  *chip  = NULL;
+
+EACH_PCIE_LOCATION (riser) {
+¦   EACH_PCIE_CARD_ON_LOCATION (card, riser) {
+¦   ¦   EACH_PCIE_CHIP_ON_CARD (chip, card) {
+¦   ¦   ¦   ipmi_log ("---mxdbg vid/did/bus/dev/func = 0x%02x/0x%02x/0x%02x/0x%02x/0x%02x\n", \
+¦   ¦   ¦   ¦   ¦   chip->id.vendor_id, chip->id.device_id, chip->addr.bus, chip->addr.dev, chip->addr.fun);
+¦   ¦   ¦   if ((chip->id.vendor_id == 0x15b3) || (chip->id.device_id == 0xa2d6)) {
+¦   ¦   ¦   ¦   ipmi_log ("---mxdbg bus/dev/func = 0x%02x/0x%02x/0x%02x\n", chip->addr.bus, chip->addr.dev, chip->addr.fun);
+¦   ¦   ¦   }
+¦   ¦   }
+¦   }
+}
+
+

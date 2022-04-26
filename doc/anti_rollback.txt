@@ -1,0 +1,113 @@
+AI>>
+rollback protection
+rollback id = ?		=> ANTI_ROLLBACK_VERSION
+free version = ?	
+how to set it ?
+does it affect golden image ?
+
+
+check_fw_tag >> PltAntiRollBackCheck(src, size) >> // For bmc image only 
+PltAntiRollBackCheck >> antiRBID = (tmpBuf[CPLDROT_TBL_OFFSET+8] << 8) | tmpBuf[CPLDROT_TBL_OFFSET+9];
+= *(0x00100008) << 8 = 01 | *(0x00100009) << 9 = 00
+antiRBID = 01	--> who set this value??
+
+PltSPICPLD_SetUFMAntiRBID(int biosBmc, uint16_t ver)	>>	at_b_CPLDROT_UFM_antiRBID_bmc = ver;
+
+
+update log>>
+[FC99] bmcStg_antiRBID=1, ufm_antiRBID=1
+	if (antiRBID < at_b_CPLDROT_UFM_antiRBID_bmc) return -1;
+	else if (antiRBID > at_b_CPLDROT_UFM_antiRBID_bmc) return ROLL_FORWARD_TRUE;
+	else return 0;	--> no function;current status
+
+[FC99] latched UFM_antiRBID_bmc=1
+	UtilCPLDROT_start()	
+		PltSPICPLD_ReadAntiRBID("all_part", 0, &bmc0AntiRBID)
+
+
+
+PltSPICPLD_SetUFMAntiRBID(int biosBmc, uint16_t ver)	>>	at_b_CPLDROT_UFM_antiRBID_bmc = ver;
+// cmd MSB LSB
+num = sscanf(line, "%x %x %x", &cmd, &para1, &para2);......... to be continued
+
+
+Project_File/AST2600/flash_layout_rot_with_spl_64M.config>>
+#anti-rollback version. value range [0x01 ~ 0xfe]
+ANTI_ROLLBACK_VERSION = 0x01
+-DANTI_ROLLBACK_VERSION=$(ANTI_ROLLBACK_VERSION) \
+export ANTI_ROLLBACK_VERSION
+
+
+//0x30 0x68 0x2a
+CMD_STATUS OEMGetUFMAntiRBID(MsgBufFmt *p_St_MsgBufIn,
+                             MsgBufFmt *p_St_MsgBufOut)
+at_b_CPLDROT_UFM_antiRBID_bmc = 00 01
+
+
+//0x30 0x70 0xdb 0x01 Data0 	Data1 	Data2 	Data3
+//                    0x0C    	sel             	     Get illegal roll back version; sel=0 for BMC; sel=1 for BIOS
+//                    0x0D    	sel  	verH 	verL     Set illegal roll back version; sel=0 for BMC; sel=1 for BIOS
+
+
+
+
+#
+#CPLD RoT Signature table, Protection Map
+#
+CPLDROT_TBL_OFFSET              = 0x00100000
+CPLDROT_TBL_SIGN_SIZE           = 0x00020000
+CPLDROT_TBL_PROT_SIZE           = 0x00030000
+CPLDROT_TBL_SIZE                = 0x00040000
+CPLDROT_PROTMAP_OFFSET          = 0x00100100
+CPLDROT_SIGN_OFFSET             = 0x00120000
+CPLDROT_SIGN_2_OFFSET           = 0x00120400
+CPLDROT_BMC_BOOTID_ADDR_OFFSET  = 0x00130000
+CPLDROT_BIOS_ROT_TBL_OFFSET     = 0x01000000
+
+mk_rottable.c>>
+ // DW0 : Table revision
+        value = CPLDROT_TBL_REV;	= 0x53000100
+        signTbl[n++] = (CPLDROT_TBL_REV >> 24) & 0xff;	53
+        signTbl[n++] = (CPLDROT_TBL_REV >> 16) & 0xff;	00
+        signTbl[n++] = (CPLDROT_TBL_REV >> 8) & 0xff;	01
+        signTbl[n++] = CPLDROT_TBL_REV & 0xff;			00
+
+        // DW1
+        signTbl[n++] = 0x00;
+        signTbl[n++] = 0x00;    // size of table from DW0 to DWz+1 in units of 16-bit word
+        signTbl[n++] = 0x00;    // MSB of arithmetic sum to make sum of all words in the table equal 0000h
+        signTbl[n++] = 0x00;    // LSB of arithmetic sum
+        ptrTblSize   = &signTbl[n-3];   // save pointer for update later
+        ptrSumMSB    = &signTbl[n-2];
+        ptrSumLSB    = &signTbl[n-1];
+
+        // DW2
+#ifdef ANTI_ROLLBACK_VERSION
+        signTbl[n++] = (ANTI_ROLLBACK_VERSION >> 8) & 0xff; // MSB of anti-rollback id, assigned by BMC
+		01 >> 8 = 00
+        signTbl[n++] = ANTI_ROLLBACK_VERSION & 0xff;        // LSB of anti-rollbakc id, assigned by BMC
+		01 
+		
+		
+		
+spi1nand0 spi1nand0: W25M02GV (262144 Kbytes)
+Creating 9 MTD partitions on "spi2.0":
+0x000000000000-0x000002000000 : "nand_bios1"		32 MB
+0x000002000000-0x000004000000 : "nand_bioses"		32 MB
+0x000004000000-0x000004e00000 : "nand_nv"			14 MB
+0x000005000000-0x000007ec0000 : "nand_bmc1"			46.75 MB
+0x000008000000-0x00000a000000 : "nand_bios2"		32 MB
+0x00000a000000-0x00000cec0000 : "nand_bmces"		46.75 MB
+0x00000d000000-0x00000fec0000 : "nand_bmc2"			46.75 MB
+0x000004e20000-0x000004ec0000 : "nand_cdata"		640 KB
+0x000000000000-0x000010000000 : "all_part_nand"		256 MB
+
+Creating 8 MTD partitions on "bmc":
+0x000000000000-0x000000100000 : "u-boot"
+0x000000140000-0x000001c00000 : "rofs"
+0x000001c00000-0x000002000000 : "kernel"
+0x000002100000-0x000002e00000 : "webpage"
+0x000002ec0000-0x000004000000 : "rwfs"
+0x000000000000-0x000003fc0000 : "all_part"
+0x000002e00000-0x000002e20000 : "u-boot-env"
+0x000002e20000-0x000002ec0000 : "cdata"

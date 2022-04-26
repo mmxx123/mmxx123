@@ -1,0 +1,2195 @@
+10:09:10 Started by user wilson suen
+10:09:10 Running as SYSTEM
+10:09:10 [EnvInject] - Loading node environment variables.
+10:09:10 Building remotely on US_Local_Slave_2 (US_Local_Slave) in workspace /home/testserverlinux/Desktop/ipmi-test-automation
+10:09:10 No emails were triggered.
+10:09:10 Creating/updating file at '/home/testserverlinux/ROBOT_REPORT/Xinan_B12_AST2600_ROT_MAC1/BMC_B12AST2600-ROT-0301MS_20211007_01.02.02_STDsp/3cecef5b42b3_20211015_5/ipmiconfig/properties.py'
+10:09:10 File does not exist at '/home/testserverlinux/ROBOT_REPORT/Xinan_B12_AST2600_ROT_MAC1/BMC_B12AST2600-ROT-0301MS_20211007_01.02.02_STDsp/3cecef5b42b3_20211015_5/ipmiconfig/properties.py', new file will be created.
+10:09:10 File successfully created/updated at /home/testserverlinux/ROBOT_REPORT/Xinan_B12_AST2600_ROT_MAC1/BMC_B12AST2600-ROT-0301MS_20211007_01.02.02_STDsp/3cecef5b42b3_20211015_5/ipmiconfig/properties.py
+10:09:10 Creating/updating file at '/home/testserverlinux/ROBOT_REPORT/Xinan_B12_AST2600_ROT_MAC1/BMC_B12AST2600-ROT-0301MS_20211007_01.02.02_STDsp/3cecef5b42b3_20211015_5/ipmiconfig/robot.sh'
+10:09:10 File does not exist at '/home/testserverlinux/ROBOT_REPORT/Xinan_B12_AST2600_ROT_MAC1/BMC_B12AST2600-ROT-0301MS_20211007_01.02.02_STDsp/3cecef5b42b3_20211015_5/ipmiconfig/robot.sh', new file will be created.
+10:09:10 File successfully created/updated at /home/testserverlinux/ROBOT_REPORT/Xinan_B12_AST2600_ROT_MAC1/BMC_B12AST2600-ROT-0301MS_20211007_01.02.02_STDsp/3cecef5b42b3_20211015_5/ipmiconfig/robot.sh
+10:09:10 [ipmi-test-automation] $ /bin/bash /tmp/jenkins1983441557458187435.sh
+10:09:10 release-master: Pulling from swlab/ipmi-test-automation
+10:09:10 Digest: sha256:c09aba389a3afd9577128ec72379931d5e77658fa2cf9c045d6f4017768a20e2
+10:09:10 Status: Downloaded newer image for dockerhub.supermicro.com/swlab/ipmi-test-automation:release-master
+10:09:10 dockerhub.supermicro.com/swlab/ipmi-test-automation:release-master
+10:09:12 CONTAINER_IP4: 172.31.2.116
+10:09:12 CONTAINER_IP6: 2001::31:2:116
+10:09:12 Setting PYTHONPATH
+10:09:12 Starting Syslog Server
+10:09:13 Setting up samba AD DC and share folder
+10:09:25 Starting DNS/DDNS Server
+10:09:25 Starting samba Services
+10:09:25 Starting HTTP and HTTPS Server
+10:09:25 Starting RADIUS Server
+10:09:25 Starting NTP Server
+10:09:25 Starting Mock SMTP Server
+10:09:25 Starting Xvfb
+10:09:25 Starting VNC Server, View Only
+10:09:25 Starting NoVNC Server
+10:09:25 Starting SNMP Trap Server
+10:09:32 Start up finished. Check startup.log for details.
+10:09:51                                  Tester: scottl
+10:09:51                              IP Address: 172.30.144.116
+10:09:51                             MAC Address: 3C:EC:EF:5B:42:B3
+10:09:51                             Motherboard: B12DPE-6
+10:09:51                                Platform: Xinan_B12_AST2600_ROT_MAC1
+10:09:51                               FW Binary: BMC_B12AST2600-ROT-0301MS_20211007_01.02.02_STDsp.bin
+10:09:51 
+10:09:51                             Reseting to unique password
+10:11:34                                    Checking connections
+10:12:47                                 Activating DCMS licence
+10:12:53                            Clearing other licence types
+10:12:53                                   Getting more BMC info
+10:13:13                            BIOS Version: 1.1a
+10:13:13                            CPLD Version: f1.0f.b2
+10:13:41                                Initialization Complete.
+10:13:44 ==============================================================================
+10:13:44 Redfish                                                                       
+10:13:44 ==============================================================================
+10:13:44 Redfish.Root                                                                  
+10:13:44 ==============================================================================
+10:13:45 Redfish.Root.Root                                                             
+10:13:45 ==============================================================================
+10:13:45 Check Root Required Keys :: Check for required keys in /redfish/v1... | PASS |
+10:13:45 ------------------------------------------------------------------------------
+10:13:45 Check Root Resource Elements :: GET /redfish/v1 and check for expe... | PASS |
+10:13:46 ------------------------------------------------------------------------------
+10:13:46 Check Other Basic Resources Exist :: GET /redfish/v1/, GET /redfis... | PASS |
+10:13:46 ------------------------------------------------------------------------------
+10:13:46 Check Other Basic Resource Content :: GET /redfish/. Check respons... | PASS |
+10:13:46 ------------------------------------------------------------------------------
+10:13:46 Redfish.Root.Root                                                     | PASS |
+10:13:46 4 tests, 4 passed, 0 failed
+10:13:46 ==============================================================================
+10:13:46 Redfish.Root                                                          | PASS |
+10:13:46 4 tests, 4 passed, 0 failed
+10:13:46 ==============================================================================
+10:13:46 Redfish.Session Service                                                       
+10:13:46 ==============================================================================
+10:13:46 Redfish.Session Service.Session Service                                       
+10:13:46 ==============================================================================
+10:13:46 Check SessionService Required Keys :: Check required keys for redf... | PASS |
+10:13:46 ------------------------------------------------------------------------------
+10:13:46 Test SessionTimeout Key Positive :: PATCH /redfish/v1/SessionServi... | PASS |
+10:13:46 ------------------------------------------------------------------------------
+10:13:46 Test SessionTimeout Key Negative :: PATCH /redfish/v1/SessionServi... | PASS |
+10:13:47 ------------------------------------------------------------------------------
+10:13:47 Redfish.Session Service.Session Service                               | PASS |
+10:13:47 3 tests, 3 passed, 0 failed
+10:13:47 ==============================================================================
+10:13:47 Redfish.Session Service.Sessions                                              
+10:13:47 ==============================================================================
+10:13:47 Check SessionService Sessions Required Keys :: Check required keys... | PASS |
+10:13:47 ------------------------------------------------------------------------------
+10:13:47 Test POST and DELETE Valid Admin Session :: POST redfish/v1/Sessio... | PASS |
+10:13:50 ------------------------------------------------------------------------------
+10:13:50 Test POST Invalid Username and Password Combos :: POST redfish/v1/... | PASS |
+10:13:51 ------------------------------------------------------------------------------
+10:13:51 Check Session Timeout Expires :: PATCH redfish/v1/SessionService w... | PASS |
+10:14:22 ------------------------------------------------------------------------------
+10:15:01 Redfish.Session Service.Sessions                                      | PASS |
+10:15:01 4 tests, 4 passed, 0 failed
+10:15:01 ==============================================================================
+10:15:01 Redfish.Session Service                                               | PASS |
+10:15:01 7 tests, 7 passed, 0 failed
+10:15:01 ==============================================================================
+10:15:01 Redfish.Account Service                                                       
+10:15:01 ==============================================================================
+10:15:01 Redfish.Account Service.Account Service                                       
+10:15:01 ==============================================================================
+10:15:01 Check AccountService Method Privileges :: Checks privilege levels ... | PASS |
+10:15:01 ------------------------------------------------------------------------------
+10:15:01 Check AccountService Required Keys :: Check required keys for /red... | PASS |
+10:15:01 ------------------------------------------------------------------------------
+10:15:01 Test ServiceEnabled Key :: PATCH /redfish/v1/AccountService with {... | PASS |
+10:15:02 ------------------------------------------------------------------------------
+10:15:02 Test MinPasswordLength Key :: PATCH /redfish/v1/AccountService wit... | PASS |
+10:15:02 ------------------------------------------------------------------------------
+10:15:02 Test MaxPasswordLength Key :: PATCH /redfish/v1/AccountService wit... | PASS |
+10:15:02 ------------------------------------------------------------------------------
+10:15:02 Test AccountLockoutThreshold Key Positive :: PATCH /redfish/v1/Acc... | PASS |
+10:15:02 ------------------------------------------------------------------------------
+10:15:02 Test AccountLockoutThreshold Key Negative :: PATCH /redfish/v1/Acc... | PASS |
+10:15:03 ------------------------------------------------------------------------------
+10:15:03 Test AccountLockoutDuration Key Positive :: PATCH /redfish/v1/Acco... | PASS |
+10:15:03 ------------------------------------------------------------------------------
+10:15:03 Test AccountLockoutDuration Key Negative :: PATCH /redfish/v1/Acco... | PASS |
+10:15:04 ------------------------------------------------------------------------------
+10:15:04 Test AccountLockoutCounterResetAfter Key Positive :: PATCH /redfis... | PASS |
+10:15:05 ------------------------------------------------------------------------------
+10:15:05 Test AccountLockoutCounterResetAfter Key Negative :: PATCH /redfis... | PASS |
+10:15:06 ------------------------------------------------------------------------------
+10:15:06 Test Lockout Feature BASIC :: **Assumes default Lockout Threshold ... | PASS |
+10:15:40 ------------------------------------------------------------------------------
+10:15:40 Test Lockout Feature CHANGE THRESHOLD :: **Assumes default Lockout... | PASS |
+10:17:04 ------------------------------------------------------------------------------
+10:17:04 Test Lockout Feature CHANGE DURATION :: PATCH /redfish/v1/AccountS... | PASS |
+10:18:08 ------------------------------------------------------------------------------
+10:18:08 Test AccountLockoutCounterResetAfter Functionality :: POST /redfis... | PASS |
+10:20:03 ------------------------------------------------------------------------------
+10:20:04 Redfish.Account Service.Account Service                               | PASS |
+10:20:04 15 tests, 15 passed, 0 failed
+10:20:04 ==============================================================================
+10:20:04 Redfish.Account Service.Accounts                                              
+10:20:04 ==============================================================================
+10:20:04 Check AccountService Accounts Method Privileges :: Checks privileg... | PASS |
+10:20:04 ------------------------------------------------------------------------------
+10:20:04 Check AccountService Accounts Required Keys :: Check required keys... | PASS |
+10:20:05 ------------------------------------------------------------------------------
+10:20:05 Test POST Valid Account :: POST redfish/v1/AccountService/Accounts... | PASS |
+10:20:05 ------------------------------------------------------------------------------
+10:20:05 Test UserName Key Positive :: Create an account via POST /redfish/... | PASS |
+10:20:06 ------------------------------------------------------------------------------
+10:20:06 Test UserName Key Negative :: Create an account via POST /redfish/... | PASS |
+10:20:08 ------------------------------------------------------------------------------
+10:20:08 Test Password Key Positive :: Create an account via POST /redfish/... | PASS |
+10:20:09 ------------------------------------------------------------------------------
+10:20:09 Test Password Key Negative :: Create an account via POST /redfish/... | PASS |
+10:20:11 ------------------------------------------------------------------------------
+10:20:11 Test Locked Key Positive :: PATCH /redfish/v1/AccountService/Accou... | PASS |
+10:20:11 ------------------------------------------------------------------------------
+10:20:11 Test Locked Key Negative :: PATCH /redfish/v1/AccountService/Accou... | PASS |
+10:20:12 ------------------------------------------------------------------------------
+10:20:12 Test RoleId Key Positive :: PATCH /redfish/v1/AccountService/Accou... | PASS |
+10:20:13 ------------------------------------------------------------------------------
+10:20:13 Test RoleId Key Negative :: PATCH /redfish/v1/AccountService/Accou... | PASS |
+10:20:14 ------------------------------------------------------------------------------
+10:20:14 Test Enabled Key Positive :: PATCH /redfish/v1/AccountService/Acco... | PASS |
+10:20:15 ------------------------------------------------------------------------------
+10:20:15 Test Enabled Key Negative :: PATCH /redfish/v1/AccountService/Acco... | PASS |
+10:20:15 ------------------------------------------------------------------------------
+10:20:15 Test Cannot Create Account with Same Username :: Assuming an accou... | PASS |
+10:20:16 ------------------------------------------------------------------------------
+10:20:16 Test Enabled Key Functionality :: Create a random account by POST ... | PASS |
+10:20:16 ------------------------------------------------------------------------------
+10:20:16 Test Locked Key Functionality :: Create a random account by POST /... | PASS |
+10:20:19 ------------------------------------------------------------------------------
+10:20:19 Check Max Number of Accounts Reached Behavior :: If maximum number... | PASS |
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test POST Valid SNMP Accounts :: POST /redfish/v1/AccountService/A... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test AuthenticationProtocol Key Positive :: Create an SNMP account... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test AuthenticationProtocol Key Negative :: Create an SNMP account... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test EncryptionProtocol Key Positive :: Create an SNMP account via... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test EncryptionProtocol Key Negative :: Create an SNMP account via... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test AuthenticationKey Key Postiive :: Create an SNMP account via ... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test AuthenticationKey Key Negative :: Create an SNMP account via ... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test EncryptionKey Key Positive :: Create an SNMP account via POST... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test EncryptionKey Key Negative :: Create an SNMP account via POST... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test Max SNMP Accounts :: If max number of users has not already b... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test Max SNMP+Redfish Accounts :: If max number of users has not a... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Check Cannot Remove All Account Types :: POST /redfish/v1/AccountS... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Check Cannot Add Duplicate Account Type :: POST /redfish/v1/Accoun... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test Create Redfish AccountType Only With SNMP Defined :: POST /re... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test Add SNMP AccountType To Existing Redfish Account :: PATCH /re... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test Remove SNMP Account Type from Existing Redfish+SNMP Account :... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test Add Redfish Account Type to Existing SNMP Account :: PATCH /r... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test Remove Redfish Account Type from Existing Redfish+SNMP Accoun... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test Replace AccountType :: POST /redfish/v1/AccountService/Accoun... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test Create SNMP Account with all RoleIds :: POST /redfish/v1/Acco... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test Redfish and SNMP account basic :: PATCH /redfish/v1/Managers/... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test noAuthNoPriv SNMP Account Positive :: PATCH /redfish/v1/Manag... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test noAuthNoPriv SNMP Account Negative :: PATCH /redfish/v1/Manag... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test authNoPriv SNMP Account with MD5 Positive :: PATCH /redfish/v... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test authNoPriv SNMP Account with MD5 Negative :: PATCH /redfish/v... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test authNoPriv SNMP Account with SHA Positive :: PATCH /redfish/v... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test authNoPriv SNMP Account with SHA Negative :: PATCH /redfish/v... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test authPriv SNMP Account with MD5/DES Positive :: PATCH /redfish... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test authPriv SNMP Account with MD5/DES Negative :: PATCH /redfish... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test authPriv SNMP Account with MD5/AES Positive :: PATCH /redfish... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test authPriv SNMP Account with MD5/AES Negative :: PATCH /redfish... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test authPriv SNMP Account with SHA/DES Positive :: PATCH /redfish... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test authPriv SNMP Account with SHA/DES Negative :: PATCH /redfish... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test authPriv SNMP Account with SHA/AES Positive :: PATCH /redfish... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test authPriv SNMP Account with SHA/AES Negative :: PATCH /redfish... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test Multiple SNMP Users :: PATCH /redfish/v1/Managers/1/NetworkPr... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test Create Disabled SNMP Account :: PATCH /redfish/v1/Managers/1/... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test Enabled Functionality for SNMP Only :: PATCH /redfish/v1/Mana... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test Disable on Account Creation for SNMP+Redfish Account :: PATCH... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test PATCH Disable Account for Both :: PATCH /redfish/v1/Managers/... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test Locked Only Affects Redfish :: PATCH /redfish/v1/Managers/1/N... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test Modify SNMP Account Security Level :: PATCH /redfish/v1/Manag... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test Modify SNMP Account Authentication Protocol :: PATCH /redfsh/... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test Modify SNMP Account Authentication Key :: PATCH /redfish/v1/M... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test Modify SNMP Account Encryption Protocol :: PATCH /redfsh/v1/M... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test Modify SNMP Account Encryption Key :: PATCH /redfsh/v1/Manage... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Test order of configuration should not matter for SNMPv3 :: POST /... | SKIP |
+10:20:23 2019.4 features not supported
+10:20:23 ------------------------------------------------------------------------------
+10:20:23 Redfish.Account Service.Accounts                                      | PASS |
+10:20:23 64 tests, 17 passed, 0 failed, 47 skipped
+10:20:23 ==============================================================================
+10:20:23 Redfish.Account Service.Directory Services                                    
+10:20:23 ==============================================================================
+10:20:24 Directory Service Schema Check :: Basic schema check. Password fie... | PASS |
+10:20:24 ------------------------------------------------------------------------------
+10:20:24 Test PATCH LDAP ServiceEnabled Positive :: PATCH /redfish/v1/Accou... | PASS |
+10:20:25 ------------------------------------------------------------------------------
+10:20:25 Test PATCH LDAP ServiceEnabled Negative :: PATCH /redfish/v1/Accou... | PASS |
+10:20:25 ------------------------------------------------------------------------------
+10:20:25 Test PATCH LDAP ServiceAddresses Positive :: PATCH /redfish/v1/Acc... | PASS |
+10:20:26 ------------------------------------------------------------------------------
+10:20:26 Test PATCH LDAP ServiceAddresses Negative :: PATCH /redfish/v1/Acc... | PASS |
+10:20:27 ------------------------------------------------------------------------------
+10:20:27 Test PATCH LDAP Username Positive :: PATCH /redfish/v1/AccountServ... | PASS |
+10:20:27 ------------------------------------------------------------------------------
+10:20:27 Test PATCH LDAP Username Negative :: PATCH /redfish/v1/AccountServ... | PASS |
+10:20:27 ------------------------------------------------------------------------------
+10:20:27 Test PATCH LDAP Password Positive :: PATCH /redfish/v1/AccountServ... | PASS |
+10:20:28 ------------------------------------------------------------------------------
+10:20:28 Test PATCH LDAP Password Negative :: PATCH /redfish/v1/AccountServ... | PASS |
+10:20:28 ------------------------------------------------------------------------------
+10:20:28 Test PATCH LDAP RemoteRoleMapping Positive :: PATCH /redfish/v1/Ac... | PASS |
+10:20:29 ------------------------------------------------------------------------------
+10:20:29 Test PATCH LDAP RemoteRoleMapping Negative :: PATCH /redfish/v1/Ac... | PASS |
+10:20:29 ------------------------------------------------------------------------------
+10:20:29 Test PATCH LDAP RemoteGroup Positive :: PATCH /redfish/v1/AccountS... | PASS |
+10:20:29 ------------------------------------------------------------------------------
+10:20:29 Test PATCH LDAP RemoteGroup Negative :: PATCH /redfish/v1/AccountS... | PASS |
+10:20:30 ------------------------------------------------------------------------------
+10:20:30 Test PATCH LDAP RemoteUser Positive :: PATCH /redfish/v1/AccountSe... | PASS |
+10:20:30 ------------------------------------------------------------------------------
+10:20:30 Test PATCH LDAP RemoteUser Negative :: PATCH /redfish/v1/AccountSe... | PASS |
+10:20:30 ------------------------------------------------------------------------------
+10:20:30 Test PATCH LDAP LocalRole Positive :: PATCH /redfish/v1/AccountSer... | PASS |
+10:20:30 ------------------------------------------------------------------------------
+10:20:30 Test PATCH LDAP LocalRole Negative :: PATCH /redfish/v1/AccountSer... | PASS |
+10:20:32 ------------------------------------------------------------------------------
+10:20:32 Test PATCH LDAP BaseDistinguishedNames Positive :: PATCH /redfish/... | PASS |
+10:20:32 ------------------------------------------------------------------------------
+10:20:32 Test PATCH LDAP BaseDistinguishedNames Negative :: PATCH /redfish/... | PASS |
+10:20:33 ------------------------------------------------------------------------------
+10:20:33 Test PATCH LDAP UsernameAttribute Positive :: PATCH /redfish/v1/Ac... | PASS |
+10:20:33 ------------------------------------------------------------------------------
+10:20:33 Test PATCH LDAP UsernameAttribute Negative :: PATCH /redfish/v1/Ac... | PASS |
+10:20:33 ------------------------------------------------------------------------------
+10:20:33 Test PATCH LDAP GroupsAttribute Positive :: PATCH /redfish/v1/Acco... | PASS |
+10:20:33 ------------------------------------------------------------------------------
+10:20:33 Test PATCH LDAP GroupsAttribute Negative :: PATCH /redfish/v1/Acco... | PASS |
+10:20:34 ------------------------------------------------------------------------------
+10:20:34 Test LDAP Session as Administrator :: PATCH /redfish/v1/AccountSer... | PASS |
+10:20:35 ------------------------------------------------------------------------------
+10:20:35 Test LDAP Session as Operator :: PATCH /redfish/v1/AccountService ... | PASS |
+10:20:37 ------------------------------------------------------------------------------
+10:20:37 Test LDAP Session as ReadOnly :: PATCH /redfish/v1/AccountService ... | PASS |
+10:20:38 ------------------------------------------------------------------------------
+10:20:38 Test SSL LDAP Session as Administrator :: PATCH /redfish/v1/Accoun... | PASS |
+10:20:41 ------------------------------------------------------------------------------
+10:20:41 Test Invalid LDAP Server Configured Cannot Be Used :: PATCH /redfi... | PASS |
+10:20:43 ------------------------------------------------------------------------------
+10:20:43 Test SWQA LDAP Server Session with GroupsAttribute :: PATCH /redfi... | PASS |
+10:20:44 ------------------------------------------------------------------------------
+10:20:44 Test Multiple LDAP Servers :: Set up Server1 as first server in Se... | PASS |
+10:20:47 ------------------------------------------------------------------------------
+10:20:47 Test Multiple LDAP Servers Mismatched Order :: Set up Server1 as f... | PASS |
+10:20:50 ------------------------------------------------------------------------------
+10:20:50 Test Multiple LDAP Servers with Dummy Server :: Set up Server1 as ... | PASS |
+10:22:15 ------------------------------------------------------------------------------
+10:22:15 Test LDAP user not in first slot are usable :: Enable LDAP and con... | PASS |
+10:22:17 ------------------------------------------------------------------------------
+10:22:17 Test No LDAP Rules Configured Behavior :: Enable LDAP and configur... | PASS |
+10:22:18 ------------------------------------------------------------------------------
+10:22:18 Test LDAP Unrelated Configured User Cannot Be Used :: Enable LDAP ... | PASS |
+10:22:19 ------------------------------------------------------------------------------
+10:22:19 Test Incorrect Auth Cannot Use LDAP :: Enable LDAP and configure a... | PASS |
+10:22:20 ------------------------------------------------------------------------------
+10:22:20 Test Incorrect LDAP Searchbase Behavior :: Enable LDAP and configu... | PASS |
+10:22:22 ------------------------------------------------------------------------------
+10:22:22 Test LDAP Default Port :: Enable LDAP and configure a valid server... | PASS |
+10:22:24 ------------------------------------------------------------------------------
+10:22:24 Test LDAPS Default Port :: Enable LDAP and configure a valid serve... | PASS |
+10:22:26 ------------------------------------------------------------------------------
+10:22:26 Test Cannot Use LDAP if Disabled :: Enable LDAP and configure a va... | PASS |
+10:22:28 ------------------------------------------------------------------------------
+10:22:28 Check LDAP Enabled Cannot Enable Other Services :: Enable LDAP. At... | PASS |
+10:22:28 ------------------------------------------------------------------------------
+10:22:28 Test PATCH AD ServiceEnabled Positive :: PATCH /redfish/v1/Account... | PASS |
+10:22:28 ------------------------------------------------------------------------------
+10:22:28 Test PATCH AD ServiceEnabled Negative :: PATCH /redfish/v1/Account... | PASS |
+10:22:28 ------------------------------------------------------------------------------
+10:22:28 Test PATCH AD ServiceAddresses Positive :: PATCH /redfish/v1/Accou... | PASS |
+10:22:29 ------------------------------------------------------------------------------
+10:22:29 Test PATCH AD ServiceAddresses Negative :: PATCH /redfish/v1/Accou... | PASS |
+10:22:30 ------------------------------------------------------------------------------
+10:22:30 Test PATCH AD Username Positive :: PATCH /redfish/v1/AccountServic... | PASS |
+10:22:31 ------------------------------------------------------------------------------
+10:22:31 Test PATCH AD Username Negative :: PATCH /redfish/v1/AccountServic... | PASS |
+10:22:31 ------------------------------------------------------------------------------
+10:22:31 Test PATCH AD Password Positive :: PATCH /redfish/v1/AccountServic... | PASS |
+10:22:31 ------------------------------------------------------------------------------
+10:22:31 Test PATCH AD Password Negative :: PATCH /redfish/v1/AccountServic... | PASS |
+10:22:31 ------------------------------------------------------------------------------
+10:22:31 Test PATCH AD RemoteRoleMapping Positive :: PATCH /redfish/v1/Acco... | PASS |
+10:22:32 ------------------------------------------------------------------------------
+10:22:32 Test PATCH AD RemoteRoleMapping Negative :: PATCH /redfish/v1/Acco... | PASS |
+10:22:33 ------------------------------------------------------------------------------
+10:22:33 Test PATCH AD RemoteGroup Positive :: PATCH /redfish/v1/AccountSer... | PASS |
+10:22:33 ------------------------------------------------------------------------------
+10:22:33 Test PATCH AD RemoteGroup Negative :: PATCH /redfish/v1/AccountSer... | PASS |
+10:22:33 ------------------------------------------------------------------------------
+10:22:33 Test PATCH AD RemoteUser Positive :: PATCH /redfish/v1/AccountServ... | PASS |
+10:22:35 ------------------------------------------------------------------------------
+10:22:35 Test PATCH AD RemoteUser Negative :: PATCH /redfish/v1/AccountServ... | PASS |
+10:22:35 ------------------------------------------------------------------------------
+10:22:35 Test PATCH AD LocalRole Positive :: PATCH /redfish/v1/AccountServi... | PASS |
+10:22:35 ------------------------------------------------------------------------------
+10:22:35 Test PATCH AD LocalRole Negative :: PATCH /redfish/v1/AccountServi... | PASS |
+10:22:37 ------------------------------------------------------------------------------
+10:22:37 Test AD Session as Administrator :: PATCH /redfish/v1/AccountServi... | PASS |
+10:22:38 ------------------------------------------------------------------------------
+10:22:38 Test AD Session as Operator :: PATCH /redfish/v1/AccountService wi... | PASS |
+10:22:39 ------------------------------------------------------------------------------
+10:22:39 Test AD Session as ReadOnly :: PATCH /redfish/v1/AccountService wi... | PASS |
+10:22:40 ------------------------------------------------------------------------------
+10:22:40 Test SSL AD Session as Administrator :: PATCH /redfish/v1/AccountS... | PASS |
+10:22:42 ------------------------------------------------------------------------------
+10:22:42 Test Invalid AD Server Configured Cannot Be Used :: PATCH /redfish... | PASS |
+10:22:43 ------------------------------------------------------------------------------
+10:22:43 Test SWQA AD Server Session with RemoteGroup :: PATCH /redfish/v1/... | PASS |
+10:22:44 ------------------------------------------------------------------------------
+10:22:44 Test Multiple AD Servers :: Set up Server1 as first server in Serv... | PASS |
+10:22:47 ------------------------------------------------------------------------------
+10:22:47 Test Multiple AD Servers Mismatched Order :: Set up Server1 as fir... | PASS |
+10:22:49 ------------------------------------------------------------------------------
+10:22:49 Test Multiple AD Servers with Dummy Server :: Set up Server1 as fi... | PASS |
+10:23:32 ------------------------------------------------------------------------------
+10:23:32 Test AD user not in first slot are usable :: Enable AD and configu... | PASS |
+10:23:34 ------------------------------------------------------------------------------
+10:23:34 Test No AD Rules Configured Behavior :: Enable AD and configure a ... | PASS |
+10:23:35 ------------------------------------------------------------------------------
+10:23:35 Test AD Unrelated Configured User Cannot Be Used :: Enable AD and ... | PASS |
+10:23:36 ------------------------------------------------------------------------------
+10:23:36 Test AD Default Port :: Enable AD and configure a valid server, wi... | PASS |
+10:23:37 ------------------------------------------------------------------------------
+10:23:37 Test AD SSL Default Port :: Enable AD and configure a valid server... | PASS |
+10:23:39 ------------------------------------------------------------------------------
+10:23:39 Test Cannot Use AD if Disabled :: Enable AD and configure a valid ... | PASS |
+10:23:40 ------------------------------------------------------------------------------
+10:23:40 Check AD Enabled Cannot Enable Other Services :: Enable AD. Attemp... | PASS |
+10:23:41 ------------------------------------------------------------------------------
+10:27:45 Redfish.Account Service.Directory Services                            | PASS |
+10:27:45 73 tests, 73 passed, 0 failed
+10:27:45 ==============================================================================
+10:27:45 Redfish.Account Service.Roles                                                 
+10:27:45 ==============================================================================
+10:27:45 Check AccountService Roles Required Key :: Check required keys for... | PASS |
+10:28:15 ------------------------------------------------------------------------------
+10:28:15 Check IsPredetermined key is Correct :: For each reachable role UR... | PASS |
+10:28:15 ------------------------------------------------------------------------------
+10:28:15 Redfish.Account Service.Roles                                         | PASS |
+10:28:15 2 tests, 2 passed, 0 failed
+10:28:15 ==============================================================================
+10:28:15 Redfish.Account Service                                               | PASS |
+10:28:15 154 tests, 107 passed, 0 failed, 47 skipped
+10:28:15 ==============================================================================
+10:28:15 Redfish.Chassis                                                               
+10:28:15 ==============================================================================
+10:28:15 Redfish.Chassis.Chassis                                                       
+10:28:15 ==============================================================================
+10:28:15 Check Chassis Privilege :: Checks privilege levels (supported meth... | PASS |
+10:28:16 ------------------------------------------------------------------------------
+10:28:16 Check Chassis Required Keys :: Check required keys for redfish/v1/... | PASS |
+10:28:16 ------------------------------------------------------------------------------
+10:28:16 Test IndicatorLED Key Positive :: PATCH /redfish/v1/Chassis/1 with... | PASS |
+10:28:16 ------------------------------------------------------------------------------
+10:28:16 Test IndicatorLED Key Negative :: PATCH /redfish/v1/Chassis/1 with... | PASS |
+10:28:17 ------------------------------------------------------------------------------
+10:28:17 Redfish.Chassis.Chassis                                               | PASS |
+10:28:17 4 tests, 4 passed, 0 failed
+10:28:17 ==============================================================================
+10:28:17 Redfish.Chassis.Power                                                         
+10:28:17 ==============================================================================
+10:28:17 Check Chassis Power Required Keys :: Check required keys for redfi... | PASS |
+10:28:17 ------------------------------------------------------------------------------
+10:28:17 Get Chassis Power :: Checks privilege levels (supported methods) o... | PASS |
+10:28:17 ------------------------------------------------------------------------------
+10:28:17 Get Chassis Power Info and Compare with SMCIPMITool :: Count numbe... | PASS |
+10:29:23 ------------------------------------------------------------------------------
+10:29:23 Check Power Voltages Values :: Performs three checks for each powe... | PASS |
+10:31:08 ------------------------------------------------------------------------------
+10:31:08 Redfish.Chassis.Power                                                 | PASS |
+10:31:08 4 tests, 4 passed, 0 failed
+10:31:08 ==============================================================================
+10:31:08 Redfish.Chassis.Thermal                                                       
+10:31:08 ==============================================================================
+10:31:08 Get Chassis Thermal :: Checks privilege levels (supported methods)... | PASS |
+10:31:08 ------------------------------------------------------------------------------
+10:31:08 Check Chassis Thermal Required Keys :: Check required keys for red... | PASS |
+10:31:08 ------------------------------------------------------------------------------
+10:31:08 Get Chassis Thermal Info and Compare with SMCIPMITool :: Count num... | PASS |
+10:34:06 ------------------------------------------------------------------------------
+10:34:06 Check Thermal Values :: Performs three checks for each thermal (te... | PASS |
+10:36:00 ------------------------------------------------------------------------------
+10:36:00 Redfish.Chassis.Thermal                                               | PASS |
+10:36:00 4 tests, 4 passed, 0 failed
+10:36:00 ==============================================================================
+10:36:00 Redfish.Chassis.Sensors                                                       
+10:36:00 ==============================================================================
+10:36:00 Check Chassis Sensors Privilege :: Checks privilege levels (suppor... | PASS |
+10:36:01 ------------------------------------------------------------------------------
+10:36:01 Check Chassis Sensors Required Keys :: Check required keys for red... | PASS |
+10:36:01 ------------------------------------------------------------------------------
+10:36:01 Get All Sensor URIs :: Get All URIs in redfish/v1/Chassis/1/Sensors   | PASS |
+10:36:01 ------------------------------------------------------------------------------
+10:36:01 Check All Sensor Values :: Check all sensor values in redfish/v1/C... | PASS |
+10:36:04 ------------------------------------------------------------------------------
+10:36:04 Redfish.Chassis.Sensors                                               | PASS |
+10:36:04 4 tests, 4 passed, 0 failed
+10:36:04 ==============================================================================
+10:36:04 Redfish.Chassis.HW Component                                                  
+10:36:04 ==============================================================================
+10:36:06 HW component status check Critical Threshold sensors :: Change CPU... 
+10:36:06 Waiting for OS to boot...
+10:36:12 Booted into OS
+10:40:25 | PASS |
+10:40:25 ------------------------------------------------------------------------------
+10:40:25 HW component status check Warning CPU related events :: Send raw c... 
+10:42:51 Waiting for OS to boot...
+10:43:03 try again later
+10:43:30 5 more minutes... maybe
+10:44:08 Booted into OS
+10:44:08 | PASS |
+10:44:08 ------------------------------------------------------------------------------
+10:44:08 HW component status check Critical VBAT :: Send raw command to gen... | PASS |
+10:48:12 ------------------------------------------------------------------------------
+10:48:12 HW component status check Critical NECC :: Send raw command to gen... 
+10:50:20 Waiting for OS to boot...
+10:50:21 I'll finish eventually
+10:50:43 waiting forever
+10:51:05 loading
+10:51:31 Booted into OS
+10:51:32 | PASS |
+10:51:32 ------------------------------------------------------------------------------
+10:51:32 HW component status check Critical Memory Map Out :: Send raw comm... 
+10:53:39 Waiting for OS to boot...
+10:53:41 nope not done
+10:54:03 I'll finish one day
+10:54:41 sleeping
+10:55:03 Booted into OS
+10:55:04 | PASS |
+10:55:04 ------------------------------------------------------------------------------
+10:55:04 HW component status check Warning VBAT :: Send raw command to gene... | PASS |
+10:59:08 ------------------------------------------------------------------------------
+10:59:08 HW component status check Warning CECC :: Send raw command to gene... 
+11:01:15 Waiting for OS to boot...
+11:01:17 Booted into OS
+11:01:22 
+11:01:22 Waiting for OS to boot...
+11:01:24 taking a lunch break
+11:01:45 come back in 5 min... maybe
+11:02:07 haha jk no not done
+11:02:29 Booted into OS
+11:02:29 | FAIL |
+11:02:29 RedfishError: Sensor health status should be Warning but it is OK
+11:02:29 ------------------------------------------------------------------------------
+11:02:29 Redfish.Chassis.HW Component                                          | FAIL |
+11:02:29 7 tests, 6 passed, 1 failed
+11:02:29 ==============================================================================
+11:02:29 Redfish.Chassis.PCIe Slots                                                    
+11:02:29 ==============================================================================
+11:02:31 Check Chassis PCIeSlots Required Keys :: Check required keys for r... | PASS |
+11:02:31 ------------------------------------------------------------------------------
+11:02:31 Check Chassis PCIeSlots Information :: Check that the information ... | PASS |
+11:02:31 ------------------------------------------------------------------------------
+11:02:31 Redfish.Chassis.PCIe Slots                                            | PASS |
+11:02:31 2 tests, 2 passed, 0 failed
+11:02:31 ==============================================================================
+11:02:31 Redfish.Chassis.PCIe Devices                                                  
+11:02:31 ==============================================================================
+11:02:33 Check Chassis PCIeDevices Required Keys :: Check required keys for... | PASS |
+11:02:33 ------------------------------------------------------------------------------
+11:02:33 Check Chassis PCIeDevices NIC Links Work :: Check that all NIC lin... | PASS |
+11:02:33 ------------------------------------------------------------------------------
+11:02:33 Get Chassis PCIeDevices NIC Info :: Get Chassis PCIeDevices NIC in... | PASS |
+11:02:33 ------------------------------------------------------------------------------
+11:02:33 Check Chassis PCIeDevices NVMeSSD Links Work :: Check that all NVM... | PASS |
+11:02:33 ------------------------------------------------------------------------------
+11:02:33 Get Chassis PCIeDevices NVMeSSD Info :: Get Chassis PCIeDevices NV... | PASS |
+11:02:33 ------------------------------------------------------------------------------
+11:02:33 Redfish.Chassis.PCIe Devices                                          | PASS |
+11:02:33 5 tests, 5 passed, 0 failed
+11:02:33 ==============================================================================
+11:02:33 Redfish.Chassis.Network Adapters                                              
+11:02:33 ==============================================================================
+11:02:35 Check Chassis NetworkAdapters Required Keys :: Check required keys... | PASS |
+11:02:35 ------------------------------------------------------------------------------
+11:02:35 Check NetworkAdapters URIs :: Check that GET all NetworkAdapters r... | SKIP |
+11:02:35 NIC Not Present
+11:02:35 ------------------------------------------------------------------------------
+11:02:35 Check NetworkAdapters NetworkPorts URIs :: Check that GET all Netw... | SKIP |
+11:02:35 NIC Not Present
+11:02:35 ------------------------------------------------------------------------------
+11:02:35 Check NetworkAdapters NetworkDeviceFunctions URIs :: Check that GE... | SKIP |
+11:02:35 NIC Not Present
+11:02:35 ------------------------------------------------------------------------------
+11:02:35 Redfish.Chassis.Network Adapters                                      | PASS |
+11:02:35 4 tests, 1 passed, 0 failed, 3 skipped
+11:02:35 ==============================================================================
+11:02:35 Redfish.Chassis.HA-RAID                                                       
+11:02:35 ==============================================================================
+11:02:37 Check Chassis HA-RAID URIs :: Check required keys for all HA-RAID ... | SKIP |
+11:02:37 Skipped in parent suite setup:
+11:02:37 no ha-raid links detected in /redfish/v1/Chassis
+11:02:37 ------------------------------------------------------------------------------
+11:02:37 Check Chassis HA-RAID ManagedBy URIs :: Check all HA-RAID ManagedB... | SKIP |
+11:02:37 Skipped in parent suite setup:
+11:02:37 no ha-raid links detected in /redfish/v1/Chassis
+11:02:37 ------------------------------------------------------------------------------
+11:02:37 Check Chassis HA-RAID Drives URIs :: Check all HA-RAID Drives rela... | SKIP |
+11:02:37 Skipped in parent suite setup:
+11:02:37 no ha-raid links detected in /redfish/v1/Chassis
+11:02:37 ------------------------------------------------------------------------------
+11:02:37 Check Chassis HA-RAID Storage URIs :: Check all HA-RAID Storage re... | SKIP |
+11:02:37 Skipped in parent suite setup:
+11:02:37 no ha-raid links detected in /redfish/v1/Chassis
+11:02:37 ------------------------------------------------------------------------------
+11:02:37 Redfish.Chassis.HA-RAID                                               | SKIP |
+11:02:37 Skipped in suite setup:
+11:02:37 no ha-raid links detected in /redfish/v1/Chassis
+11:02:37 
+11:02:37 4 tests, 0 passed, 0 failed, 4 skipped
+11:02:37 ==============================================================================
+11:02:37 Redfish.Chassis.HBA                                                           
+11:02:37 ==============================================================================
+11:02:38 Check Chassis HBA URIs :: Check required keys for all HBA related ... | SKIP |
+11:02:38 Skipped in parent suite setup:
+11:02:38 no hba links detected in /redfish/v1/Chassis
+11:02:38 ------------------------------------------------------------------------------
+11:02:38 Check Chassis HBA ManagedBy URIs :: Check all HBA ManagedBy relate... | SKIP |
+11:02:38 Skipped in parent suite setup:
+11:02:38 no hba links detected in /redfish/v1/Chassis
+11:02:38 ------------------------------------------------------------------------------
+11:02:38 Check Chassis HBA Drives URIs :: Check all HBA Drives related URIs... | SKIP |
+11:02:38 Skipped in parent suite setup:
+11:02:38 no hba links detected in /redfish/v1/Chassis
+11:02:38 ------------------------------------------------------------------------------
+11:02:38 Check Chassis HBA Storage URIs :: Check all HBA Storage related UR... | SKIP |
+11:02:38 Skipped in parent suite setup:
+11:02:38 no hba links detected in /redfish/v1/Chassis
+11:02:38 ------------------------------------------------------------------------------
+11:02:38 Redfish.Chassis.HBA                                                   | SKIP |
+11:02:38 Skipped in suite setup:
+11:02:38 no hba links detected in /redfish/v1/Chassis
+11:02:38 
+11:02:38 4 tests, 0 passed, 0 failed, 4 skipped
+11:02:38 ==============================================================================
+11:02:38 Redfish.Chassis.NVMeSSD                                                       
+11:02:38 ==============================================================================
+11:02:40 Check NVMeSSD URIs :: Check all NVMeSSD URIs in redfish/v1/Chassis    | SKIP |
+11:02:40 Skipped in parent suite setup:
+11:02:40 no nvme links detected in /redfish/v1/Chassis
+11:02:40 ------------------------------------------------------------------------------
+11:02:40 Check NVMeSSD Drive URIs :: Check all NVMeSSD related URIs for dri... | SKIP |
+11:02:40 Skipped in parent suite setup:
+11:02:40 no nvme links detected in /redfish/v1/Chassis
+11:02:40 ------------------------------------------------------------------------------
+11:02:40 Check NVMeSSD Storage URIs :: Check all NVMeSSD related URIs for s... | SKIP |
+11:02:40 Skipped in parent suite setup:
+11:02:40 no nvme links detected in /redfish/v1/Chassis
+11:02:40 ------------------------------------------------------------------------------
+11:02:40 Redfish.Chassis.NVMeSSD                                               | SKIP |
+11:02:40 Skipped in suite setup:
+11:02:40 no nvme links detected in /redfish/v1/Chassis
+11:02:40 
+11:02:40 3 tests, 0 passed, 0 failed, 3 skipped
+11:02:40 ==============================================================================
+11:02:40 Redfish.Chassis.MRVL HA-RAID                                                  
+11:02:40 ==============================================================================
+11:02:42 Check Chassis HA-RAID URIs :: Check required keys for all HA-RAID ... | SKIP |
+11:02:42 Skipped in parent suite setup:
+11:02:42 no mrvl links detected in /redfish/v1/Chassis
+11:02:42 ------------------------------------------------------------------------------
+11:02:42 Check Chassis HA-RAID ManagedBy URIs :: Check all HA-RAID ManagedB... | SKIP |
+11:02:42 Skipped in parent suite setup:
+11:02:42 no mrvl links detected in /redfish/v1/Chassis
+11:02:42 ------------------------------------------------------------------------------
+11:02:42 Check Chassis HA-RAID Drives URIs :: Check all HA-RAID Drives rela... | SKIP |
+11:02:42 Skipped in parent suite setup:
+11:02:42 no mrvl links detected in /redfish/v1/Chassis
+11:02:42 ------------------------------------------------------------------------------
+11:02:42 Check Chassis HA-RAID Storage URIs :: Check all HA-RAID Storage re... | SKIP |
+11:02:42 Skipped in parent suite setup:
+11:02:42 no mrvl links detected in /redfish/v1/Chassis
+11:02:42 ------------------------------------------------------------------------------
+11:02:42 Redfish.Chassis.MRVL HA-RAID                                          | SKIP |
+11:02:42 Skipped in suite setup:
+11:02:42 no mrvl links detected in /redfish/v1/Chassis
+11:02:42 
+11:02:42 4 tests, 0 passed, 0 failed, 4 skipped
+11:02:42 ==============================================================================
+11:02:42 Redfish.Chassis                                                       | FAIL |
+11:02:42 49 tests, 30 passed, 1 failed, 18 skipped
+11:02:42 ==============================================================================
+11:02:42 Redfish.Managers                                                              
+11:02:42 ==============================================================================
+11:02:42 Redfish.Managers.Managers                                                     
+11:02:42 ==============================================================================
+11:02:42 Check Managers Privilege :: Checks privilege levels (supported met... | PASS |
+11:02:43 ------------------------------------------------------------------------------
+11:02:43 Check Managers Required Keys :: Check required keys for redfish/v1... | PASS |
+11:02:44 ------------------------------------------------------------------------------
+11:02:44 POST BMC Reset :: POST redfish/v1/Managers/1/Actions/Manager.Reset... | PASS |
+11:04:09 ------------------------------------------------------------------------------
+11:04:09 Factory Default :: Change IPMI config by adding a new account with... | PASS |
+11:05:56 ------------------------------------------------------------------------------
+11:05:56 Test ManagerConfig Positive                                           | PASS |
+11:09:09 ------------------------------------------------------------------------------
+11:09:09 Test ManagerConfig Negative                                           | PASS |
+11:10:05 ------------------------------------------------------------------------------
+11:10:05 Test ManagerConfig Options                                            | PASS |
+11:10:09 ------------------------------------------------------------------------------
+11:10:09 Test DateTime Key Positive :: PATCH /redfish/v1/Managers/1/with bo... | PASS |
+11:10:09 ------------------------------------------------------------------------------
+11:10:09 Test DateTime Key Negative :: PATCH /redfish/v1/Managers/1 with bo... | PASS |
+11:10:10 ------------------------------------------------------------------------------
+11:10:10 Test DateTimeLocalOffset Key Positive :: PATCH /redfish/v1/Manager... | PASS |
+11:10:10 ------------------------------------------------------------------------------
+11:10:10 Test DateTimeLocalOffset Key Negative :: PATCH /redfish/v1/Manager... | PASS |
+11:10:10 ------------------------------------------------------------------------------
+11:10:10 Check Appropriate OEM URIs Removed :: For FWs that support 2019.4 ... | SKIP |
+11:10:11 2019.4 not implemented
+11:10:11 ------------------------------------------------------------------------------
+11:10:11 Redfish.Managers.Managers                                             | PASS |
+11:10:11 12 tests, 11 passed, 0 failed, 1 skipped
+11:10:11 ==============================================================================
+11:10:11 Redfish.Managers.Ethernet Interfaces                                          
+11:10:11 ==============================================================================
+11:10:11 Get Managers EthernetInterfaces :: Checks privilege levels (suppor... | PASS |
+11:10:11 ------------------------------------------------------------------------------
+11:10:11 Check Managers EthernetInterfaces Required Keys :: Check required ... | PASS |
+11:10:12 ------------------------------------------------------------------------------
+11:10:12 Test InterfaceEnabled Positive :: PATCH /redfish/v1/Managers/1/Eth... | PASS |
+11:10:12 ------------------------------------------------------------------------------
+11:10:12 Test InterfaceEnabled Negative :: PATCH /redfish/v1/Managers/1/Eth... | PASS |
+11:10:12 ------------------------------------------------------------------------------
+11:10:12 Test POST IPv6 Address :: If IPProtocolStatus is supported, check ... | PASS |
+11:10:51 ------------------------------------------------------------------------------
+11:10:51 Redfish.Managers.Ethernet Interfaces                                  | PASS |
+11:10:51 5 tests, 5 passed, 0 failed
+11:10:51 ==============================================================================
+11:10:51 Redfish.Managers.Host Interfaces                                              
+11:10:51 ==============================================================================
+11:10:51 Check Managers HostInterfaces Privilege :: Checks privilege levels... | PASS |
+11:10:52 ------------------------------------------------------------------------------
+11:10:52 Check Managers HostInterfaces Required Keys :: Check required keys... | PASS |
+11:10:52 ------------------------------------------------------------------------------
+11:10:52 Test InterfaceEnabled Positive :: PATCH /redfish/v1/Managers/1/Hos... | PASS |
+11:10:53 ------------------------------------------------------------------------------
+11:10:53 Test InterfaceEnabled Negative :: PATCH /redfish/v1/Managers/1/Hos... | PASS |
+11:10:53 ------------------------------------------------------------------------------
+11:10:53 Redfish.Managers.Host Interfaces                                      | PASS |
+11:10:53 4 tests, 4 passed, 0 failed
+11:10:53 ==============================================================================
+11:10:53 Redfish.Managers.Serial Interfaces                                            
+11:10:53 ==============================================================================
+11:10:53 Get Managers SeriaInterfaces :: Checks privilege levels (supported... | PASS |
+11:10:54 ------------------------------------------------------------------------------
+11:10:54 Check Managers SerialInterfaces Required Keys :: Check required ke... | PASS |
+11:10:54 ------------------------------------------------------------------------------
+11:10:54 Test BitRate Key Positive :: PATCH /redfish/v1/Managers/1/SerialIn... | PASS |
+11:10:54 ------------------------------------------------------------------------------
+11:10:54 Test BitRate Key Negative :: PATCH /redfish/v1/Managers/1/SerialIn... | PASS |
+11:10:55 ------------------------------------------------------------------------------
+11:10:55 Redfish.Managers.Serial Interfaces                                    | PASS |
+11:10:55 4 tests, 4 passed, 0 failed
+11:10:55 ==============================================================================
+11:10:55 Redfish.Managers.Network Protocol                                             
+11:10:55 ==============================================================================
+11:10:55 Get Managers NetworkProtocol URI :: Checks privilege levels (suppo... | PASS |
+11:10:58 ------------------------------------------------------------------------------
+11:10:58 Check Managers NetworkProtocol Required Keys :: Check required key... | PASS |
+11:11:01 ------------------------------------------------------------------------------
+11:11:01 Check HTTPS Certificate Link is Valid :: Get @odata.id uri in HTTP... | PASS |
+11:11:04 ------------------------------------------------------------------------------
+11:11:04 Check HTTPS Certificate Method Privileges :: Checks privilege leve... | PASS |
+11:11:09 ------------------------------------------------------------------------------
+11:11:09 Check HTTPS Certificate Required Keys :: Check required keys for /... | PASS |
+11:11:13 ------------------------------------------------------------------------------
+11:11:13 POST Certificate Rekey Positive :: POST /redfish/v1/Managers/1/Net... | PASS |
+11:11:18 ------------------------------------------------------------------------------
+11:11:18 POST Certificate Rekey Negative :: POST /redfish/v1/Managers/1/Net... | PASS |
+11:11:23 ------------------------------------------------------------------------------
+11:11:23 POST Certificate Renew :: POST /redfish/v1/Managers/1/NetworkProto... | PASS |
+11:11:26 ------------------------------------------------------------------------------
+11:11:26 Test SNMP ProtocolEnabled Key Positive :: PATCH /redfish/v1/Manage... | PASS |
+11:11:30 ------------------------------------------------------------------------------
+11:11:30 Test SNMP ProtocolEnabled Key Negative :: PATCH /redfish/v1/Manage... | PASS |
+11:11:33 ------------------------------------------------------------------------------
+11:11:33 Test SNMP Port Key Positive :: PATCH /redfish/v1/Managers/1/Networ... | PASS |
+11:11:36 ------------------------------------------------------------------------------
+11:11:36 Test SNMP Port Key Negative :: PATCH /redfish/v1/Managers/1/Networ... | PASS |
+11:11:40 ------------------------------------------------------------------------------
+11:11:40 Reset Default SNMP :: Restore SNMP default port with PATCH.           | PASS |
+11:11:43 ------------------------------------------------------------------------------
+11:11:43 Test AuthenticationProtocol Key Positive :: PATCH /redfish/v1/Mana... | SKIP |
+11:11:46 2019.4 features not supported
+11:11:46 ------------------------------------------------------------------------------
+11:11:46 Test AuthenticationProtocol Key Negative :: PATCH /redfish/v1/Mana... | SKIP |
+11:11:49 2019.4 features not supported
+11:11:49 ------------------------------------------------------------------------------
+11:11:49 Test CommunityAccessMode Key Positive :: PATCH /redfish/v1/Manager... | SKIP |
+11:11:52 2019.4 features not supported
+11:11:52 ------------------------------------------------------------------------------
+11:11:52 Test CommunityAccessMode Key Negative :: PATCH /redfish/v1/Manager... | SKIP |
+11:11:55 2019.4 features not supported
+11:11:55 ------------------------------------------------------------------------------
+11:11:55 Test CommunityStrings Key Positive :: PATCH /redfish/v1/Managers/1... | SKIP |
+11:11:58 2019.4 features not supported
+11:11:58 ------------------------------------------------------------------------------
+11:11:58 Test CommunityStrings Key Negative :: PATCH /redfish/v1/Managers/1... | SKIP |
+11:12:01 2019.4 features not supported
+11:12:01 ------------------------------------------------------------------------------
+11:12:01 Test EnableSNMPv2c Key Positive :: PATCH /redfish/v1/Managers/1/Ne... | SKIP |
+11:12:04 2019.4 features not supported
+11:12:04 ------------------------------------------------------------------------------
+11:12:04 Test EnableSNMPv2c Key Negative :: PATCH /redfish/v1/Managers/1/Ne... | SKIP |
+11:12:07 2019.4 features not supported
+11:12:07 ------------------------------------------------------------------------------
+11:12:07 Test EnableSNMPv3 Key Positive :: PATCH /redfish/v1/Managers/1/Net... | SKIP |
+11:12:10 2019.4 features not supported
+11:12:10 ------------------------------------------------------------------------------
+11:12:10 Test EnableSNMPv3 Key Negative :: PATCH /redfish/v1/Managers/1/Net... | SKIP |
+11:12:13 2019.4 features not supported
+11:12:13 ------------------------------------------------------------------------------
+11:12:13 Test EncryptionProtocol Key Positive :: PATCH /redfish/v1/Managers... | SKIP |
+11:12:16 2019.4 features not supported
+11:12:16 ------------------------------------------------------------------------------
+11:12:16 Test EncryptionProtocol Key Negative :: PATCH /redfish/v1/Managers... | SKIP |
+11:12:19 2019.4 features not supported
+11:12:19 ------------------------------------------------------------------------------
+11:12:19 Test HideCommunityStrings Key Positive :: PATCH /redfish/v1/Manage... | SKIP |
+11:12:22 2019.4 features not supported
+11:12:22 ------------------------------------------------------------------------------
+11:12:22 Test HideCommunityStrings Key Negative :: PATCH /redfish/v1/Manage... | SKIP |
+11:12:25 2019.4 features not supported
+11:12:25 ------------------------------------------------------------------------------
+11:12:25 Test PrivateEnterpriseId Key :: PATCH /redfish/v1/Managers/1/Netwo... | SKIP |
+11:12:28 2019.4 features not supported
+11:12:28 ------------------------------------------------------------------------------
+11:12:28 Test Default Limited Mode Community String Positive :: PATCH /redf... | SKIP |
+11:12:28 2019.4 features not supported
+11:12:28 ------------------------------------------------------------------------------
+11:12:28 Test Default Limited Mode Community String Negative :: PATCH /redf... | SKIP |
+11:12:28 2019.4 features not supported
+11:12:28 ------------------------------------------------------------------------------
+11:12:28 Test Default Full Mode Community String :: PATCH /redfish/v1/Manag... | SKIP |
+11:12:28 2019.4 features not supported
+11:12:28 ------------------------------------------------------------------------------
+11:12:28 Test Explicit Limited Mode Community String Positive :: PATCH /red... | SKIP |
+11:12:28 2019.4 features not supported
+11:12:28 ------------------------------------------------------------------------------
+11:12:28 Test Explicit Limited Mode Community String Negative :: PATCH /red... | SKIP |
+11:12:28 2019.4 features not supported
+11:12:28 ------------------------------------------------------------------------------
+11:12:28 Test Explicit Full Mode Community String :: PATCH /redfish/v1/Mana... | SKIP |
+11:12:28 2019.4 features not supported
+11:12:28 ------------------------------------------------------------------------------
+11:12:28 Test HideCommunityStrings Behavior :: PATCH /redfish/v1/Managers/1... | SKIP |
+11:12:28 2019.4 features not supported
+11:12:28 ------------------------------------------------------------------------------
+11:12:28 Test Create CS When HideCommunityStrings is Enabled :: PATCH /redf... | SKIP |
+11:12:28 2019.4 features not supported
+11:12:28 ------------------------------------------------------------------------------
+11:12:28 Test Unconfigured CS cannot use SNMPv1 :: PATCH /redfish/v1/Manage... | SKIP |
+11:12:28 2019.4 features not supported
+11:12:28 ------------------------------------------------------------------------------
+11:12:28 Test Unconfigured CS cannot use SNMPv2c :: PATCH /redfish/v1/Manag... | SKIP |
+11:12:28 2019.4 features not supported
+11:12:28 ------------------------------------------------------------------------------
+11:12:28 Test Max CS configured can use all :: PATCH /redfish/v1/Managers/1... | SKIP |
+11:12:28 2019.4 features not supported
+11:12:28 ------------------------------------------------------------------------------
+11:12:28 Test Add After Max Number of Community Strings Configured :: Add f... | SKIP |
+11:12:28 2019.4 features not supported
+11:12:28 ------------------------------------------------------------------------------
+11:12:28 Test CS can only have five entries regardless of CS Presence :: Cr... | SKIP |
+11:12:28 2019.4 features not supported
+11:12:28 ------------------------------------------------------------------------------
+11:12:28 Test Cannot Use Name as CommunityString :: PATCH /redfish/v1/Manag... | SKIP |
+11:12:28 2019.4 features not supported
+11:12:28 ------------------------------------------------------------------------------
+11:12:28 Test Removed Community String Cannot Be Used :: PATCH /redfish/v1/... | SKIP |
+11:12:28 2019.4 features not supported
+11:12:28 ------------------------------------------------------------------------------
+11:12:28 Test Disable SNMP cannot use SNMPv2c even if SNMPv2c is Enabled ::... | SKIP |
+11:12:28 2019.4 features not supported
+11:12:28 ------------------------------------------------------------------------------
+11:12:28 Test Disable SNMPv2c cannot use SNMPv2c :: PATCH /redfish/v1/Manag... | SKIP |
+11:12:28 2019.4 features not supported
+11:12:28 ------------------------------------------------------------------------------
+11:12:28 Test Disable SNMP cannot use SNMPv3 even if SNMPv3 is Enabled :: P... | SKIP |
+11:12:28 2019.4 features not supported
+11:12:28 ------------------------------------------------------------------------------
+11:12:28 Test Disable SNMPv3 cannot use snmpv3 :: PATCH /redfish/v1/Manager... | SKIP |
+11:12:28 2019.4 features not supported
+11:12:28 ------------------------------------------------------------------------------
+11:12:28 Test Enable Both SNMPv2c and SNMPv3 can use both :: PATCH /redfish... | SKIP |
+11:12:28 2019.4 features not supported
+11:12:28 ------------------------------------------------------------------------------
+11:12:28 Test NetworkProtocol SNMP settings take precedence over account ::... | SKIP |
+11:12:28 2019.4 features not supported
+11:12:28 ------------------------------------------------------------------------------
+11:12:28 Test AuthenticationProtocol Set to CommunityString Cannot Use SNMP... | SKIP |
+11:12:28 2019.4 features not supported
+11:12:28 ------------------------------------------------------------------------------
+11:12:28 Test SNMPv3 is able to use snmpset :: PATCH /redfish/v1/Managers/1... | SKIP |
+11:12:28 2019.4 features not supported
+11:12:28 ------------------------------------------------------------------------------
+11:12:28 Test SSH ProtocolEnabled Key Positive :: PATCH /redfish/v1/Manager... | PASS |
+11:12:34 ------------------------------------------------------------------------------
+11:12:34 Test SSH ProtocolEnabled Key Negative :: PATCH /redfish/v1/Manager... | PASS |
+11:12:39 ------------------------------------------------------------------------------
+11:12:39 Test SSH Port Key Positive :: PATCH /redfish/v1/Managers/1/Network... | PASS |
+11:12:48 ------------------------------------------------------------------------------
+11:12:48 Test SSH Port Key Negative :: PATCH /redfish/v1/Managers/1/Network... | PASS |
+11:13:00 ------------------------------------------------------------------------------
+11:13:00 Reset Default SSH :: Restore SSH default port with PATCH.             | PASS |
+11:13:03 ------------------------------------------------------------------------------
+11:13:03 Test KVMIP ProtocolEnabled Key Positive :: PATCH /redfish/v1/Manag... | PASS |
+11:13:15 ------------------------------------------------------------------------------
+11:13:15 Test KVMIP ProtocolEnabled Key Negative :: PATCH /redfish/v1/Manag... | PASS |
+11:13:21 ------------------------------------------------------------------------------
+11:13:21 Test KVMIP Port Key Positive :: PATCH /redfish/v1/Managers/1/Netwo... | PASS |
+11:13:35 ------------------------------------------------------------------------------
+11:13:35 Test KVMIP Port Key Negative :: PATCH /redfish/v1/Managers/1/Netwo... | PASS |
+11:13:39 ------------------------------------------------------------------------------
+11:13:39 Reset Default KVMIP :: Restore KVMIP default port with PATCH.         | PASS |
+11:13:44 ------------------------------------------------------------------------------
+11:13:44 Test NTP ProtocolEnabled Key Positive :: PATCH /redfish/v1/Manager... | PASS |
+11:13:56 ------------------------------------------------------------------------------
+11:13:56 Test NTP ProtocolEnabled Key Negative :: PATCH /redfish/v1/Manager... | PASS |
+11:13:59 ------------------------------------------------------------------------------
+11:13:59 Test NTP NTPServers Key Positive :: PATCH /redfish/v1/Managers/1/N... | PASS |
+11:14:03 ------------------------------------------------------------------------------
+11:14:03 Test NTP NTPServers Key Negative :: PATCH /redfish/v1/Managers/1/N... | PASS |
+11:14:06 ------------------------------------------------------------------------------
+11:14:06 Test SSDP ProtocolEnabled Key Positive :: PATCH /redfish/v1/Manage... | PASS |
+11:14:09 ------------------------------------------------------------------------------
+11:14:09 Test SSDP ProtocolEnabled Key Negative :: PATCH /redfish/v1/Manage... | PASS |
+11:14:13 ------------------------------------------------------------------------------
+11:14:13 Test SSDP Port Key Positive :: PATCH /redfish/v1/Managers/1/Networ... | PASS |
+11:14:19 ------------------------------------------------------------------------------
+11:14:19 Test SSDP Port Key Negative :: PATCH /redfish/v1/Managers/1/Networ... | PASS |
+11:14:36 ------------------------------------------------------------------------------
+11:14:36 Test SSDP NotifyTTL Key Positive :: PATCH /redfish/v1/Managers/1/N... | PASS |
+11:14:37 ------------------------------------------------------------------------------
+11:14:37 Test SSDP NotifyTTL Key Negative :: PATCH /redfish/v1/Managers/1/N... | PASS |
+11:14:37 ------------------------------------------------------------------------------
+11:14:37 Test NotifyIPv6Scope Key Positive :: PATCH /redfish/v1/Managers/1/... | PASS |
+11:14:37 ------------------------------------------------------------------------------
+11:14:37 Test NotifyIPv6Scope Key Negative :: PATCH /redfish/v1/Managers/1/... | PASS |
+11:14:38 ------------------------------------------------------------------------------
+11:14:38 Reset Default SSDP :: Restore SSDP default port with PATCH.           | PASS |
+11:14:41 ------------------------------------------------------------------------------
+11:14:41 Test VirtualMedia ProtocolEnabled Key Positive :: PATCH /redfish/v... | PASS |
+11:14:59 ------------------------------------------------------------------------------
+11:14:59 Test VirtualMedia ProtocolEnabled Key Negative :: PATCH /redfish/v... | PASS |
+11:15:02 ------------------------------------------------------------------------------
+11:15:02 Test VirtualMedia Port Key Positive :: PATCH /redfish/v1/Managers/... | PASS |
+11:15:32 ------------------------------------------------------------------------------
+11:15:32 Test VirtualMedia Port Key Negative :: PATCH /redfish/v1/Managers/... | PASS |
+11:15:35 ------------------------------------------------------------------------------
+11:15:35 Reset Default VirtualMedia :: Restore VirtualMedia default port wi... | PASS |
+11:15:38 ------------------------------------------------------------------------------
+11:15:38 Check VM After Disable :: Disable KVMIP port. Mount CD via Redfish... | PASS |
+11:15:40 ------------------------------------------------------------------------------
+11:15:40 Test Port Defaults :: For each port, PATCH port value to an occupi... | PASS |
+11:15:51 ------------------------------------------------------------------------------
+11:19:32 Redfish.Managers.Network Protocol                                     | PASS |
+11:19:32 81 tests, 43 passed, 0 failed, 38 skipped
+11:19:32 ==============================================================================
+11:19:32 Redfish.Managers.Log Services                                                 
+11:19:32 ==============================================================================
+11:19:32 Get Managers LogServices :: Checks privilege levels (supported met... | PASS |
+11:19:35 ------------------------------------------------------------------------------
+11:19:35 Check Managers LogServices Required Keys :: Check required keys fo... | PASS |
+11:19:35 ------------------------------------------------------------------------------
+11:19:35 Test Log Service event :: Clear event log by POST redfish/v1/Manag... | PASS |
+11:19:36 ------------------------------------------------------------------------------
+11:19:36 Test Disable Log Service Functionality :: PATCH /redfish/v1/Manage... | PASS |
+11:19:37 ------------------------------------------------------------------------------
+11:19:37 Redfish.Managers.Log Services                                         | PASS |
+11:19:37 4 tests, 4 passed, 0 failed
+11:19:37 ==============================================================================
+11:19:37 Redfish.Managers.Virtual Media                                                
+11:19:37 ==============================================================================
+11:19:37 Get Managers VirtualMedia URI :: Checks privilege levels (supporte... | PASS |
+11:19:39 ------------------------------------------------------------------------------
+11:19:39 Get Managers VirtualMedia Eject URI :: Checks privilege levels (su... | PASS |
+11:19:44 ------------------------------------------------------------------------------
+11:19:44 Check Managers VirtualMedia Required Keys :: Check required keys f... | PASS |
+11:19:45 ------------------------------------------------------------------------------
+11:19:45 Redfish Mount CD :: POST redfish/v1/Managers/1/VirtualMedia/CD1/Ac... | PASS |
+11:20:01 ------------------------------------------------------------------------------
+11:20:01 Redfish UnMount CD :: POST redfish/v1/Managers/1/VirtualMedia/CD1/... | PASS |
+11:20:02 ------------------------------------------------------------------------------
+11:20:02 Redfish Mount Invalid CD :: POST redfish/v1/Managers/1/VirtualMedi... | PASS |
+11:20:02 ------------------------------------------------------------------------------
+11:20:02 Redfish.Managers.Virtual Media                                        | PASS |
+11:20:02 6 tests, 6 passed, 0 failed
+11:20:02 ==============================================================================
+11:20:02 Redfish.Managers.SMTP                                                         
+11:20:02 ==============================================================================
+11:20:02 Check Managers SMTP Required Keys :: Check required keys for redfi... | PASS |
+11:20:02 ------------------------------------------------------------------------------
+11:20:02 Get Managers SMTP :: Checks privilege levels (supported methods) o... | PASS |
+11:20:03 ------------------------------------------------------------------------------
+11:20:03 Test SmtpSSLEnabled Key Positive :: PATCH /redfish/v1/Managers/1/S... | PASS |
+11:20:03 ------------------------------------------------------------------------------
+11:20:03 Test SmtpSSLEnabled Key Negative :: PATCH /redfish/v1/Managers/1/S... | PASS |
+11:20:03 ------------------------------------------------------------------------------
+11:20:03 Test SmtpServer Key Positive :: PATCH /redfish/v1/Managers/1/SMTP ... | PASS |
+11:20:03 ------------------------------------------------------------------------------
+11:20:03 Test SmtpServer Key Negative :: PATCH /redfish/v1/Managers/1/SMTP ... | PASS |
+11:20:04 ------------------------------------------------------------------------------
+11:20:04 Test SmtpPortNumber Key Positive :: PATCH /redfish/v1/Managers/1/S... | PASS |
+11:20:05 ------------------------------------------------------------------------------
+11:20:05 Test SmtpPortNumber Key Negative :: PATCH /redfish/v1/Managers/1/S... | PASS |
+11:20:05 ------------------------------------------------------------------------------
+11:20:05 Test SmtpUserName Key Positive :: PATCH /redfish/v1/Managers/1/SMT... | PASS |
+11:20:06 ------------------------------------------------------------------------------
+11:20:06 Test SmtpUserName Key Negative :: PATCH /redfish/v1/Managers/1/SMT... | PASS |
+11:20:07 ------------------------------------------------------------------------------
+11:20:07 Test SmtpPassword Key Positive :: PATCH /redfish/v1/Managers/1/SMT... | PASS |
+11:20:08 ------------------------------------------------------------------------------
+11:20:08 Test SmtpPassword Key Negative :: PATCH /redfish/v1/Managers/1/SMT... | PASS |
+11:20:09 ------------------------------------------------------------------------------
+11:20:09 Test SmtpSenderAddress Key Positive :: PATCH /redfish/v1/Managers/... | PASS |
+11:20:09 ------------------------------------------------------------------------------
+11:20:09 Test SmtpSenderAddress Key Negative :: PATCH /redfish/v1/Managers/... | PASS |
+11:20:10 ------------------------------------------------------------------------------
+11:23:59 Redfish.Managers.SMTP                                                 | PASS |
+11:23:59 14 tests, 14 passed, 0 failed
+11:23:59 ==============================================================================
+11:23:59 Redfish.Managers.RADIUS                                                       
+11:23:59 ==============================================================================
+11:23:59 Check Managers Radius Required Keys :: Check required keys for red... | PASS |
+11:24:00 ------------------------------------------------------------------------------
+11:24:00 Test RadiusEnabled Key Positive :: PATCH /redfish/v1/Managers/1/Oe... | PASS |
+11:24:00 ------------------------------------------------------------------------------
+11:24:00 Test RadiusEnabled Key Negative :: PATCH /redfish/v1/Managers/1/Oe... | PASS |
+11:24:00 ------------------------------------------------------------------------------
+11:24:00 Test RadiusServer Key Positive :: PATCH /redfish/v1/Managers/1/Oem... | PASS |
+11:24:00 ------------------------------------------------------------------------------
+11:24:00 Test RadiusServer Key Negative :: PATCH /redfish/v1/Managers/1/Oem... | PASS |
+11:24:01 ------------------------------------------------------------------------------
+11:24:01 Test RadiusPortNumber Key Positive :: PATCH /redfish/v1/Managers/1... | PASS |
+11:24:01 ------------------------------------------------------------------------------
+11:24:01 Test RadiusPortNumber Key Negative :: PATCH /redfish/v1/Managers/1... | PASS |
+11:24:02 ------------------------------------------------------------------------------
+11:24:02 Check RADIUS Enabled Cannot Enable Other Services :: Enable RADIUS... | PASS |
+11:24:02 ------------------------------------------------------------------------------
+11:24:02 Test RADIUS All Privilege Sessions :: PATCH redfish/v1/Managers/1/... | PASS |
+11:24:04 ------------------------------------------------------------------------------
+11:24:04 Redfish.Managers.RADIUS                                               | PASS |
+11:24:04 9 tests, 9 passed, 0 failed
+11:24:04 ==============================================================================
+11:24:04 Redfish.Managers.Mouse Mode                                                   
+11:24:04 ==============================================================================
+11:24:04 Check Managers MouseMode Required Keys :: Check required keys for ... | PASS |
+11:24:04 ------------------------------------------------------------------------------
+11:24:04 Test Mode Key Positive :: PATCH redfish/v1/Managers/1/Oem/Supermic... | PASS |
+11:24:05 ------------------------------------------------------------------------------
+11:24:05 Test Mode Key Negative :: PATCH /redfish/v1/Managers/1/Oem/Supermi... | PASS |
+11:24:05 ------------------------------------------------------------------------------
+11:24:05 Redfish.Managers.Mouse Mode                                           | PASS |
+11:24:05 3 tests, 3 passed, 0 failed
+11:24:05 ==============================================================================
+11:24:05 Redfish.Managers.NTP                                                          
+11:24:05 ==============================================================================
+11:24:05 Get Managers NTP URI :: Checks privilege levels (supported methods... | PASS |
+11:24:06 ------------------------------------------------------------------------------
+11:24:06 Check Managers NTP Required Keys :: Check required keys for /redfi... | PASS |
+11:24:06 ------------------------------------------------------------------------------
+11:24:06 Test Primary NTP Function :: PATCH /redfish/v1/Managers/1/Oem/Supe... | PASS |
+11:24:21 ------------------------------------------------------------------------------
+11:24:21 Check NTP Settings against NetworkProtocol :: PATCH /redfish/v1/Ma... | PASS |
+11:24:43 ------------------------------------------------------------------------------
+11:24:43 Test NTPEnable Key Positive :: PATCH /redfish/v1/Managers/1/Oem/Su... | PASS |
+11:25:26 ------------------------------------------------------------------------------
+11:25:26 Test NTPEnable Key Negative :: PATCH /redfish/v1/Managers/1/Oem/Su... | PASS |
+11:25:26 ------------------------------------------------------------------------------
+11:25:26 Test PrimaryNTPServer Key Positive :: PATCH /redfish/v1/Managers/1... | PASS |
+11:26:00 ------------------------------------------------------------------------------
+11:26:00 Test PrimaryNTPServer Key Negative :: PATCH /redfish/v1/Managers/1... | PASS |
+11:26:01 ------------------------------------------------------------------------------
+11:26:01 Test SecondaryNTPServer Key Positive :: PATCH /redfish/v1/Managers... | PASS |
+11:26:34 ------------------------------------------------------------------------------
+11:26:34 Test SecondaryNTPServer Key Negative :: PATCH /redfish/v1/Managers... | PASS |
+11:26:35 ------------------------------------------------------------------------------
+11:26:35 Test DaylightSavingTime Key Positive :: PATCH /redfish/v1/Managers... | PASS |
+11:27:05 ------------------------------------------------------------------------------
+11:27:05 Test DaylightSavingTime Key Negative :: PATCH /redfish/v1/Managers... | PASS |
+11:27:06 ------------------------------------------------------------------------------
+11:27:06 Redfish.Managers.NTP                                                  | PASS |
+11:27:06 12 tests, 12 passed, 0 failed
+11:27:06 ==============================================================================
+11:27:06 Redfish.Managers.IP Access Control                                            
+11:27:06 ==============================================================================
+11:27:06 Check Managers IP Access Control Method Privileges :: Checks privi... | PASS |
+11:27:06 ------------------------------------------------------------------------------
+11:27:07 Check Managers IPAccessControl Required Keys :: Check required key... | PASS |
+11:27:07 ------------------------------------------------------------------------------
+11:27:07 Test ServiceEnabled Key Positive :: PATCH /redfish/v1/Managers/1/O... | PASS |
+11:27:07 ------------------------------------------------------------------------------
+11:27:07 Test ServiceEnabled Key Negative :: PATCH /redfish/v1/Managers/1/O... | PASS |
+11:27:07 ------------------------------------------------------------------------------
+11:27:07 Create Filter Rule with ServiceEnabled False :: PATCH ServiceEnabl... | PASS |
+11:27:09 ------------------------------------------------------------------------------
+11:27:09 Create Filter Rule with Required Keys Missing :: To POST a new fil... | PASS |
+11:27:10 ------------------------------------------------------------------------------
+11:27:10 Create Filter Rule with ServiceEnabled True :: Create a valid filt... | PASS |
+11:27:12 ------------------------------------------------------------------------------
+11:27:12 Test Address Key Positive :: Create a filter rule, then PATCH with... | PASS |
+11:27:20 ------------------------------------------------------------------------------
+11:27:20 Test Address Key Negative :: Create a filter rule, then PATCH with... | PASS |
+11:27:49 ------------------------------------------------------------------------------
+11:27:49 Test PrefixLength Key Positive :: Create a filter rule, then PATCH... | PASS |
+11:27:50 ------------------------------------------------------------------------------
+11:27:50 Test PrefixLength Key Negative :: Create a filter rule, then PATCH... | PASS |
+11:27:51 ------------------------------------------------------------------------------
+11:27:51 Test Policy Key Positive :: Create a filter rule, then PATCH with ... | PASS |
+11:27:51 ------------------------------------------------------------------------------
+11:27:51 Test Policy Key Negative :: Create a filter rule, then PATCH with ... | PASS |
+11:27:52 ------------------------------------------------------------------------------
+11:27:52 Test Drop IP Function :: Create a filter rule that drops an SSH se... ...| PASS |
+11:27:56 ------------------------------------------------------------------------------
+11:27:57 Redfish.Managers.IP Access Control                                    | PASS |
+11:27:57 14 tests, 14 passed, 0 failed
+11:27:57 ==============================================================================
+11:27:57 Redfish.Managers.SMCRAKP                                                      
+11:27:57 ==============================================================================
+11:27:57 Check SMCRAKP Required Keys :: Check required keys for redfish/v1/... | PASS |
+11:27:57 ------------------------------------------------------------------------------
+11:27:57 Enable SMCRAKP And Check :: PATCH redfish/v1/Managers/1/Oem/Superm... | PASS |
+11:28:04 ------------------------------------------------------------------------------
+11:28:04 Disable SMCRAKP And Check :: PATCH redfish/v1/Managers/1/Oem/Super... | PASS |
+11:28:06 ------------------------------------------------------------------------------
+11:28:06 Redfish.Managers.SMCRAKP                                              | PASS |
+11:28:06 3 tests, 3 passed, 0 failed
+11:28:06 ==============================================================================
+11:28:06 Redfish.Managers.SNMP                                                         
+11:28:06 ==============================================================================
+11:28:06 Check Managers SNMP Required Keys :: Check required keys for the f... | PASS |
+11:28:07 ------------------------------------------------------------------------------
+11:28:07 Test SnmpEnabled Key Positive :: PATCH /redfish/v1/Managers/1/Oem/... | PASS |
+11:28:08 ------------------------------------------------------------------------------
+11:28:08 Test SnmpEnabled Key Negative :: PATCH /redfish/v1/Managers/1/Oem/... | PASS |
+11:28:08 ------------------------------------------------------------------------------
+11:28:08 Test SNMPv2 SnmpEnabled Key Positive :: PATCH /redfish/v1/Managers... | PASS |
+11:28:09 ------------------------------------------------------------------------------
+11:28:09 Test SNMPv2 SnmpEnabled Key Negative :: PATCH /redfish/v1/Managers... | PASS |
+11:28:09 ------------------------------------------------------------------------------
+11:28:09 Test SNMPv2 ROCommunity Key Positive :: PATCH /redfish/v1/Managers... | PASS |
+11:28:09 ------------------------------------------------------------------------------
+11:28:09 Test SNMPv2 ROCommunity Key Negative :: PATCH /redfish/v1/Managers... | PASS |
+11:28:10 ------------------------------------------------------------------------------
+11:28:10 Test SNMPv2 RWCommunity Key Positive :: PATCH /redfish/v1/Managers... | PASS |
+11:28:10 ------------------------------------------------------------------------------
+11:28:10 Test SNMPv2 RWCommunity Key Negative :: PATCH /redfish/v1/Managers... | PASS |
+11:28:11 ------------------------------------------------------------------------------
+11:28:11 Test SNMPv3 SnmpEnabled Key Positive :: PATCH /redfish/v1/Managers... | PASS |
+11:28:11 ------------------------------------------------------------------------------
+11:28:11 Test SNMPv3 SnmpEnabled Key Negative :: PATCH /redfish/v1/Managers... | PASS |
+11:28:12 ------------------------------------------------------------------------------
+11:28:12 Test SNMPv3 UserName Key Positive :: PATCH /redfish/v1/Managers/1/... | PASS |
+11:28:12 ------------------------------------------------------------------------------
+11:28:12 Test SNMPv3 UserName Key Negative :: PATCH /redfish/v1/Managers/1/... | PASS |
+11:28:13 ------------------------------------------------------------------------------
+11:28:13 Test SNMPv3 AuthProtocol Key Positive :: PATCH /redfish/v1/Manager... | PASS |
+11:28:14 ------------------------------------------------------------------------------
+11:28:14 Test SNMPv3 AuthProtocol Key Negative :: PATCH /redfish/v1/Manager... | PASS |
+11:28:14 ------------------------------------------------------------------------------
+11:28:14 Test SNMPv3 PrivateProtocol Key Positive :: PATCH /redfish/v1/Mana... | PASS |
+11:28:15 ------------------------------------------------------------------------------
+11:28:15 Test SNMPv3 PrivateProtocol Key Negative :: PATCH /redfish/v1/Mana... | PASS |
+11:28:15 ------------------------------------------------------------------------------
+11:28:15 Test SNMPv3 AuthKey Key Positive :: PATCH /redfish/v1/Managers/1/O... | PASS |
+11:28:16 ------------------------------------------------------------------------------
+11:28:16 Test SNMPv3 AuthKey Key Negative :: PATCH /redfish/v1/Managers/1/O... | PASS |
+11:28:16 ------------------------------------------------------------------------------
+11:28:16 Test SNMPv3 PrivateKey Key Positive :: PATCH /redfish/v1/Managers/... | PASS |
+11:28:17 ------------------------------------------------------------------------------
+11:28:17 Test SNMPv3 PrivateKey Key Negative :: PATCH /redfish/v1/Managers/... | PASS |
+11:28:17 ------------------------------------------------------------------------------
+11:28:17 Check SNMP And SNMPv2 :: Enable and configure SNMPv2. Execute snmp... | PASS |
+11:28:18 ------------------------------------------------------------------------------
+11:28:18 Check SNMPv3 :: Enable and configure SNMPv3. Execute snmpget comma... | PASS |
+11:28:20 ------------------------------------------------------------------------------
+11:28:20 Redfish.Managers.SNMP                                                 | PASS |
+11:28:20 23 tests, 23 passed, 0 failed
+11:28:20 ==============================================================================
+11:28:20 Redfish.Managers.Syslog                                                       
+11:28:20 ==============================================================================
+11:28:20 Check Managers Syslog Required Keys :: Check required keys for red... | PASS |
+11:28:20 ------------------------------------------------------------------------------
+11:28:20 Test EnableSyslog Key Positive :: PATCH /redfish/v1/Managers/1/Oem... | PASS |
+11:28:20 ------------------------------------------------------------------------------
+11:28:20 Test EnableSyslog Key Negative :: PATCH /redfish/v1/Managers/1/Oem... | PASS |
+11:28:20 ------------------------------------------------------------------------------
+11:28:20 Test SyslogServer Key Positive :: PATCH /redfish/v1/Managers/1/Oem... | PASS |
+11:28:20 ------------------------------------------------------------------------------
+11:28:20 Test SyslogServer Key Negative :: PATCH /redfish/v1/Managers/1/Oem... | PASS |
+11:28:21 ------------------------------------------------------------------------------
+11:28:21 Test SyslogPortNumber Key Positive :: PATCH /redfish/v1/Managers/1... | PASS |
+11:28:22 ------------------------------------------------------------------------------
+11:28:22 Test SyslogPortNumber Key Negative :: PATCH /redfish/v1/Managers/1... | PASS |
+11:28:23 ------------------------------------------------------------------------------
+11:28:23 Test Syslog Function :: Configure a valid syslog server. Generate ... | PASS |
+11:29:10 ------------------------------------------------------------------------------
+11:29:10 Redfish.Managers.Syslog                                               | PASS |
+11:29:10 8 tests, 8 passed, 0 failed
+11:29:10 ==============================================================================
+11:29:10 Redfish.Managers.Snooping                                                     
+11:29:10 ==============================================================================
+11:29:22 Check Managers Snooping Required Keys :: Check required keys for r... | PASS |
+11:29:22 ------------------------------------------------------------------------------
+11:29:22 Check Post Code Match SMCIPMITool :: check if post code obtained f... | PASS |
+11:29:24 ------------------------------------------------------------------------------
+11:29:24 Check Post Code Changes During Reboot :: Perform a power reset usi... | PASS |
+11:30:27 ------------------------------------------------------------------------------
+11:30:27 Redfish.Managers.Snooping                                             | PASS |
+11:30:27 3 tests, 3 passed, 0 failed
+11:30:27 ==============================================================================
+11:30:27 Redfish.Managers.Fan Mode                                                     
+11:30:27 ==============================================================================
+11:30:27 Check Managers FanMode Required Keys :: Check required keys for re... | SKIP |
+11:30:27 Fan Control not availble on this SUT
+11:30:27 ------------------------------------------------------------------------------
+11:30:27 Test Mode Key Positive :: PATCH redfish/v1/Managers/1/Oem/Supermic... | SKIP |
+11:30:27 Fan Control not availble on this SUT
+11:30:27 ------------------------------------------------------------------------------
+11:30:27 Test Mode Key Negative :: PATCH redfish/v1/Managers/1/Oem/Supermic... | SKIP |
+11:30:27 Fan Control not availble on this SUT
+11:30:27 ------------------------------------------------------------------------------
+11:30:27 Redfish.Managers.Fan Mode                                             | SKIP |
+11:30:27 3 tests, 0 passed, 0 failed, 3 skipped
+11:30:27 ==============================================================================
+11:30:28 Redfish.Managers.IKVM                                                         
+11:30:28 ==============================================================================
+11:32:36 Check Managers IKVM Method Privileges :: Checks privilege levels (... | PASS |
+11:34:17 ------------------------------------------------------------------------------
+11:34:17 Check Managers IKVM Required Keys :: Check required keys for redfi... | PASS |
+11:36:05 ------------------------------------------------------------------------------
+11:36:05 Get Managers IKVM URI And Check :: Make sure current interface is ... | PASS |
+11:38:40 ------------------------------------------------------------------------------
+11:38:40 Use X-Auth Get IKVM And Check :: Make sure current interface is HT... | PASS |
+11:40:59 ------------------------------------------------------------------------------
+11:40:59 Redfish.Managers.IKVM                                                 | PASS |
+11:40:59 4 tests, 4 passed, 0 failed
+11:40:59 ==============================================================================
+11:40:59 Redfish.Managers.KCS Interface                                                
+11:40:59 ==============================================================================
+11:40:59 Check Managers KCSInterface Required Keys :: Check required keys f... | PASS |
+11:41:12 ------------------------------------------------------------------------------
+11:41:12 Test Privilege Key Positive                                           | PASS |
+11:41:26 ------------------------------------------------------------------------------
+11:41:26 Test Privilege Key Negative                                           | PASS |
+11:41:26 ------------------------------------------------------------------------------
+11:41:26 Redfish.Managers.KCS Interface                                        | PASS |
+11:41:26 3 tests, 3 passed, 0 failed
+11:41:26 ==============================================================================
+11:41:26 Redfish.Managers.SysLockdown                                                  
+11:41:26 ==============================================================================
+11:41:28 Check Managers SysLockdown Method Privileges :: Checks privilege l... | PASS |
+11:41:29 ------------------------------------------------------------------------------
+11:41:29 Check Managers SysLockdown Required Keys :: Check required keys fo... | PASS |
+11:41:29 ------------------------------------------------------------------------------
+11:41:29 Test SysLockdownEnabled Key Positive :: PATCH /redfish/v1/Managers... | PASS |
+11:41:29 ------------------------------------------------------------------------------
+11:41:29 Test SysLockdownEnabled Key Negative :: PATCH /redfish/v1/Managers... | PASS |
+11:41:30 ------------------------------------------------------------------------------
+11:41:30 Test Enable SysLockdown Redfish Behavior :: Enable syslockdown. (R... 
+11:41:30 Waiting for OS to boot...
+11:41:31 Booted into OS
+11:41:35 
+11:41:35 Waiting for OS to boot...
+11:41:37 still going
+11:41:59 taking a lunch break
+11:42:21 come back in 5 min... maybe
+11:43:08 Booted into OS
+11:43:20 
+11:43:20 Waiting for OS to boot...
+11:43:22 I'll finish one day
+11:43:44 please hold
+11:44:06 I'll finish eventually
+11:45:28 Booted into OS
+11:45:31 | PASS |
+11:45:31 ------------------------------------------------------------------------------
+11:45:31 Redfish.Managers.SysLockdown                                          | PASS |
+11:45:31 5 tests, 5 passed, 0 failed
+11:45:31 ==============================================================================
+11:45:31 Redfish.Managers.License Manager                                              
+11:45:31 ==============================================================================
+11:45:31 Check Managers LicenseManager Method Privileges :: Checks privileg... | PASS |
+11:45:31 ------------------------------------------------------------------------------
+11:45:31 Check Managers LicenseManager Required Keys :: Check required keys... | PASS |
+11:45:31 ------------------------------------------------------------------------------
+11:45:31 Check QueryLicense Method Privileges :: Checks privilege levels (s... | PASS |
+11:45:32 ------------------------------------------------------------------------------
+11:45:32 Check QueryLicense Required Keys :: Check required keys for /redfi... | PASS |
+11:45:32 ------------------------------------------------------------------------------
+11:45:32 Check ActivateLicense Method Privileges :: Checks privilege levels... | PASS |
+11:45:32 ------------------------------------------------------------------------------
+11:45:32 Check ClearLicense Method Privileges :: Checks privilege levels (s... | PASS |
+11:45:33 ------------------------------------------------------------------------------
+11:45:33 Redfish.Managers.License Manager                                      | PASS |
+11:45:33 6 tests, 6 passed, 0 failed
+11:45:33 ==============================================================================
+11:45:33 Redfish.Managers                                                      | PASS |
+11:45:33 226 tests, 184 passed, 0 failed, 42 skipped
+11:45:33 ==============================================================================
+11:45:33 Redfish.Systems                                                               
+11:45:33 ==============================================================================
+11:45:33 Redfish.Systems.Systems                                                       
+11:45:33 ==============================================================================
+11:45:50 Get Systems URI :: Checks privilege levels (supported methods) of ... | PASS |
+11:45:50 ------------------------------------------------------------------------------
+11:45:50 Check Systems Required Keys :: Check required keys for redfish/v1/... | PASS |
+11:45:51 ------------------------------------------------------------------------------
+11:45:51 Check fru Serial Number and Part Number :: Use SMCIPMITool to chan... | PASS |
+11:52:10 ------------------------------------------------------------------------------
+11:52:10 POST Force Resets :: POST redfish/v1/Systems/1/Actions/ComputerSys... 
+11:52:10 Waiting for OS to boot...
+11:52:12 Booted into OS
+11:54:34 
+11:54:34 Waiting for OS to boot...
+11:54:36 try again later
+11:54:58 Booted into OS
+11:55:58 
+11:55:58 Waiting for OS to boot...
+11:56:00 haha jk no not done
+11:56:22 Booted into OS
+11:56:22 | PASS |
+11:56:22 ------------------------------------------------------------------------------
+11:56:22 POST Power Resets :: POST redfish/v1/Systems/1/Actions/ComputerSys... 
+11:56:22 Waiting for OS to boot...
+11:56:24 Booted into OS
+11:56:24 | PASS |
+11:56:24 ------------------------------------------------------------------------------
+11:56:24 GET BIOS Version :: Obtain SUT BIOS version using SMCIPMITool and ... | PASS |
+11:56:26 ------------------------------------------------------------------------------
+11:56:26 Test IndicatorLED Key Positive :: PATCH /redfish/v1/Systems/1 with... | PASS |
+11:56:26 ------------------------------------------------------------------------------
+11:56:26 Test IndicatorLED Key Negative :: PATCH /redfish/v1/Systems/1 with... | PASS |
+11:56:27 ------------------------------------------------------------------------------
+11:56:27 PATCH Boot Orders :: PATCH redfish/v1/Systems/1 with body {"Boot":... 
+11:56:27 Waiting for OS to boot...
+11:56:29 Booted into OS
+11:58:01 
+11:58:01 Waiting for OS to boot...
+11:58:03 loading
+11:58:25 please hold
+11:58:46 still going
+11:59:08 haha jk no not done
+11:59:30 Booted into OS
+11:59:30 | PASS |
+11:59:30 ------------------------------------------------------------------------------
+11:59:30 Test Boot Order Options Positive :: PATCH /redfish/v1/Systems/1 wi... 
+11:59:36 Waiting for OS to boot...
+11:59:38 waiting forever
+12:00:35 sleeping
+12:00:56 nope not done
+12:01:55 are we there yet
+12:02:37 sleeping
+12:03:10 please hold
+12:03:32 haha jk no not done
+12:04:04 haha jk no not done
+12:04:25 loading
+12:04:47 Cannot boot into OS within 300 seconds.
+12:04:47 | PASS |
+12:04:47 ------------------------------------------------------------------------------
+12:04:47 Test Boot Order Options Negative :: PATCH /redfish/v1/Systems/1 wi... | PASS |
+12:04:47 ------------------------------------------------------------------------------
+12:04:49 
+12:04:49 Waiting for OS to boot...
+12:04:51 sleeping
+12:05:13 sleeping
+12:05:34 haha jk no not done
+12:05:56 taking a lunch break
+12:06:18 I'm overworked
+12:06:40 5 more minutes... maybe
+12:07:02 Booted into OS
+12:07:02 Redfish.Systems.Systems                                               | PASS |
+12:07:02 11 tests, 11 passed, 0 failed
+12:07:02 ==============================================================================
+12:07:02 Redfish.Systems.Bios                                                          
+12:07:02 ==============================================================================
+12:07:04 GET HII Function :: Check privilege levels (supported methods) of ... | PASS |
+12:08:36 ------------------------------------------------------------------------------
+12:08:36 Check Systems Bios Required Keys :: Check required keys for redfis... | PASS |
+12:08:36 ------------------------------------------------------------------------------
+12:08:36 PATCH DMTF HII Function :: PATCH redfish/v1/Systems/1/Bios with bo... 
+12:08:36 Waiting for OS to boot...
+12:08:38 Booted into OS
+12:08:38 
+12:08:38 Waiting for OS to boot...
+12:08:40 Booted into OS
+12:10:44 
+12:10:44 Waiting for OS to boot...
+12:10:46 5 more minutes... maybe
+12:11:08 I'll finish eventually
+12:11:30 please hold
+12:11:51 loading
+12:12:13 come back in 5 min... maybe
+12:12:35 taking a lunch break
+12:12:57 Booted into OS
+12:14:58 | PASS |
+12:14:58 ------------------------------------------------------------------------------
+12:14:58 PATCH DMTF HII SD Function :: PATCH redfish/v1/Systems/1/Bios/SD w... 
+12:14:58 Waiting for OS to boot...
+12:15:04 Booted into OS
+12:15:05 
+12:15:05 Waiting for OS to boot...
+12:15:06 Booted into OS
+12:17:10 
+12:17:10 Waiting for OS to boot...
+12:17:12 I'll finish one day
+12:17:54 taking a lunch break
+12:18:37 try again later
+12:19:04 taking a lunch break
+12:19:56 Booted into OS
+12:21:57 | PASS |
+12:21:57 ------------------------------------------------------------------------------
+12:21:57 Redfish.Systems.Bios                                                  | PASS |
+12:21:57 4 tests, 4 passed, 0 failed
+12:21:57 ==============================================================================
+12:21:57 Redfish.Systems.Boot Options                                                  
+12:21:57 ==============================================================================
+12:21:59 Check Boot Options URI without UEFI :: PATCH at /redfish/v1/System... 
+12:21:59 Waiting for OS to boot...
+12:22:00 Booted into OS
+12:22:01 
+12:22:01 Waiting for OS to boot...
+12:22:02 Booted into OS
+12:24:03 
+12:24:03 Waiting for OS to boot...
+12:24:06 Booted into OS
+12:26:10 
+12:26:10 Waiting for OS to boot...
+12:26:12 are we there yet
+12:26:34 come back in 5 min... maybe
+12:27:03 come back in 5 min... maybe
+12:27:24 waiting forever
+12:27:46 I'll finish one day
+12:28:08 try again later
+12:28:30 Booted into OS
+12:30:31 | PASS |
+12:30:31 ------------------------------------------------------------------------------
+12:30:31 GET BootOptions :: Check for HII support. If available, check priv... 
+12:30:31 Waiting for OS to boot...
+12:30:32 Booted into OS
+12:30:32 
+12:30:32 Waiting for OS to boot...
+12:30:34 Booted into OS
+12:32:35 
+12:32:35 Waiting for OS to boot...
+12:32:46 Booted into OS
+12:34:50 
+12:34:50 Waiting for OS to boot...
+12:34:52 taking a lunch break
+12:35:14 you thought lmao
+12:35:35 waiting forever
+12:35:57 come back in 5 min... maybe
+12:36:19 haha jk no not done
+12:36:41 you thought lmao
+12:37:03 I'm overworked
+12:37:24 I'll finish one day
+12:37:56 nope not done
+12:38:20 you thought lmao
+12:38:42 I'll finish one day
+12:39:03 I'll finish eventually
+12:39:25 5 more minutes... maybe
+12:39:47 haha jk no not done
+12:40:14 waiting forever
+12:40:36 loading
+12:40:57 please hold
+12:41:19 I'll finish one day
+12:41:41 still going
+12:42:13 come back in 5 min... maybe
+12:42:35 come back in 5 min... maybe
+12:42:56 please hold
+12:43:18 haha jk no not done
+12:43:40 waiting forever
+12:44:02 I'm overworked
+12:44:23 come back in 5 min... maybe
+12:44:45 loading
+12:45:07 you thought lmao
+12:45:29 I'll finish one day
+12:45:50 sleeping
+12:46:12 5 more minutes... maybe
+12:46:34 loading
+12:46:56 please hold
+12:47:18 loading
+12:47:39 taking a lunch break
+12:48:01 come back in 5 min... maybe
+12:48:23 sleeping
+12:48:45 5 more minutes... maybe
+12:49:07 please hold
+12:49:28 I'll finish eventually
+12:49:50 taking a lunch break
+12:50:12 loading
+12:50:34 come back in 5 min... maybe
+12:50:56 still going
+12:51:17 haha jk no not done
+12:51:39 5 more minutes... maybe
+12:52:01 loading
+12:52:23 waiting forever
+12:52:44 are we there yet
+12:53:06 sleeping
+12:53:28 nope not done
+12:53:50 please hold
+12:54:13 are we there yet
+12:54:35 come back in 5 min... maybe
+12:54:57 loading
+12:55:24 still going
+12:55:46 try again later
+12:56:08 haha jk no not done
+12:56:30 try again later
+12:56:52 I'm overworked
+12:57:14 I'll finish eventually
+12:57:35 5 more minutes... maybe
+12:58:07 taking a lunch break
+12:58:29 5 more minutes... maybe
+12:59:31 are we there yet
+13:00:03 I'll finish one day
+13:00:25 still going
+13:01:02 I'll finish eventually
+13:01:24 5 more minutes... maybe
+13:01:46 I'll finish eventually
+13:02:50 haha jk no not done
+13:04:11 taking a lunch break
+13:04:33 I'm overworked
+13:05:00 I'll finish one day
+13:05:22 come back in 5 min... maybe
+13:05:44 nope not done
+13:06:05 taking a lunch break
+13:06:27 5 more minutes... maybe
+13:06:59 please hold
+13:07:41 I'm overworked
+13:09:00 I'm overworked
+13:09:32 I'll finish one day
+13:09:59 5 more minutes... maybe
+13:10:21 haha jk no not done
+13:10:43 I'm overworked
+13:11:05 still going
+13:11:26 please hold
+13:11:48 please hold
+13:12:10 you thought lmao
+13:12:32 nope not done
+13:12:53 are we there yet
+13:13:15 I'll finish one day
+13:13:37 taking a lunch break
+13:13:59 nope not done
+13:14:20 try again later
+13:14:42 I'm overworked
+13:15:04 haha jk no not done
+13:15:25 loading
+13:15:47 5 more minutes... maybe
+13:16:09 nope not done
+13:16:31 are we there yet
+13:16:53 loading
+13:17:14 please hold
+13:17:36 please hold
+13:17:58 haha jk no not done
+13:18:20 5 more minutes... maybe
+13:18:41 haha jk no not done
+13:19:03 I'll finish one day
+13:19:25 nope not done
+13:19:47 try again later
+13:20:09 Cannot boot into OS within 2700 seconds.
+13:20:31 | FAIL |
+13:20:31 Test timeout 50 minutes exceeded.
+13:20:31 ------------------------------------------------------------------------------
+13:20:31 Check Systems BootOptions Required Keys :: Check required keys for... 
+13:20:31 Waiting for OS to boot...
+13:20:32 5 more minutes... maybe
+13:20:54 I'm overworked
+13:21:16 I'm overworked
+13:21:38 still going
+13:21:59 you thought lmao
+13:22:21 I'll finish one day
+13:22:43 loading
+13:23:05 still going
+13:23:31 I'm overworked
+13:23:53 I'll finish eventually
+13:24:15 I'll finish eventually
+13:24:37 nope not done
+13:24:58 sleeping
+13:25:20 haha jk no not done
+13:25:42 sleeping
+13:26:04 are we there yet
+13:26:26 still going
+13:26:47 I'll finish eventually
+13:27:09 loading
+13:27:31 you thought lmao
+13:27:53 taking a lunch break
+13:28:14 I'm overworked
+13:28:36 still going
+13:28:58 I'll finish one day
+13:29:20 you thought lmao
+13:29:42 waiting forever
+13:30:03 waiting forever
+13:30:25 I'll finish eventually
+13:30:47 I'll finish one day
+13:31:09 5 more minutes... maybe
+13:31:30 are we there yet
+13:31:52 come back in 5 min... maybe
+13:32:14 5 more minutes... maybe
+13:32:36 are we there yet
+13:32:57 try again later
+13:33:19 sleeping
+13:33:41 you thought lmao
+13:34:03 5 more minutes... maybe
+13:34:24 nope not done
+13:34:46 come back in 5 min... maybe
+13:35:08 still going
+13:35:30 I'll finish eventually
+13:35:52 you thought lmao
+13:36:13 loading
+13:36:35 sleeping
+13:36:57 still going
+13:37:19 I'll finish eventually
+13:37:40 haha jk no not done
+13:38:02 you thought lmao
+13:38:24 are we there yet
+13:38:46 come back in 5 min... maybe
+13:39:07 waiting forever
+13:39:29 waiting forever
+13:39:51 you thought lmao
+13:40:13 haha jk no not done
+13:40:34 nope not done
+13:40:56 I'll finish eventually
+13:41:18 loading
+13:41:40 5 more minutes... maybe
+13:42:02 I'll finish eventually
+13:42:24 you thought lmao
+13:42:45 please hold
+13:43:07 haha jk no not done
+13:43:29 haha jk no not done
+13:43:51 taking a lunch break
+13:44:12 still going
+13:44:34 loading
+13:44:56 I'm overworked
+13:45:18 are we there yet
+13:45:39 I'll finish eventually
+13:46:01 loading
+13:46:28 please hold
+13:47:02 loading
+13:47:28 waiting forever
+13:47:50 I'll finish eventually
+13:48:12 waiting forever
+13:48:34 I'm overworked
+13:48:55 I'm overworked
+13:49:17 still going
+13:49:39 haha jk no not done
+13:50:32 waiting forever
+13:50:54 nope not done
+13:51:15 try again later
+13:51:37 I'll finish eventually
+13:51:59 I'll finish eventually
+13:52:21 nope not done
+13:52:47 try again later
+13:53:09 are we there yet
+13:53:31 I'll finish eventually
+13:53:53 try again later
+13:56:10 I'll finish one day
+13:56:58 you thought lmao
+13:57:20 taking a lunch break
+13:57:41 5 more minutes... maybe
+13:58:23 I'm overworked
+13:58:50 you thought lmao
+13:59:12 still going
+13:59:34 waiting forever
+13:59:55 still going
+14:00:17 please hold
+14:00:44 haha jk no not done
+14:01:36 come back in 5 min... maybe
+14:02:07 I'll finish eventually
+14:02:29 come back in 5 min... maybe
+14:02:51 I'll finish one day
+14:03:13 come back in 5 min... maybe
+14:03:35 I'll finish eventually
+14:04:01 still going
+14:04:23 please hold
+14:04:45 taking a lunch break
+14:05:07 I'm overworked
+14:05:28 I'll finish eventually
+14:05:55 Cannot boot into OS within 2700 seconds.
+14:05:55 | FAIL |
+14:05:55 Sensors are not available after 2700s!
+14:05:55 ------------------------------------------------------------------------------
+14:05:55 Test Boot Order :: PATCH at /redfish/v1/Systems/1/Bios with body {... | SKIP |
+14:05:55 Sensors not available previously in the suite! Skipping Test Case.
+14:05:55 ------------------------------------------------------------------------------
+14:05:55 Test BootOptionEnabled :: GET first Member in /redfish/v1/Systems/... | SKIP |
+14:05:55 Sensors not available previously in the suite! Skipping Test Case.
+14:05:55 ------------------------------------------------------------------------------
+14:05:55 Redfish.Systems.Boot Options                                          | FAIL |
+14:05:55 5 tests, 1 passed, 2 failed, 2 skipped
+14:05:55 ==============================================================================
+14:05:55 Redfish.Systems.Secure Boot                                                   
+14:05:55 ==============================================================================
+14:06:26 
+14:06:26 Waiting for OS to boot...
+14:06:37 sleeping
+14:07:19 still going
+14:08:26 Booted into OS
+14:08:26 GET SecureBoot URI :: Check for HII support. If available, check p... 
+14:08:26 Waiting for OS to boot...
+14:08:28 Booted into OS
+14:08:43 | PASS |
+14:08:43 ------------------------------------------------------------------------------
+14:08:43 Check Systems SecureBoot Required Keys :: Check required keys for ... 
+14:08:43 Waiting for OS to boot...
+14:08:45 Booted into OS
+14:08:45 | PASS |
+14:08:45 ------------------------------------------------------------------------------
+14:08:45 PATCH SecureBootEnable :: Check for HII support. If available, PAT... 
+14:08:45 Waiting for OS to boot...
+14:08:47 Booted into OS
+14:08:50 
+14:08:50 Waiting for OS to boot...
+14:08:57 I'll finish eventually
+14:09:19 sleeping
+14:09:46 are we there yet
+14:10:07 still going
+14:10:29 I'll finish one day
+14:10:51 you thought lmao
+14:11:13 Booted into OS
+14:13:17 
+14:13:17 Waiting for OS to boot...
+14:13:19 I'll finish eventually
+14:13:40 sleeping
+14:14:02 nope not done
+14:14:24 nope not done
+14:15:24 nope not done
+14:15:45 Booted into OS
+14:17:53 | PASS |
+14:17:53 ------------------------------------------------------------------------------
+14:17:53 POST SecureBoot ResetKeys :: Check for HII support. If available, ... 
+14:17:53 Waiting for OS to boot...
+14:17:54 Booted into OS
+14:17:58 
+14:17:58 Waiting for OS to boot...
+14:18:00 nope not done
+14:18:21 are we there yet
+14:18:43 I'll finish one day
+14:19:35 loading
+14:20:07 sleeping
+14:20:28 Booted into OS
+14:22:33 
+14:22:33 Waiting for OS to boot...
+14:22:34 try again later
+14:22:56 I'm overworked
+14:23:18 nope not done
+14:23:40 try again later
+14:24:06 are we there yet
+14:25:09 Booted into OS
+14:27:13 
+14:27:13 Waiting for OS to boot...
+14:27:15 waiting forever
+14:27:37 waiting forever
+14:27:58 nope not done
+14:28:20 still going
+14:28:42 I'm overworked
+14:29:04 taking a lunch break
+14:29:26 taking a lunch break
+14:29:47 Booted into OS
+14:31:48 | PASS |
+14:31:48 ------------------------------------------------------------------------------
+14:31:48 Redfish.Systems.Secure Boot                                           | PASS |
+14:31:48 4 tests, 4 passed, 0 failed
+14:31:48 ==============================================================================
+14:31:48 Redfish.Systems.Processors                                                    
+14:31:48 ==============================================================================
+14:31:48 Check Systems Processors Method Privileges :: Checks all privilege... | PASS |
+14:31:49 ------------------------------------------------------------------------------
+14:31:49 Check Systems Processors Required Keys :: GET /redfish/v1/Systems/... | PASS |
+14:31:49 ------------------------------------------------------------------------------
+14:31:49 Check Systems Processors/* Keys :: For each Processor/#, GET /redf... 
+14:31:49 Waiting for OS to boot...
+14:31:51 Booted into OS
+14:31:51 
+14:31:51 Waiting for OS to boot...
+14:31:53 Booted into OS
+14:31:53 | PASS |
+14:31:53 ------------------------------------------------------------------------------
+14:31:53 Systems Processors Consistency Check :: GET /redfish/v1/Systems/1.... | PASS |
+14:31:54 ------------------------------------------------------------------------------
+14:31:54 Check Systems ProcessorSummary/ProcessorMetrics Required Keys :: G... | PASS |
+14:31:54 ------------------------------------------------------------------------------
+14:31:54 Check Systems ProcessorSummary/ProcessorMetrics Method Privileges ... | PASS |
+14:31:55 ------------------------------------------------------------------------------
+14:31:55 Redfish.Systems.Processors                                            | PASS |
+14:31:55 6 tests, 6 passed, 0 failed
+14:31:55 ==============================================================================
+14:31:55 Redfish.Systems.Memory                                                        
+14:31:55 ==============================================================================
+14:31:55 Check Systems Memory Method Privileges :: Checks all privilege lev... | PASS |
+14:31:56 ------------------------------------------------------------------------------
+14:31:56 Check Systems Memory Required Keys :: GET /redfish/v1/Systems/1/Me... | PASS |
+14:31:56 ------------------------------------------------------------------------------
+14:31:56 Check Systems Memory/* Keys :: For each Memory/#, GET /redfish/v1/... | PASS |
+14:31:58 ------------------------------------------------------------------------------
+14:31:58 Systems Memory Consistency Check :: GET /redfish/v1/Systems/1/. In... | PASS |
+14:31:59 ------------------------------------------------------------------------------
+14:31:59 Check Systems MemorySummary/MemoryMetrics Required Keys :: GET /re... | PASS |
+14:31:59 ------------------------------------------------------------------------------
+14:31:59 Check Systems MemorySummary/MemoryMetrics Method Privileges :: Che... | PASS |
+14:31:59 ------------------------------------------------------------------------------
+14:31:59 Check Memory Metrics Responses :: Given system is in OK state to s... 
+14:32:09 Waiting for OS to boot...
+14:32:11 I'll finish one day
+14:32:33 I'm overworked
+14:32:55 loading
+14:33:16 Booted into OS
+14:33:18 | FAIL |
+14:33:18 Several failures occurred:
+14:33:18 
+14:33:18 1) KeyError: 'CorrectableECCError'
+14:33:18 
+14:33:18 2) KeyError: 'UncorrectableECCError'
+14:33:18 
+14:33:18 3) KeyError: 'CorrectableECCError'
+14:33:18 ------------------------------------------------------------------------------
+14:33:18 Redfish.Systems.Memory                                                | FAIL |
+14:33:18 7 tests, 6 passed, 1 failed
+14:33:18 ==============================================================================
+14:33:18 Redfish.Systems.Node Manager                                                  
+14:33:18 ==============================================================================
+14:33:20 Get Systems NodeManager URI :: GET /redfish/v1/Systems/1/Oem/Super... | PASS |
+14:33:20 ------------------------------------------------------------------------------
+14:33:20 Check Systems SmcNodeManager Required Keys :: Check required keys ... | PASS |
+14:33:20 ------------------------------------------------------------------------------
+14:33:20 Test PowerLimit Key Positive :: PATCH /redfish/v1/Systems/1/Oem/Su... | PASS |
+14:33:20 ------------------------------------------------------------------------------
+14:33:20 Test PowerLimit Key Negative :: PATCH /redfish/v1/Systems/1/Oem/Su... | PASS |
+14:33:21 ------------------------------------------------------------------------------
+14:33:21 Test ClearAllPolicies :: Change Policy > PowerLimit value to a non... | PASS |
+14:33:24 ------------------------------------------------------------------------------
+14:33:24 Redfish.Systems.Node Manager                                          | PASS |
+14:33:24 5 tests, 5 passed, 0 failed
+14:33:24 ==============================================================================
+14:33:24 Redfish.Systems.Log Services                                                  
+14:33:24 ==============================================================================
+14:33:24 Get Systems LogServices :: Checks privilege levels (supported meth... | PASS |
+14:33:26 ------------------------------------------------------------------------------
+14:33:26 Check Systems LogServices Required Keys :: Check required keys for... | PASS |
+14:33:26 ------------------------------------------------------------------------------
+14:33:26 Test ACPowerOnEventLog Positive :: PATCH /redfish/v1/Systems/1/Log... | PASS |
+14:33:26 ------------------------------------------------------------------------------
+14:33:26 Test ACPowerOnEventLog Negative :: PATCH /redfish/v1/Systems/1/Log... | PASS |
+14:33:27 ------------------------------------------------------------------------------
+14:33:27 Test FIFOEventLog Positive :: PATCH /redfish/v1/Systems/1/LogServi... | PASS |
+14:33:27 ------------------------------------------------------------------------------
+14:33:27 Test FIFOEventLog Negative :: PATCH /redfish/v1/Systems/1/LogServi... | PASS |
+14:33:27 ------------------------------------------------------------------------------
+14:33:27 Test Log Service Event :: Clear event log by POST redfish/v1/Syste... | PASS |
+14:34:05 ------------------------------------------------------------------------------
+14:34:05 Test LogService Reset :: Clear event log by POST redfish/v1/System... | PASS |
+14:34:07 ------------------------------------------------------------------------------
+14:34:07 Test Warning Acknowledgement :: Generate a warning event using a r... | PASS |
+14:34:09 ------------------------------------------------------------------------------
+14:34:09 Test Critical Acknowledgement :: Generate a critical event using a... | PASS |
+14:34:11 ------------------------------------------------------------------------------
+14:34:11 Test Clear Acknowledgement :: Generate 2 events using raw commands... | PASS |
+14:34:15 ------------------------------------------------------------------------------
+14:34:15 Redfish.Systems.Log Services                                          | PASS |
+14:34:15 11 tests, 11 passed, 0 failed
+14:34:15 ==============================================================================
+14:34:15 Redfish.Systems.Ethernet Interfaces                                           
+14:34:15 ==============================================================================
+14:34:15 Get Systems EthernetInterfaces :: Checks all privilege levels (sup... | PASS |
+14:34:16 ------------------------------------------------------------------------------
+14:34:16 Get Systems EthernetInterfaces/1 :: Checks all privilege levels (s... | PASS |
+14:34:17 ------------------------------------------------------------------------------
+14:34:17 Check Systems EthernetInterfaces Required Keys :: Check required k... | PASS |
+14:34:17 ------------------------------------------------------------------------------
+14:34:17 Test InterfaceEnabled Positive :: PATCH /redfish/v1/Systems/1/Ethe... | PASS |
+14:34:17 ------------------------------------------------------------------------------
+14:34:17 Test InterfaceEnabled Negative :: PATCH /redfish/v1/Systems/1/Ethe... | PASS |
+14:34:17 ------------------------------------------------------------------------------
+14:34:17 Test IPv4Addresses Address Positive :: PATCH /redfish/v1/Systems/1... | PASS |
+14:34:18 ------------------------------------------------------------------------------
+14:34:18 Test IPv4Addresses Address Negative :: PATCH /redfish/v1/Systems/1... | PASS |
+14:34:20 ------------------------------------------------------------------------------
+14:34:20 Check EthernetInterfaces Responses :: For each redfish/v1/Systems/... | PASS |
+14:34:24 ------------------------------------------------------------------------------
+14:34:24 Redfish.Systems.Ethernet Interfaces                                   | PASS |
+14:34:24 8 tests, 8 passed, 0 failed
+14:34:24 ==============================================================================
+14:34:24 Redfish.Systems.Network Interfaces                                            
+14:34:24 ==============================================================================
+14:34:26 Check Systems NetworkInterfaces Required Keys :: Check required ke... | PASS |
+14:34:26 ------------------------------------------------------------------------------
+14:34:26 Check NetworkInterfaces URIs :: Check that GET all NetworkInterfac... | SKIP |
+14:34:26 NIC Not Present
+14:34:26 ------------------------------------------------------------------------------
+14:34:26 Check NetworkInterfaces NetworkPorts URIs :: Check that GET all Ne... | SKIP |
+14:34:26 NIC Not Present
+14:34:26 ------------------------------------------------------------------------------
+14:34:26 Check NetworkInterfaces NetworkDeviceFunctions URIs :: Check that ... | SKIP |
+14:34:26 NIC Not Present
+14:34:26 ------------------------------------------------------------------------------
+14:34:26 Redfish.Systems.Network Interfaces                                    | PASS |
+14:34:26 4 tests, 1 passed, 0 failed, 3 skipped
+14:34:26 ==============================================================================
+14:34:26 Redfish.Systems.Simple Storage                                                
+14:34:26 ==============================================================================
+14:34:28 Check Systems SimpleStorage Required Keys :: Check required keys f... | PASS |
+14:34:28 ------------------------------------------------------------------------------
+14:34:28 Check Systems SimpleStorage URIs :: Check required keys for all me... | PASS |
+14:34:28 ------------------------------------------------------------------------------
+14:34:28 Check Systems SimpleStorage Devices :: Check all devices informati... | PASS |
+14:34:28 ------------------------------------------------------------------------------
+14:34:28 Redfish.Systems.Simple Storage                                        | PASS |
+14:34:28 3 tests, 3 passed, 0 failed
+14:34:28 ==============================================================================
+14:34:28 Redfish.Systems.Storage                                                       
+14:34:28 ==============================================================================
+14:34:29 Check System Storage Required Keys :: Check required keys for redf... | PASS |
+14:34:30 ------------------------------------------------------------------------------
+14:34:30 Check HA-RAID URIs :: Check all HA-RAID related URIs for storage      | PASS |
+14:34:30 ------------------------------------------------------------------------------
+14:34:30 Check MRVL HA-RAID URIs :: Check all MRVL HA-RAID related URIs for... | PASS |
+14:34:30 ------------------------------------------------------------------------------
+14:34:30 Check NVMeSSD URIs :: Check all NVMeSSD related URIs for storage      | PASS |
+14:34:30 ------------------------------------------------------------------------------
+14:34:30 Check HBA URIs :: Check all HBA related URIs for storage              | PASS |
+14:34:30 ------------------------------------------------------------------------------
+14:34:30 Redfish.Systems.Storage                                               | PASS |
+14:34:30 5 tests, 5 passed, 0 failed
+14:34:30 ==============================================================================
+14:34:30 Redfish.Systems                                                       | FAIL |
+14:34:30 73 tests, 65 passed, 3 failed, 5 skipped
+14:34:30 ==============================================================================
+14:34:30 Redfish.Event Service                                                         
+14:34:30 ==============================================================================
+14:34:30 Redfish.Event Service.Event Service                                           
+14:34:30 ==============================================================================
+14:34:30 Get Event Service :: Checks privilege levels (supported methods) o... | PASS |
+14:34:31 ------------------------------------------------------------------------------
+14:34:31 Check Event Service Required Keys :: Check required keys for redfi... | PASS |
+14:34:31 ------------------------------------------------------------------------------
+14:34:31 Send Test Event Only Required Valid :: Send POST to /redfish/v1/Ev... | PASS |
+14:34:31 ------------------------------------------------------------------------------
+14:34:31 Send Test Event Valid :: Send POST to /redfish/v1/EventService/Act... | PASS |
+14:34:31 ------------------------------------------------------------------------------
+14:34:31 Send Test Event Invalid EventId :: Send POST to /redfish/v1/EventS... | PASS |
+14:34:31 ------------------------------------------------------------------------------
+14:34:31 Send Test Event Invalid EventTimestamp :: Send POST to /redfish/v1... | PASS |
+14:34:32 ------------------------------------------------------------------------------
+14:34:32 Send Test Event Invalid Severity :: Send POST to /redfish/v1/Event... | PASS |
+14:34:32 ------------------------------------------------------------------------------
+14:34:32 Send Test Event Invalid Message :: Send POST to /redfish/v1/EventS... | PASS |
+14:34:32 ------------------------------------------------------------------------------
+14:34:32 Send Test Event Invalid MessageId :: Send POST to /redfish/v1/Even... | PASS |
+14:34:32 ------------------------------------------------------------------------------
+14:34:32 Send Test Event Invalid MessageArgs :: Send POST to /redfish/v1/Ev... | PASS |
+14:34:32 ------------------------------------------------------------------------------
+14:34:32 Send Invalid POST OriginOfCondition :: Send POST to /redfish/v1/Ev... | PASS |
+14:34:32 ------------------------------------------------------------------------------
+14:34:32 Send Test Event No Required Key :: Send POST to /redfish/v1/EventS... | PASS |
+14:34:32 ------------------------------------------------------------------------------
+14:34:32 Redfish.Event Service.Event Service                                   | PASS |
+14:34:32 12 tests, 12 passed, 0 failed
+14:34:32 ==============================================================================
+14:34:32 Redfish.Event Service.SMTP                                                    
+14:34:32 ==============================================================================
+14:34:32 Test ServerAddress Key Positive :: PATCH /redfish/v1/EventService ... | SKIP |
+14:34:32 Skipped in parent suite setup:
+14:34:32 SMTP does not follow standard implementation and is located in Managers as OEM
+14:34:32 ------------------------------------------------------------------------------
+14:34:32 Test ServerAddress Key Negative :: PATCH /redfish/v1/EventService ... | SKIP |
+14:34:32 Skipped in parent suite setup:
+14:34:32 SMTP does not follow standard implementation and is located in Managers as OEM
+14:34:32 ------------------------------------------------------------------------------
+14:34:32 Test Port Key Positive :: PATCH /redfish/v1/EventService with payl... | SKIP |
+14:34:32 Skipped in parent suite setup:
+14:34:32 SMTP does not follow standard implementation and is located in Managers as OEM
+14:34:32 ------------------------------------------------------------------------------
+14:34:32 Test Port Key Negative :: PATCH /redfish/v1/EventService with payl... | SKIP |
+14:34:32 Skipped in parent suite setup:
+14:34:32 SMTP does not follow standard implementation and is located in Managers as OEM
+14:34:32 ------------------------------------------------------------------------------
+14:34:32 Test FromAddress Key Positive :: PATCH /redfish/v1/EventService wi... | SKIP |
+14:34:32 Skipped in parent suite setup:
+14:34:32 SMTP does not follow standard implementation and is located in Managers as OEM
+14:34:32 ------------------------------------------------------------------------------
+14:34:32 Test FromAddress Key Negative :: PATCH /redfish/v1/EventService wi... | SKIP |
+14:34:32 Skipped in parent suite setup:
+14:34:32 SMTP does not follow standard implementation and is located in Managers as OEM
+14:34:32 ------------------------------------------------------------------------------
+14:34:32 Test ConnectionProtocol Key Positive :: PATCH /redfish/v1/EventSer... | SKIP |
+14:34:32 Skipped in parent suite setup:
+14:34:32 SMTP does not follow standard implementation and is located in Managers as OEM
+14:34:32 ------------------------------------------------------------------------------
+14:34:32 Test ConnectionProtocol Key Negative :: PATCH /redfish/v1/EventSer... | SKIP |
+14:34:32 Skipped in parent suite setup:
+14:34:32 SMTP does not follow standard implementation and is located in Managers as OEM
+14:34:32 ------------------------------------------------------------------------------
+14:34:32 Test Authentication Key Positive :: PATCH /redfish/v1/EventService... | SKIP |
+14:34:32 Skipped in parent suite setup:
+14:34:32 SMTP does not follow standard implementation and is located in Managers as OEM
+14:34:32 ------------------------------------------------------------------------------
+14:34:32 Test Authentication Key Negative :: PATCH /redfish/v1/EventService... | SKIP |
+14:34:32 Skipped in parent suite setup:
+14:34:32 SMTP does not follow standard implementation and is located in Managers as OEM
+14:34:32 ------------------------------------------------------------------------------
+14:34:32 Test Username Key Positive :: PATCH /redfish/v1/EventService with ... | SKIP |
+14:34:32 Skipped in parent suite setup:
+14:34:32 SMTP does not follow standard implementation and is located in Managers as OEM
+14:34:32 ------------------------------------------------------------------------------
+14:34:32 Test Username Key Negative :: PATCH /redfish/v1/EventService with ... | SKIP |
+14:34:32 Skipped in parent suite setup:
+14:34:32 SMTP does not follow standard implementation and is located in Managers as OEM
+14:34:32 ------------------------------------------------------------------------------
+14:34:32 Test Password Key Positive :: PATCH /redfish/v1/EventService with ... | SKIP |
+14:34:32 Skipped in parent suite setup:
+14:34:32 SMTP does not follow standard implementation and is located in Managers as OEM
+14:34:32 ------------------------------------------------------------------------------
+14:34:32 Test Password Key Negative :: PATCH /redfish/v1/EventService with ... | SKIP |
+14:34:32 Skipped in parent suite setup:
+14:34:32 SMTP does not follow standard implementation and is located in Managers as OEM
+14:34:32 ------------------------------------------------------------------------------
+14:34:32 Test Restriction for ConnectionProtocol and Authentication :: Conf... | SKIP |
+14:34:32 Skipped in parent suite setup:
+14:34:32 SMTP does not follow standard implementation and is located in Managers as OEM
+14:34:32 ------------------------------------------------------------------------------
+14:34:32 Redfish.Event Service.SMTP                                            | SKIP |
+14:34:32 Skipped in suite setup:
+14:34:32 SMTP does not follow standard implementation and is located in Managers as OEM
+14:34:32 
+14:34:32 15 tests, 0 passed, 0 failed, 15 skipped
+14:34:32 ==============================================================================
+14:34:32 Redfish.Event Service                                                 | PASS |
+14:34:32 27 tests, 12 passed, 0 failed, 15 skipped
+14:34:32 ==============================================================================
+14:34:32 Redfish.Certificate Service                                                   
+14:34:32 ==============================================================================
+14:34:32 Redfish.Certificate Service.Certificate Service                               
+14:34:32 ==============================================================================
+14:34:32 Check CertificateService Method Privileges :: Checks privilege lev... | PASS |
+14:34:34 ------------------------------------------------------------------------------
+14:34:34 Check CertificateService Required Keys :: Check required keys for ... | PASS |
+14:34:35 ------------------------------------------------------------------------------
+14:34:35 Check CertificateLocations Response :: GET /redfish/v1/Certificate... | PASS |
+14:34:35 ------------------------------------------------------------------------------
+14:34:35 POST GenerateCSR Positive :: POST /redfish/v1/CertificateService/A... | PASS |
+14:35:01 ------------------------------------------------------------------------------
+14:35:01 POST GenerateCSR Negative :: POST /redfish/v1/CertificateService/A... | PASS |
+14:35:03 ------------------------------------------------------------------------------
+14:35:03 Redfish.Certificate Service.Certificate Service                       | PASS |
+14:35:03 5 tests, 5 passed, 0 failed
+14:35:03 ==============================================================================
+14:35:03 Redfish.Certificate Service                                           | PASS |
+14:35:03 5 tests, 5 passed, 0 failed
+14:35:03 ==============================================================================
+14:35:03 Redfish.Task Service                                                          
+14:35:03 ==============================================================================
+14:35:03 Redfish.Task Service.Task Service                                             
+14:35:03 ==============================================================================
+14:35:03 Check TaskService Required Keys :: Check required keys for redfish... | PASS |
+14:35:03 ------------------------------------------------------------------------------
+14:35:03 Get Task Service :: Checks privilege levels (supported methods) of... | PASS |
+14:35:04 ------------------------------------------------------------------------------
+14:35:04 Test ServiceEnabled Key Positive :: PATCH /redfish/v1/TaskService ... | PASS |
+14:35:04 ------------------------------------------------------------------------------
+14:35:04 Test ServiceEnabled Key Negative :: PATCH /redfish/v1/TaskService ... | PASS |
+14:35:04 ------------------------------------------------------------------------------
+14:35:04 Redfish.Task Service.Task Service                                     | PASS |
+14:35:04 4 tests, 4 passed, 0 failed
+14:35:04 ==============================================================================
+14:35:04 Redfish.Task Service                                                  | PASS |
+14:35:04 4 tests, 4 passed, 0 failed
+14:35:04 ==============================================================================
+14:35:04 Redfish.Telemetry Service                                                     
+14:35:04 ==============================================================================
+14:35:04 Redfish.Telemetry Service.Telemetry Service                                   
+14:35:04 ==============================================================================
+14:35:04 Check Telemetry Service Required Keys :: Check required keys for r... | PASS |
+14:35:04 ------------------------------------------------------------------------------
+14:35:04 Check Telemetry Service Method Privileges :: Checks privilege leve... | PASS |
+14:35:05 ------------------------------------------------------------------------------
+14:35:05 Redfish.Telemetry Service.Telemetry Service                           | PASS |
+14:35:05 2 tests, 2 passed, 0 failed
+14:35:05 ==============================================================================
+14:35:05 Redfish.Telemetry Service.Metric Definitions                                  
+14:35:05 ==============================================================================
+14:35:05 Check Telemetry Service Metric Definition Required Keys :: Check r... | PASS |
+14:35:05 ------------------------------------------------------------------------------
+14:35:05 Check Telemetry Service Metric Definition Method Privileges :: Che... | PASS |
+14:35:09 ------------------------------------------------------------------------------
+14:35:09 Redfish.Telemetry Service.Metric Definitions                          | PASS |
+14:35:09 2 tests, 2 passed, 0 failed
+14:35:09 ==============================================================================
+14:35:09 Redfish.Telemetry Service.Metric Report Definitions                           
+14:35:09 ==============================================================================
+14:35:09 Check Telemetry Service Metric Report Definition Required Keys :: ... | PASS |
+14:35:10 ------------------------------------------------------------------------------
+14:35:10 Check Telemetry Service Metric Report Definition Method Privileges... | PASS |
+14:35:14 ------------------------------------------------------------------------------
+14:35:14 Redfish.Telemetry Service.Metric Report Definitions                   | PASS |
+14:35:14 2 tests, 2 passed, 0 failed
+14:35:14 ==============================================================================
+14:35:14 Redfish.Telemetry Service.Metric Reports                                      
+14:35:14 ==============================================================================
+14:35:14 Check Telemetry Service Metric Report Required Keys :: Check requi... | PASS |
+14:35:15 ------------------------------------------------------------------------------
+14:35:15 Check Telemetry Service Metric Report Method Privileges :: Checks ... | PASS |
+14:35:19 ------------------------------------------------------------------------------
+14:35:19 Redfish.Telemetry Service.Metric Reports                              | PASS |
+14:35:19 2 tests, 2 passed, 0 failed
+14:35:19 ==============================================================================
+14:35:19 Redfish.Telemetry Service                                             | PASS |
+14:35:19 8 tests, 8 passed, 0 failed
+14:35:19 ==============================================================================
+14:35:19 Redfish.Update Service                                                        
+14:35:19 ==============================================================================
+14:35:19 Redfish.Update Service.SSL Cert                                               
+14:35:19 ==============================================================================
+14:35:19 Check UpdateService SSLCert Method Privileges :: Checks privilege ... | PASS |
+14:35:20 ------------------------------------------------------------------------------
+14:35:20 Check UpdateService SSLCert Required Keys :: Check required keys f... | PASS |
+14:35:20 ------------------------------------------------------------------------------
+14:35:20 Test POST Valid SSL Certificate :: Upload a valid set of SSL certi... | PASS |
+14:35:20 ------------------------------------------------------------------------------
+14:35:20 Test POST Invalid SSL Certificates :: Upload sets of SSL certifica... | PASS |
+14:35:21 ------------------------------------------------------------------------------
+14:35:21 Redfish.Update Service.SSL Cert                                       | PASS |
+14:35:21 4 tests, 4 passed, 0 failed
+14:35:21 ==============================================================================
+14:35:21 Redfish.Update Service.IPMI Config                                            
+14:35:21 ==============================================================================
+14:35:21 Check UpdateService IPMIConfig Method Privileges :: Checks privile... | PASS |
+14:35:22 ------------------------------------------------------------------------------
+14:35:22 Check UpdateService IPMIConfig Required Keys :: Check required key... | PASS |
+14:35:22 ------------------------------------------------------------------------------
+14:35:22 Change and Save IPMIConfig :: Change IPMI configuration (add an ac... | PASS |
+14:35:29 ------------------------------------------------------------------------------
+14:35:29 Load Valid IPMIConfig :: *** NOTE *** This test case should be run... | PASS |
+14:51:03 ------------------------------------------------------------------------------
+14:51:03 Load Invalid IPMIConfig :: Try to upload an invalid configuration ... | PASS |
+14:51:03 ------------------------------------------------------------------------------
+14:51:03 Redfish.Update Service.IPMI Config                                    | PASS |
+14:51:03 5 tests, 5 passed, 0 failed
+14:51:03 ==============================================================================
+14:51:04 Redfish.Update Service.Firmware Inventory                                     
+14:51:04 ==============================================================================
+14:51:21 Get UpdateService FirmwareInventory URI :: Checks privilege levels... | PASS |
+14:51:23 ------------------------------------------------------------------------------
+14:51:23 Check UpdateService FirmwareInventory Required Keys :: Check requi... | PASS |
+14:51:23 ------------------------------------------------------------------------------
+14:51:23 Check All UpdateService FirmwareInventory Members Required Keys ::... | PASS |
+14:51:31 ------------------------------------------------------------------------------
+14:51:31 Check BMC Info :: GET redfish/v1/UpdateService/FirmwareInventory/B... | PASS |
+14:51:33 ------------------------------------------------------------------------------
+14:51:33 Check BIOS Info :: If URI exists, GET redfish/v1/UpdateService/Fir... | PASS |
+14:51:35 ------------------------------------------------------------------------------
+14:51:35 Check Power Supply Version :: Check version for all PowerSupply UR... | PASS |
+14:51:35 ------------------------------------------------------------------------------
+14:51:35 Check Broadcom Version :: Check version for all Broadcom URIs in r... | PASS |
+14:51:35 ------------------------------------------------------------------------------
+14:51:35 Check NVMeSSD Version :: Check version for all NVMeSSD URIs in red... | PASS |
+14:51:35 ------------------------------------------------------------------------------
+14:51:35 Redfish.Update Service.Firmware Inventory                             | PASS |
+14:51:35 8 tests, 8 passed, 0 failed
+14:51:35 ==============================================================================
+14:51:35 Redfish.Update Service.SmcFirmwareInventory                                   
+14:51:35 ==============================================================================
+
+

@@ -1,0 +1,33 @@
+Static Sensor>>			Dynamic Sensor>>	
+"Sensor Name		 "	 Sensor Number		"Sensor Name		 "	 Sensor Number
+CPU Temp         	 01h 		U2_SSDA Temp     	 20h
+Inlet Temp       	 09h 		U2_SSDB Temp     	 21h 
+System Temp      	 0Bh 		PSU1 Temp1       	 22h
+Peripheral Temp  	 0Ch 		PSU1 Temp2       	 23h
+CPU_VRM Temp     	 10h 		PSU2 Temp1       	 24h
+SOC_VRM Temp     	 12h 		PSU2 Temp2       	 25h
+VRMABCD Temp     	 14h 		AOC_NIC1 Temp    	 60h
+VRMEFGH Temp     	 16h 		...	
+DIMMABCD Temp    	 B0h 		AOC_NIC12 Temp   	 6Bh
+DIMMEFGH Temp    	 B1h 		GPU1 Temp        	 70h
+FAN1             	 41h 		GPU2 Temp        	 71h
+FAN2             	 42h 		GPU3 Temp        	 72h 
+FAN3             	 43h 		GPU4 Temp        	 73h 
+FAN4             	 44h 		GPU5 Temp        	 74h 
+FAN5             	 45h 		GPU6 Temp        	 75h
+FAN6             	 46h 		PS1 Status       	 C4h 
+12V              	 30h 		PS2 Status       	 C5h 
+5VCC             	 31h 		PSU1 PowerC      	 FAh
+3.3VCC           	 32h 		PSU2 PowerC      	 FBh
+VBAT             	 33h 			
+5VSB             	 34h 			
+3.3VSB           	 35h 			
+VDDCR            	 36h 			
+Vp1ABCD          	 38h 			
+Vp1EFGH          	 39h 			
+M2_SSD1 Temp     	 8Ch 			
+M2_SSD2 Temp     	 8Dh 			
+SOCRUN           	 3Ch 			
+SOCDUAL          	 3Eh 			
+BMC FRU          	" 00h	*not use"			
+ATEN BMC         	 00h  *not use			

@@ -1,0 +1,26 @@
+https://michlstechblog.info/blog/linux-configure-a-tiny-dhcp-server/
+
+------------------------------------------------------
+#setup ip
+ifconfig bond0 192.168.10.10 netmask 255.255.255.0
+
+#edit udhcpd conf file
+vi /tmp/test_udhcpd.conf
+---
+# Assign IP range
+start   192.168.10.11
+end     192.168.10.100
+
+# The interface that udhcpd will use
+interface       eth0
+
+# The maximim number of leases
+max_leases      5
+
+# Options
+option subnet 255.255.255.0
+# option router 169.254.3.254
+---
+
+#enable DHCP server
+$udhcpd /tmp/test_udhcpd.conf

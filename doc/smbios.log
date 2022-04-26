@@ -1,0 +1,207 @@
++++ VPD-SN: OA211S003498, VPD-PN: AOC-AG-i4M
+ [dev-info] VID:0x8086, DID:0x1521, SVID:0x15d9, SSID:0x1b92, CCode:0x2, SCCode:00
+ [dev-info] VID:0xffff, DID:0xffff, SVID:0000, SSID:0000, CCode:0xff, SCCode:0xff
+ [dev-info] VID:0xffff, DID:0xffff, SVID:0000, SSID:0000, CCode:0xff, SCCode:0xff
+ [dev-info] VID:0xffff, DID:0xffff, SVID:0000, SSID:0000, CCode:0xff, SCCode:0xff
+ [dev-info] VID:0xffff, DID:0xffff, SVID:0000, SSID:0000, CCode:0xff, SCCode:0xff
+ [dev-info] VID:0xffff, DID:0xffff, SVID:0000, SSID:0000, CCode:0xff, SCCode:0xff
+ [dev-info] VID:0xffff, DID:0xffff, SVID:0000, SSID:0000, CCode:0xff, SCCode:0xff
+ [dev-info] VID:0xffff, DID:0xffff, SVID:0000, SSID:0000, CCode:0xff, SCCode:0xff
+ [dev-info] VID:0xffff, DID:0xffff, SVID:0000, SSID:0000, CCode:0xff, SCCode:0xff
++++ VPD-SN: VA205S024043, VPD-PN: AOC-STGS-i2T
+ [dev-info] VID:0x8086, DID:0x1563, SVID:0x15d9, SSID:0x915, CCode:0x2, SCCode:00
+ [dev-info] VID:0x15b3, DID:0x101d, SVID:0x15b3, SSID:0x12, CCode:0x2, SCCode:00
+ [dev-info] VID:0x15b3, DID:0x101b, SVID:0x15b3, SSID:0x06, CCode:0x2, SCCode:0x7
+ [dev-info] VID:0xffff, DID:0xffff, SVID:0000, SSID:0000, CCode:0xff, SCCode:0xff
+ [dev-info] VID:0x1055, DID:0x7430, SVID:0x1055, SSID:0x7430, CCode:0x2, SCCode:00
+ [dev-info] VID:0x1055, DID:0x7430, SVID:0x1055, SSID:0x7430, CCode:0x2, SCCode:00
+ [dev-info] VID:0xffff, DID:0xffff, SVID:0000, SSID:0000, CCode:0xff, SCCode:0xff
+ [dev-info] VID:0x15b3, DID:0x101d, SVID:0x15b3, SSID:0x41, CCode:0x2, SCCode:00
+ [dev-info] VID:0xffff, DID:0xffff, SVID:0000, SSID:0000, CCode:0xff, SCCode:0xff
+ [dev-info] VID:0x10ec, DID:0x8168, SVID:0x10ec, SSID:0x8168, CCode:0x2, SCCode:00
+ [dev-info] VID:0x10ec, DID:0x8168, SVID:0x10ec, SSID:0x8168, CCode:0x2, SCCode:00
+ [dev-info] VID:0x1a07, DID:0x0d, SVID:0x1a07, SSID:0x0d, CCode:0xc, SCCode:0x9
+ [dev-info] VID:0x15b3, DID:0x101d, SVID:0x15b3, SSID:0x12, CCode:0x2, SCCode:00
+==================================================
+riser->id         = RSC-UNDEFINED
+riser->location   = AIOM
+riser->pwm_zones  = 0x0
+    ----------------------------------------------
+    Name = 
+    Slot = 0x1
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        chip idx     = 0
+        fw version   = 0103
+        type         = PCIE_NIC
+        vid/did      = 0x8086,0x1521
+        svid/ssid    = 0x15d9,0x1b92
+        class/sclass = 0x0002,0x0000
+        bus/dev/func = 0x7c/0x00/0x00
+        ref_handle     = 0x0044
+        MAC1         = 3C:EC:EF:56:CD:96
+        MAC2         = 3C:EC:EF:56:CD:97
+        MAC3         = 3C:EC:EF:56:CD:98
+        MAC4         = 3C:EC:EF:56:CD:99
+==================================================
+riser->id         = RSC-UNDEFINED
+riser->location   = ONBOARD
+riser->pwm_zones  = 0x0
+    ----------------------------------------------
+    Name = 
+    Slot = 0x1
+    ----------------------------------------------
+    Name = 
+    Slot = 0x2
+    ----------------------------------------------
+    Name = 
+    Slot = 0x3
+    ----------------------------------------------
+    Name = 
+    Slot = 0x4
+    ----------------------------------------------
+    Name = 
+    Slot = 0x5
+    ----------------------------------------------
+    Name = 
+    Slot = 0x6
+    ----------------------------------------------
+    Name = 
+    Slot = 0x7
+    ----------------------------------------------
+    Name = 
+    Slot = 0x8
+    ----------------------------------------------
+    Name = 
+    Slot = 0x9
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        chip idx     = 0
+        fw version   = 030A
+        type         = PCIE_NIC
+        vid/did      = 0x8086,0x1563
+        svid/ssid    = 0x15d9,0x0915
+        class/sclass = 0x0002,0x0000
+        bus/dev/func = 0x0d/0x00/0x00
+        ref_handle     = 0x0056
+        MAC1         = 3C:EC:EF:27:E9:8A
+        MAC2         = 3C:EC:EF:27:E9:8B
+    ----------------------------------------------
+    Name = 
+    Slot = 0xa
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        chip idx     = 0
+        fw version   = 
+        type         = PCIE_NIC
+        vid/did      = 0x15b3,0x101d
+        svid/ssid    = 0x15b3,0x0012
+        class/sclass = 0x0002,0x0000
+        bus/dev/func = 0x08/0x00/0x00
+        ref_handle     = 0x0058
+    ----------------------------------------------
+    Name = 
+    Slot = 0xb
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        chip idx     = 0
+        fw version   = 
+        type         = PCIE_NIC
+        vid/did      = 0x15b3,0x101b
+        svid/ssid    = 0x15b3,0x0006
+        class/sclass = 0x0002,0x0007
+        bus/dev/func = 0xf6/0x00/0x00
+        ref_handle     = 0x005a
+    ----------------------------------------------
+    Name = 
+    Slot = 0xc
+==================================================
+riser->id         = RSC-UNDEFINED
+riser->location   = SXB1
+riser->pwm_zones  = 0x0
+    ----------------------------------------------
+    Name = 
+    Slot = 0x1
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        chip idx     = 0
+        fw version   = 
+        type         = PCIE_NIC
+        vid/did      = 0x1055,0x7430
+        svid/ssid    = 0x1055,0x7430
+        class/sclass = 0x0002,0x0000
+        bus/dev/func = 0x92/0x00/0x00
+        ref_handle     = 0x005e
+    ----------------------------------------------
+    Name = 
+    Slot = 0x2
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        chip idx     = 0
+        fw version   = 
+        type         = PCIE_NIC
+        vid/did      = 0x1055,0x7430
+        svid/ssid    = 0x1055,0x7430
+        class/sclass = 0x0002,0x0000
+        bus/dev/func = 0xa0/0x00/0x00
+        ref_handle     = 0x0060
+    ----------------------------------------------
+    Name = 
+    Slot = 0x3
+    ----------------------------------------------
+    Name = 
+    Slot = 0x4
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        chip idx     = 0
+        fw version   = 
+        type         = PCIE_NIC
+        vid/did      = 0x15b3,0x101d
+        svid/ssid    = 0x15b3,0x0041
+        class/sclass = 0x0002,0x0000
+        bus/dev/func = 0xbc/0x00/0x00
+        ref_handle     = 0x0064
+    ----------------------------------------------
+    Name = 
+    Slot = 0x5
+    ----------------------------------------------
+    Name = 
+    Slot = 0x6
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        chip idx     = 0
+        fw version   = 
+        type         = PCIE_NIC
+        vid/did      = 0x10ec,0x8168
+        svid/ssid    = 0x10ec,0x8168
+        class/sclass = 0x0002,0x0000
+        bus/dev/func = 0xda/0x00/0x00
+        ref_handle     = 0x0068
+    ----------------------------------------------
+    Name = 
+    Slot = 0x7
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        chip idx     = 0
+        fw version   = 
+        type         = PCIE_NIC
+        vid/did      = 0x10ec,0x8168
+        svid/ssid    = 0x10ec,0x8168
+        class/sclass = 0x0002,0x0000
+        bus/dev/func = 0xcc/0x00/0x00
+        ref_handle     = 0x006a
+    ----------------------------------------------
+    Name = 
+    Slot = 0x8
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        chip idx     = 0
+        fw version   = 
+        type         = PCIE_UNKNOWN
+        vid/did      = 0x1a07,0x000d
+        svid/ssid    = 0x1a07,0x000d
+        class/sclass = 0x000c,0x0009
+        bus/dev/func = 0xc3/0x00/0x00
+        ref_handle     = 0x006c
+    ----------------------------------------------
+    Name = 
+    Slot = 0x9
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        chip idx     = 0
+        fw version   = 
+        type         = PCIE_NIC
+        vid/did      = 0x15b3,0x101d
+        svid/ssid    = 0x15b3,0x0012
+        class/sclass = 0x0002,0x0000
+        bus/dev/func = 0x08/0x00/0x00
+        ref_handle     = 0x006e

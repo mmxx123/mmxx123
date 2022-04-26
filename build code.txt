@@ -1,0 +1,656 @@
+http://10.132.160.90:80/H12_Serial/smci_bmc.git
+https://gitlab.supermicro.com/hw2_bmc/x12
+GcyzAsXtAsEyBMCt_qDZ
+
+my github access token>>
+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
+
+server ip : 10.132.176.50
+maxt
+1qaz!QAZ
+/mnt/maxt/project/x12
+sudo make sh12ssg_rot1p_ast26_std_p signfile=images/AST2600_all.bin
+
+
+10.181.90.64
+maxt
+111111
+/home/maxt/project/x12
+
+
+X12DPG_OA6 MLB>>
+BMC	 ROM 	UM25	BIOS ROM 	UM16	
+NAND FLASH 	UM14	DBoot 		U19		256MB	
+
+SSW>>
+CPLD_Dual	U19		25X40CLSIG 4Mb (512K x 8) SPI 104MHz 8-SOIC	0x70000=448KB
+	provision,cpld fw,rot cmd,tee event...
+	User Flash Memory (UFM) - embedded function block WISHBONE interface
+NAND FLASH	UM14	W25M02GV 256MB
+MX25L25673G FLASH - NOR 256Mb (32M x 8) SPI 120MHz 8-SOP
+
+Midplane	PCB-SCC-P2N2FG-P1A-A-102
+Backplane	BPN-SAS3-LA26A-N12_REV01_0721_P
+
+
+x12/Kernel/AST2600/optee_repo/rot2hw2/tee.bin
+x12/FileSystem/AST2600/X12/optee_misc/usr_sbin_2hw2/optee_smci_tee_service
+
+
+sudo make sh12_rot1p_ast26_std_d ver=99.99.08 core=4 P=Kernel
+sudo make sh12ssg_rot1p_ast26_std_d ver=99.99.08 core=2
+sudo make sh12ssg_rot1p_ast26_nvda_d ver=99.99.08 core=2
+sudo make sx12dpg_rot1p_ast26_nvda_d ver=99.99.08 core=2
+sudo make sx13_rot2hw2_ast26_d ver=99.99.08 core=2
+sudo make sh12ssg_rot1p_ast26_std_d signfile=images/AST2600_all.bin
+
+
+Corrupt emmc BMC>>
+BMC  0x0 64MB (Active)
+BMC  0x08000000 64MB (Backup)
+BMC  0x0C000000 64MB (Golden)
+mmc write 0x83000000 0x0 0x200
+mmc write 0x83000000 0x40000 0x200
+mmc write 0x83000000 0x60000 0x200
+reset
+
+
+new layout corrpup emmc>>
+BMC  0x0 64MB (Active)
+BMC  0x08000000 64MB (Backup)
+BMC  0x0C000000 64MB (Golden)
+mmc write 0x83000000 0x0 0x200 
+mmc write 0x83000000 0x80000 0x200 
+mmc write 0x83000000 0xC0000 0x200
+
+setenv eth0addr 3c:ec:ef:33:06:ad
+
+setenv ethaddr 3c:ec:ef:33:a3:6e
+
+tftp>>
+sudo /etc/init.d/xinetd restart
+
+out_kernel.bin out_rootfs_img.bin into your tftp server>>
+setenv serverip 10.181.90.67
+run bootram
+
+---emmc----tftp update-----------
+setenv serverip 10.184.6.47
+tftp 83000000 signed_AST2600_all.bin
+mmc write 0x83000000 0x0 0x1d800
+boot
+
+-----rot1p----tftp update---------
+setenv serverip 10.181.90.67
+tftp 83000000 signed_AST2600_all.bin
+sf probe 0
+sf update 83000000 0 2ec0000
+boot
+
+---access /nv
+echo 0 >/proc/check/chkexec && echo 0 >/proc/filechk/filechk_tee
+
+git clean>>>
+sudo git clean -fdx && git checkout -- .
+sudo git reset --hard HEAD
+sudo rm -rf OpenSRC/APP/UPNP/libupnp-1.8.4/
+
+create patch>>
+git format-patch -1 -o ../
+git diff .... > patch_name
+
+import patch>>
+git am Patch
+patch -p1 < Patch
+
+git apply yourcoworkers.diff
+
+check sdr in root/fs>>
+hexdump -C FileSystem/AST2600/rootfs/etc/conf/SDRBlock.H12SSG_AN6
+
+tmux>>>>
+tmux kill-session -t max
+tmux new -s max
+tmux a -t max
+
+Ctrl+b, [					(view screen)
+Ctrl+b, “					(split screen)
+Ctrl+b, %
+Ctrl+b, arrow-key
+Ctrl+w, w	(with F10)
+Ctrl+b, Ctrl+c
+Ctrl+b, :resize-pane -U 10	(resize current pane 10 cells up)
+
+virtual evn>>
+virtualenv -p python3 myEnv
+. myEnv/bin/activate
+deactivate
+
+sol>
+ipmitool -I lanplus -H 10.184.5.1 -U ADMIN -P ADMIN raw 0x30 0x70 6 1
+
+check cpld fw version>>>
+java -jar SMCIPMITool.jar 192.168.1.38 ADMIN ADMIN ipmi raw 30 68 28 03
+
+master write-read>>
+./SMCIPMITool 192.168.0.22 ADMIN ADMIN ipmi raw 06 52 07 80 02 7e  # page 80, read 2 byte, offset 0x7eh
+	07>>	0000 0111	> channel=0 (0000) bus id=3=011 private bus=1
+	80>>	1000 0000	> slave address=80	read
+
+dump OTP data on uboot>>>
+otp read data 0 800
+
+fetch remote branch>>
+git fetch origin BR_H12AST2600_20210531_001083
+
+git config user.name "maxt"
+git commit --amend --author="Maxt <Maxt@supermicro.com.tw>"
+
+git config --local user.email "Maxt@supermicro.com.tw"
+git config --local user.name "Maxt"
+git config --local alias.co checkout
+git config --local alias.br branch
+git config --local alias.ci commit
+git config --local alias.st status
+
+show staged files>
+git ls-files -m
+git diff --name-status
+
+
+change default bash>>
+sudo dpkg-reconfigure dash
+
+BlueJean ID >
+504444232	Paul
+357880108	Hammer
+
+OTP>>
+17ddab0184d0aa62
+474f719131b51039
+
+ip link set eth0 up
+ip link show
+
+compile ipmitool>>
+https://github.com/ipmitool/ipmitool/blob/master/INSTALL
+autoreconf --install
+./bootstrap && ./configure && make && sudo make install
+
+installed pkg>>
+apt list --installed
+
+chassis ctrl power off
+cmd 20 00 02 0
+
+disable sensor polling>>
+cmd 20 c0 70 df 0
+
+fake sensor vbat>
+cmd 20 c0 70 3b 1 33 4 0
+
+SetFanControl>>
+cmd 20 c0 70 66 1 0 32
+
+Mac setup>>
+
+X13>
+Eric>
+cmd 20 30 1 1 5 3c ec ef 33 3b f4
+Max>
+cmd 20 30 1 1 5 3c ec ef 33 35 9a
+cmd 20 30 1 1 5 3c ec ef 33 7a ab
+
+cmd 20 30 1 1 5 3c ec bf 73 b8 e6
+cmd 20 30 1 1 5 3c ec ef 2f 5c 0b
+SSG>	10.184.5.82
+cmd 20 30 1 1 5 3c ec ef 2f 3f df
+cmd 20 30 1 1 5 3c ec ef 2f 5c 4d
+SSW NC24B>> 10.184.6.110
+cmd 20 30 1 1 5 3c ec ef 76 ad f4
+cmd 20 30 1 1 5 3c ec ef 55 2b f8
+
+X12 NC24B>>
+cmd 20 30 1 1 5 ac 1f 6b 48 90 42
+cmd 20 30 1 1 5 3c ec ef 2f 2f af
+ㄕ
+
+Master Write-Read>>
+Send MCTP discover message>>>
+cmd 20 c0 70 df 0
+cmd 20 18 52 5 70 0 45
+cmd 20 18 52 5 a8 0 42
+cmd 20 c0 70 d4 64 00 05 01 00 02
+
+Get PLX Temp>>>
+cmd 20 c0 70 df 0
+cmd 20 18 52 5 70 0 45
+cmd 20 18 52 5 a8 0 50
+cmd 20 18 52 5 b2 0 3 0 4 b3 0 0 0 7
+cmd 20 18 52 5 b2 0 3 58 3c 40 ff e7 85 34
+cmd 20 18 52 5 b2 0 3 58 3c 41 0 0 0 0
+cmd 20 18 52 5 b2 0 3 58 4 42 0 0 0 1
+cmd 20 18 52 5 b2 0 3 58 3c 40 ff e7 85 4
+cmd 20 18 52 5 b2 0 3 58 3c 41 20 2 0 0
+cmd 20 18 52 5 b2 0 3 58 4 42 0 0 0 1
+cmd 20 18 52 5 b2 0 3 58 3c 40 ff e7 85 38
+cmd 20 18 52 5 b2 0 3 58 4 42 0 0 0 a
+cmd 20 18 52 5 b2 0 4 58 3c 41
+cmd 20 18 52 5 b2 4
+
+result>>
+MsgBufOut.b_data=0x0 0x0 0xc3 0x16 0xd
+0x16 << 8 | 0x0d = 0x160d = 5645
+5645 / 128 = 45
+
+ipmitool -I lanplus -H 10.184.4.81 -U ADMIN -P ADMIN raw 0x30 0x70 0xdf 0
+ipmitool -I lanplus -H 10.184.4.81 -U ADMIN -P ADMIN i2c bus=2 0x70 0x00 0x45
+ipmitool -I lanplus -H 10.184.4.81 -U ADMIN -P ADMIN i2c bus=2 0xa8 0x00 0x50
+ipmitool -I lanplus -H 10.184.4.81 -U ADMIN -P ADMIN i2c bus=2 0xb2 0x00 0x03 0x00 0x04 0xb3 0x00 0x00 0x00 0x07
+ipmitool -I lanplus -H 10.184.4.81 -U ADMIN -P ADMIN i2c bus=2 0xb2 0x00 0x03 0x58 0x3c 0x40 0xff 0xe7 0x85 0x34
+ipmitool -I lanplus -H 10.184.4.81 -U ADMIN -P ADMIN i2c bus=2 0xb2 0x00 0x03 0x58 0x3c 0x41 0x00 0x00 0x00 0x00
+ipmitool -I lanplus -H 10.184.4.81 -U ADMIN -P ADMIN i2c bus=2 0xb2 0x00 0x03 0x58 0x04 0x42 0x00 0x00 0x00 0x01
+ipmitool -I lanplus -H 10.184.4.81 -U ADMIN -P ADMIN i2c bus=2 0xb2 0x00 0x03 0x58 0x3c 0x40 0xff 0xe7 0x85 0x04
+ipmitool -I lanplus -H 10.184.4.81 -U ADMIN -P ADMIN i2c bus=2 0xb2 0x00 0x03 0x58 0x3c 0x41 0x20 0x02 0x00 0x00
+ipmitool -I lanplus -H 10.184.4.81 -U ADMIN -P ADMIN i2c bus=2 0xb2 0x00 0x03 0x58 0x04 0x42 0x00 0x00 0x00 0x01
+ipmitool -I lanplus -H 10.184.4.81 -U ADMIN -P ADMIN i2c bus=2 0xb2 0x00 0x03 0x58 0x3c 0x40 0xff 0xe7 0x85 0x38
+ipmitool -I lanplus -H 10.184.4.81 -U ADMIN -P ADMIN i2c bus=2 0xb2 0x00 0x03 0x58 0x04 0x42 0x00 0x00 0x00 0x0a
+ipmitool -I lanplus -H 10.184.4.81 -U ADMIN -P ADMIN i2c bus=2 0xb2 0x00 0x04 0x58 0x3c 0x41
+ipmitool -I lanplus -H 10.184.4.81 -U ADMIN -P ADMIN i2c bus=2 0xb2 0x04
+
+ipmitool -I lanplus -H 10.184.4.81 -U ADMIN -P ADMIN raw 0x30 0x70 0xdf 1
+
+bmc console>>
+dc off>
+cmd 20 00 02 0
+disable snr polling>
+cmd 20 c0 70 df 0
+restore sdr>
+cmd 20 c0 44
+
+detect system bus>>
+i2cdetect -ya 2
+switch cpld mux>>
+i2cset -y 2 0x38 0x00 0x45
+
+i2cget -fy 2 0x38 1
+i2cset -y 2 0x54 0x00 0x48
+i2cdump -f -y 2 0x70
+
+get smbios>>
+./SMCIPMITool 172.31.34.23 ADMIN ADMIN ipmi oem generalfiledownload 7 bios_fullsmbios.bin
+./parse bios_fullsmbios.bin
+
+install docker.io
+sudo apt-get install docker.io
+docker.sh>>>
+	tar xzf build_env.tar.gz -C x12/
+	cd x12
+	./build_env.sh
+
+sudo mkdir -p /usr/local/oecore-x86_64/sysroots
+sudo tar xzf ToolChain/AST2600/armv7ahf-vfpv4d16-openbmc-linux-gnueabi.tar.gz -C  /usr/local/oecore-x86_64/sysroots/
+sudo make sh12_rot1p_ast26_std_d ver=99.99.10 core=32
+sudo make sh12_rot1p_ast26_std_d signfile=images/AST2600_all.bin
+
+
+#if defined(H12SSG_OEM_NVDA) || defined(H12SSW_OEM_NVDA) || ifdef X12DPG_OEM_NVDA
+
+.machine or .config using macro>>
+ifneq ($(filter y,$(CONFIG_H12SSG_OEM_NVDA) $(CONFIG_H12SSW_OEM_NVDA)),)
+WEBSTYLE-y = OEM_NVDA
+else
+WEBSTYLE-y = SUPERMICRO
+endif
+
+ifeq ($(CONFIG_H12SSW_OEM_NVDA),y)
+CFLAGS += -DH12SSW_OEM_NVDA
+endif
+
+--------------------------------------------------------------------------------------------------------------
+Hyper-V
+Add new switch -> RealtecUSB
+設定 > choose networking with this RealtecUSB
+--------------------------------------------------------------------------------------------------------------
+scp -r guest_hw2@10.148.21.5:/home/guest_hw2/max/x12/images/out_kernel.bin /home/maxt/tftpboot/
+scp -r guest_hw2@10.148.21.5:/home/guest_hw2/max/x12/images/out_rootfs_img.bin /home/maxt/tftpboot/
+--------------------------------------------------------------------------------------------------------------
+git checkout -b revise_vddcr_soc_cpuTemp_sensor_threshold
+git am 0004-revise-threshold-for-CPU-VDDCR-SOCRUN-and-SOCDUAL.patch
+git push origin revise_vddcr_soc_cpuTemp_sensor_threshold
+git branch --set-upstream-to=origin/revise_vddcr_soc_cpuTemp_sensor_threshold
+--------------------------------------------------------------------------------------------------------
+ipmicmd>>
+ipmitool -I lanplus -H 192.168.1.38 -U ADMIN -P ADMIN sensor get 5VSB
+
+AIOM>>
+vid/did      = 0x8086,0x1521	AOC-AG-i2M		AION		Intel
+
+ONBOARD>>
+vid/did      = 0x8086,0x1563	AOC-STGS-i2T				Intel
+vid/did      = 0x15b3,0x101d	AOC-A100G-m2CM			v	Mellanox
+vid/did      = 0x15b3,0x101b	AOC-A100G-m2CM			v	Mellanox
+
+SXB1>>
+vid/did      = 0x1055,0x7430	P3692Discovering		v	Microchip
+vid/did      = 0x15b3,0x101d	AOC-A100G-m2CM			v	Mellanox 
+vid/did      = 0x10ec,0x8168	P3690Discovering		v	Realtek
+vid/did      = 0x1a07,0x000d	PCIE_UNKNOWN			?	Kvaser PCIECAN 4XHS
+vid/did      = 0x15b3,0x101d	AOC-A100G-m2CM			v	Mellanox
+--------------------------------------------------------------------------------------------------------
+ProbeInfoTable.h	ProbeTable=board->SensorTable	board=st_board
+SensorTable[snr#]=ProbeInfoTableType
+    BYTE b_SnrNo;
+    DWORD dw_HWInfo1;
+    DWORD dw_HWInfo2;
+    St_SensorCallBackAPITag *p_CallBackPtr;
+    St_SensorAPITag  *p_FncPtr;
+
+0x30 0x70 0x3C GetCurrentPollingSensorNumber()
+20	at_b_currentPollingSensorNumber
+00	at_b_MainBoardPower
+0e	at_b_CurrentIndex
+00	at_b_LastSetupFail
+
+
+AdujstProbeTable
+
+0x30 0x70 0xdb 0x01 Data0 Data1 Data2
+					0x22  Dump ASTADC values
+
+raw 4 0x2d 0x33 -> 02 c0 02 00
+			
+//0x30 0x70 0xd2
+SetFakeBATRead>>>>			
+set value to 0xf0 -> Error! sensor_number: 0x33 status is critial -> Disappeared!!
+
+----find GPU sensor----
+GPU on MLB Slot #10
+->Mapping to SMBios
+	Slot = 0x9
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        chip idx     = 0
+        fw version   =
+        type         = PCIE_GPU
+        vid/did      = 0x10de,0x2237
+        svid/ssid    = 0x10de,0x152f
+        class/sclass = 0x0003,0x0002
+        bus/dev/func = 0x18/0x00/0x00
+        ref_handle     = 0x0051
+        RiserUnit      = 0x1
+
+ch[2] dev[0x9e]
+SLAVE_ADDR_GPU0         0x9E
+cmd 20 c0 70 df 0
+cmd 20 18 52 5 70 0 45
+cmd 20 18 52 5 9e 1
+
+cmd 20 00 02 0
+
+oemsmbpbicmd>>
+ipmitool -I lanplus -U ADMIN -P ADMIN -H 10.184.4.81 raw 0x30 0xC1 0x0 0x1 0x0 0x2 0x0 0x0 0x80
+ 1f 00 1b 00 00
+ 
+cmd 20 c0 c1 0 1 0 2 0 0 80
+ 
+cmd 20 c0 70 df 0
+cmd 20 18 52 5 70 0 45
+cmd 20 18 52 5 a8 0 49
+i2cdetect -ya 2
+cmd 20 18 52 5 9e 1 0
+-> 0 0x34
+cmd 20 18 52 5 9e 0 5c 4 2 0 0 80
+cmd 20 18 52 5 9e 5 5c
+
+#check nic selection
+cmd 20 c0 70 0c 0
+00: dedicated nic
+01: shared nic
+#set to dedicated nic
+cmd 20 c0 70 0c 1 0
+#set to failover nic
+cmd 20 c0 70 0c 1 2
+
+nfs>>
+showmount -e
+vim /etc/export
+mount -t nfs -o nolock 10.181.90.67:/home/eric/Work/nfs /tmp/test
+mount -t nfs -o nolock 10.181.90.201:/home/maxt /tmp/test/
+
+---dw_HWInfo1 & dw_HWInfo2----------------------------------------------------
+	0x94,   // PLX2 Temp
+	0x12B24500 | TEMPERATURE_SENSOR,
+	  1-------	GET_MUX_INFO_MASK
+	   2------	GET_PHYSICAL_BUS_NO_MASK
+	    B2----	GET_DEVICE_ADDRESS_MASK
+		  00--	GET_DATA_ADDRESS_MASK		*I2C OFFSET
+		    00	GET_SENSOR_TYPE_MASK
+		
+	0xA8510000 | (SENSOR_SCAN_INTERVAL_ONE_SECOND * 3),
+	  A8------	GET_SOFTWARE_OFFSET_MASK		GET_MUX1_SLAVE_MASK
+		51----	GET_SENSOR_MODULE_NUMBER_MASK	GET_MUX1_VALUE_MASK
+		  0000	GET_AOC_TYPE_MASK
+
+----------------------------------------------------------
+NetFn: 0x30 Cmd:   0x93    Data:   CPU Number which is 0 -  3
+Data:  0xff (device not presenst), otherwise CPU Temp
+CMD_STATUS GetMECPUTempCmd()
+cmd 20 c0 93 0
+-> 0x38 ( 56 C)
+----------------------------------------------------------
+get_tjmax cpu0
+cmd 20 c0 70 db 1 1d
+-> [FC00] Succesfully get Tjmax:0x62 (in debug console)
+GetSetPECIData ->
+pecitool -t 0 -c 0 -r 5 0xa0 0 0x10 0 0
+->  [ 90 ]  [ 0 ]  [ 0 ]  [ 0 ]  [ 0 ] ( ?? )
+----------------------------------------------------------
+ws_St_ASTPECIAPI ->	#define DECLAR_SENSOR_APIS(name) -> St_SensorAPITag ws_St_## name ##API = Read##  name ##Drv 
+-> ws_St_## ASTPECI ##API = ReadASTPECIDrv -> STATUS ReadASTPECIDrv( DWORD dw_HWInfo_1, DWORD dw_HWInfo_2, void  *p_HWInfoPtr, void  *p_DataBuf )
+	cpu_no = dw_HWInfo_1 >> 28 -> cpu_no = 0 / 1
+		i.  get_cputemp(cpu_no, &cpu_reading, PECI_CRC_DISABLE)
+		ii. get_cputemp_from_ME (cpu_no, &cpu_reading)
+			-> ReadMEDrv (dw_HWInfo_1, dw_HWInfo_2, NULL, &reading) -> ReadCPUMemReading(b_cpu_no, 0) -> ME send raw PECI command code (NM 5.0)
+----------------------------------------------------------
+pecitool Command format:
+pecitool -t type -c cpu_no -r read_count write data0 .... dataN
+type 0 -> PECI			-> GetSetPECIData 				-> open(PECI_DEV_NAME...
+type 1 -> PECI Proxy	-> PltI2C_MasterWriteSlaveRead 	-> MsgBufIn.b_cmd = 0x40; // Send Raw PECI
+----------------------------------------------------------
+PECI: GET_TEMP_PECI_CMD>
+pecitool -t 0 -c 0 -r 2 0x01
+ [ f9 ]  [ f4 ] -> 0xf4f9 
+cpu_reading = (msg.rx_buf[1] << 8 | msg.rx_buf[0]);
+cpu_reading = (~cpu_reading + 1) >> 6  ;
+-> 2c
+
+Tjmax - cpu_reading = 0x62 - 0x2c = 54 degree C
+----------------------------------------------------------
+get_tjmax cmd>
+pecitool -t 0 -c 1 -r 5 a1 0 10 0 0
+ [ 40 ]  [ 0 ]  [ a ]  [ 62 ]  [ 0 ]
+
+if (msg.rx_buf[0] == 0x40) *cpu_tjmax = msg.rx_buf[3]; 
+-> 0x62
+----------------------------------------------------------
+pecitool -t 0 -c 0 -r 2 1
+[ 58 ]  [ f5 ]
+pecitool -t 0 -c 1 -r 2 1
+[ 0 ]  [ 0 ]
+----------------------------------------------------------
+pecitool -t 1 -c 0 -r 10 1
+wirte data [1] = 1
+w_datalength=[7],write_count=[1]
+PltI2C_MasterWriteSlaveRead
+read success
+read data [20] =  [ 0 ]  [ 57 ]  [ 1 ]  [ 0 ]  [ 3 ]  [ 80 ]  [ 0 ]  [ 0 ]  [ 0 ]  [ 0 ]  [ 0 ]  [ 0 ]  [ 0 ]  [ 0 ]  [ 0 ]  [ 0 ]  [ 0 ]  [ 0 ]  [ 0 ]  [ 0 ]
+
+pecitool -t 1 -c 1 -r 10  1
+wirte data [1] = 1
+w_datalength=[7],write_count=[1]
+PltI2C_MasterWriteSlaveRead
+read success
+read data [4] =  [ ac ]  [ 57 ]  [ 1 ]  [ 0 ] -> ac: cpu not present
+/* CRC disable */
+
+0x30 0x68 0x1e	OEMGetHostFWUserPassword
+UtilIsExistHostFWUserInfo	-> /nv/host_fw_credential_password existed -> return COMP_SUB_FUNC_HAS_BEEN_DISABLE
+UtilSetHostFWUserInfo		-> GetRandomHostFWUserPW -> GenerateRandomString
+							-> user_acc_encrypt -> aes_encrypt  -> write it to host_fw_credential_password
+
+cmd 20 18 44 0 2
+cmd 20 18 45 3 54 45 53 54 0 0 0 0 0 0 0 0 0 0 0 0
+add user by cmd does not sync with web...
+cmd 20 18 46 3
+
+OEMCommandSetFactory -> WORKS VIA KCS
+-> UtilSaveAdminPassword -> UtilSetUserPassword -> UtilSetUserSecretPW 
+-> at_St_PS.a_St_UserSecretPWInfo[b_userID].a_b_CipherPasswd, cipher_pw
+-> user_acc_encrypt ((unsigned char *)new_pw, &len, cipher_pw) -> aes_encrypt (EVP_aes_256_cbc
+cmd 20 c0 74 1 61 64 6d 69 6e 31 32 33 34 35 36 37 38 39 30 21
+cmd 20 c0 74 1 41 44 4d 49 4e
+
+
+
+curl -k -H "X-Auth-Token: zr4mista4wxzel1c782lkuuhif27dmag" -X GET https://10.184.5.42/redfish/v1/Systems/1/
+curl -k -H "X-Auth-Token: zr4mista4wxzel1c782lkuuhif27dmag" -X PATCH https://10.184.5.42/redfish/v1/Systems/1/ --data '{"IndicatorLED": "Off"}'
+
+---------------------------------------------------------------------------
+Sign file and verify:
+
+1. sign test file
+openssl dgst -sha256 -sign secp256k1-key.pem testfile > sig
+
+2. store signature with base64
+base64 sig > sig2b64
+
+3. verify signature
+base64 -d sig2b64 > sig
+openssl dgst -sha256 -verify secp256k1-pub.p8 -signature sig test_file
+
+//check contains:
+openssl x509 -in server.crt -text -noout
+
+//check csr:
+openssl req -text -noout -verify -in CSR.csr
+
+--------------------------------------------------------------------------------------------
+
+1. Corrupt BMC:
+BMC  0x0 64MB (Active)
+BMC  0x08000000 64MB (Backup)
+BMC  0x0C000000 64MB (Golden)
+mmc write 0x83000000 0x0 0x200
+mmc write 0x83000000 0x40000 0x200
+mmc write 0x83000000 0x60000 0x200
+
+2. Programing SPI flash and put in SPI flash socket
+3. Disable tee check
+echo 0 >/proc/check/chkexec && echo 0 >/proc/filechk/filechk_tee
+
+4. Initialize KC table
+optee_smci_tee_service -k -r -t 1
+mkdir /tmp/test/ && mount -t nfs -o nolock 10.181.90.201:/home/maxt /tmp/test/ 
+optee_smci_tee_service -k -t 10 -i /tmp/test/smcica.crt && optee_smci_tee_service -k -t 11 -i /tmp/test/devupdtca.crt && optee_smci_tee_service -k -t 6 -i /tmp/test/bmcfwsignkca.crt
+
+clear key & cert table>>
+uboot>
+sf probe 0
+sf update 83000000 60000 200 
+boot
+
+kernel>
+echo 0 >/proc/check/chkexec && echo 0 >/proc/filechk/filechk_tee 
+optee_smci_tee_service -k -r -t 1
+rm /nv/devakca.crt
+cmd 20  c0  68 28 85
+
+skip>
+mkdir /tmp/test/ && mount -t nfs -o nolock 10.181.90.201:/home/maxt /tmp/test/
+optee_smci_tee_service -k -t 10 -i /tmp/test/smcica.crt && optee_smci_tee_service -k -t 11 -i /tmp/test/devupdtca.crt && optee_smci_tee_service -k -t 6 -i /tmp/test/bmcfwsignkca.crt
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+sign and verify>>>
+ openssl x509 -pubkey -noout -in devupdtca.crt  > devupdtca.public.key
+ openssl dgst -sha512 -sign devupdtca.key ../Temp/devUpdtCmd.bin > ../Temp/Cmd_Signature 
+ openssl dgst -sha512 -verify Src/Temp/devupdtca.public.key -signature Src/Temp//Cmd_Signature Src/Temp/devUpdtCmd.bin
+
+SMCI>
+devupdtca.crt	--->	(DevUpdtCA)smci
+devupdtca.key
+
+Generate CSR: a private key and csr>
+openssl req -newkey rsa:4096 -nodes -keyout devupdtca.key -subj "/C=US/ST=CA/L=San Jose/O=Supermicro/OU=IT/CN=DevUpdtCA.Supermicro.00.00.01" -out devupdtca.csr
+Generate CRT with pca.key and pca.crt>
+openssl x509 -req -days 36500 -in devupdtca.csr -CA pca.crt -CAkey pca.key -CAcreateserial -out devupdtca.crt
+
+Check CRT>
+openssl x509 -text -in devupdtca.crt
+openssl x509 -noout -subject -issuer -in 
+
+Check CSR>>
+openssl req -noout -text -in domain.csr
+
+Check cert chain>
+openssl crl2pkcs7 -nocrl -certfile 0225.cert.chain | openssl pkcs7 -print_certs -noout
+
+CRT to CRTString>
+awk 'NR>2 { sub(/\r/, ""); printf "%s\\n",last} { last=$0 }' Src/Input/pca.crt
+
+Get Public Key from CRT>
+openssl x509 -pubkey -noout -in devupdtca.crt  > devupdtca.public.key
+
+Verify cert chain>
+openssl verify -show_chain -CAfile root_ca.crt client1_certchain.crt
+
+vim replace \n with \r>
+:%s/\\n/\r/g
+
+
+FakeSensorData>>
+raw 0x30 0x70 0x3b 1 0x20 10 00
+1 enable
+20 sensor number
+10 value1
+00 value2
+
+
+while true; do cat tmp/syslog; sleep 60; done
+while true; do ipmitool -I lanplus -H 172.31.42.244 -U ADMIN -P HJBGYIKKBQ power cycle; sleep 1200; done
+
+license key>>
+echo 0 >/proc/check/chkexec && echo 0 >/proc/filechk/filechk_tee
+mkdir -p /nv/license_file
+echo {\"ProductKey\":{\"Node\":{\"LicenseID\":\"2\",\"LicenseName\":\"SFT-DCMS-SINGLE\",\"CreateDate\":\"20220313\"},\"Signature\":\"NU5s6fiLg+LP+ovS/6gOUxiAqYpWNZYNXkc2rzn3DZq45iuxrEw9+xEF58HcAmu7V2kA4DR5J7PRyDgPU4iHmLgG/C90JyPdrtOdEqANNlvD7zR1MbFZ35DdKfzLG/rx4IbHnTTGl8goYfTm45PITrsHW5jM5MBhKBAwROoUN/oldTymqU/o6prCer0iYMl8YBBospmIutNNb6kaa7X/sRm7+GnrIohBO4dSQTej9+avYZ+/Fk6UxNxOWAGMmdgj8fR9Av2U/aSML2O+yb4InWcRwYI6a8s4i5O1MvFOu+8sgAimsX2AjN1A6BjTaYusBcllz2QKSGV6K5rgids+AA==\"}} > /nv/license_file/2
+
+echo {\"ProductKey\":{\"Node\":{\"LicenseID\":\"2\",\"LicenseName\":\"SFT-DCMS-SINGLE\",\"CreateDate\":\"20220405\"},\"Signature\":\"befJjgHgsZeNcRa+xDixlwRFXgCCkSxHnPHSSVmToGw3cbps5aN53eIIVCGkPpKpexxIq6lH4wZ/UBMiyoSz0RffUtIOH1QvG8MoDJyiNVQhEhyIDf968kkWfbu12HCpRgJ7f2LoQ0KkjNBfMATUOmq0wUiwcA97pi9vOKpdF0+k/oCLrrfNb6oKBJS2DGxgWY7BJzRs3H0KZfgMRxJ2qCSWM5KhUJUsQoSbQwIlUSrI48PdJH5mSHCU77yQ1PLNTCUKsoCTvRIMnOUWOo+j+1WoA/uyj411Z17auTVg6aSidEFYWuebAazfYB5odUo3t0si6Z2K/QgCzv4DMGnpGA==\"}} > /nv/license_file/2
+
+BF0c30
+BV
+
+B: Boot from SPI
+F: Secure boot fail
+0: boot from 1st image when arb mode enabled
+c+30: message codes for different message number 'nn'
+V: boot from vuart
+
+
+PLDM_CTRL_GET_TID = 2	cmd code
+PLDM_REQUEST_TYPE   1	rq 
+PLDM_MSG_ACK        0	d
+PLDM_TYPE_MESSAGE_CONTROL_DISCOVERY      0	type
+
+								   uint8 iid:5;
+||     PLDM_MIDDLE            |    uint8 rsvd:1;
+||     PLDM_END               |    uint8 d:1;
+||     PLDM_START_AND_END     |    uint8 rq:1;
+||     PLDM_HEADER_SIZE       |    uint8 type:6;
+||     PLDM_PAYLOAD_SIZE      |    uint8 hd_ver:2;
+|                             |    uint8 cmd_code;
+
+
+
+0x01 0x00 0x02
+
+
+50=A0 42=84 48=90
